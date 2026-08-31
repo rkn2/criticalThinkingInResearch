@@ -45,24 +45,31 @@ demonstrated ability to do that cycle on your own.
 **Discussion:** What does "good enough" look like at the end? What are you
 optimizing for — and what are you not?
 
-**Reading (for next week):** Heilmeier's Catechism (1 page; search "Heilmeier
-catechism DARPA").
-
 ---
 
-### Week 2 — Why does anyone care? (Sep 1)
+### Week 2 — Why does anyone care? (Sep 2)
 
-The so-what test. Every PhD exists because a real problem is unsolved. You
-should be able to say, in two minutes, who has the problem, what happens if
-it stays unsolved, and what changes if you succeed.
+Tasks vs. questions, and the method for turning a topic into a question
+worth asking. The Craft of Research three-step formula (3.4.1–3.4.3):
+Topic → Question → Significance. Plus a first conversation about career
+paths — who your "reader" is depends on where you end up.
 
-**Workshop:** Write a 2-minute elevator pitch. No slides. No tools. Just:
-what's the problem, why is it unsolved, and what will your PhD change?
+**No pre-reading.** Heilmeier's Catechism handed out in session as a
+reference sheet.
+
+**Concept:** Becca teaches the three-step formula with a worked example
+(Kallas & Napolitano blast paper). Instrumental vs. expressive behavior
+(Unwritten Rules, Ch. 3).
+
+**Workshop:** Write your three-step sentence. Maximum 3 research questions,
+each with all three steps. No tool names. Step 3 must name a reader who
+is not your advisor.
+
+**Discussion:** Career paths (tenure-line, teaching prof, industry) — how
+does your step 3 "reader" change depending on path?
 
 **Reading (for next week):** Platt, "Strong Inference" (1964, Science,
 ~8 pages). The original argument for hypothesis-driven research.
-
-**Hot seat:** Marcio — deliver the pitch, group plays skeptical audience.
 
 ---
 
@@ -297,8 +304,8 @@ shift to presentation work in Phase 3.
 
 | Week | Reading | Why |
 |------|---------|-----|
-| 1 | Heilmeier's Catechism (DARPA, 1 page) | Forces you to answer "what are you doing and why" before anything else |
-| 2 | Platt, "Strong Inference" (Science 1964, ~8 pp) | The original case for hypothesis-driven research |
+| 2 (in-session) | Heilmeier's Catechism (DARPA, 1 page) | Reference handout — the right questions to ask |
+| 2→3 | Platt, "Strong Inference" (Science 1964, ~8 pp) | The original case for hypothesis-driven research |
 | 3 | Feynman, "Cargo Cult Science" (1974, ~5 pp) | Intellectual honesty: the difference between doing science and imitating it |
 | 4 | Whitesides, "Writing a Paper" (Adv. Materials 2004, ~4 pp) | Building from an outline, not from accumulated text |
 | 5–6 | Selected chapter from research design book (Becca assigns) | Experimental design principles |
