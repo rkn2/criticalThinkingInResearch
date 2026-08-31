@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Critical Thinking in Research</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #FAFAF7;
+    --surface: #FFFFFF;
+    --text: #1A1A18;
+    --text-secondary: #5A5A54;
+    --accent: #8B4513;
+    --accent-light: #D4A574;
+    --border: #E5E2DC;
+    --phase1: #2D5F2D;
+    --phase2: #1B4F72;
+    --phase3: #6B3A2A;
+    --tag-bg: #F0EDE7;
+    --week-highlight: #FFF8F0;
+    --deliverable-bg: #FDF6EE;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141413;
+      --surface: #1E1E1C;
+      --text: #E8E6E1;
+      --text-secondary: #9C9A93;
+      --accent: #D4A574;
+      --accent-light: #8B4513;
+      --border: #2E2E2A;
+      --phase1: #5DAA5D;
+      --phase2: #5BA3D9;
+      --phase3: #D4845A;
+      --tag-bg: #252522;
+      --week-highlight: #1C1A16;
+      --deliverable-bg: #1F1C18;
+    }
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .site-nav {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.6rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+  .site-nav .nav-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--text);
+    text-decoration: none;
+  }
+  .site-nav a {
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  .site-nav a:hover { color: var(--accent); }
+  .site-nav a.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 0.15rem; }
+
+  .container {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 4rem;
+  }
+
+  header {
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid var(--accent);
+  }
+  header h1 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    text-wrap: balance;
+    margin-bottom: 0.25rem;
+  }
+  header .subtitle {
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+  .meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.5rem;
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+  }
+  .meta-label { font-weight: 600; color: var(--text); }
+
+  .why-box {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 1rem 1.25rem;
+    margin-bottom: 2rem;
+    font-size: 0.88rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+  }
+  .why-box strong { color: var(--text); }
+
+  .format-grid {
+    display: grid;
+    grid-template-columns: auto 60px 1fr;
+    gap: 0.15rem 1rem;
+    font-size: 0.82rem;
+    margin-bottom: 2.5rem;
+    padding: 0.75rem 1rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+  }
+  .fg-label { font-weight: 600; color: var(--text); }
+  .fg-time { color: var(--text-secondary); font-variant-numeric: tabular-nums; }
+  .fg-desc { color: var(--text-secondary); }
+
+  .phase-section { margin-bottom: 2rem; }
+  .phase-header {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 0.4rem 0;
+    margin-bottom: 1rem;
+  }
+  .phase-header.p1 { color: var(--phase1); border-bottom: 2px solid var(--phase1); }
+  .phase-header.p2 { color: var(--phase2); border-bottom: 2px solid var(--phase2); }
+  .phase-header.p3 { color: var(--phase3); border-bottom: 2px solid var(--phase3); }
+
+  .week-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-bottom: 0.75rem;
+    overflow: hidden;
+  }
+  .week-card.current { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+  .week-card.past { opacity: 0.65; }
+
+  .week-head {
+    display: flex;
+    align-items: baseline;
+    gap: 0.75rem;
+    padding: 0.6rem 1rem;
+    cursor: pointer;
+    user-select: none;
+    text-decoration: none;
+    color: inherit;
+  }
+  .week-head:hover { background: var(--week-highlight); }
+  .week-num {
+    font-size: 0.72rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    min-width: 3.5rem;
+    flex-shrink: 0;
+  }
+  .week-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+  .week-date {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+  .week-tags {
+    display: flex;
+    gap: 0.35rem;
+    flex-shrink: 0;
+  }
+  .tag {
+    font-size: 0.65rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.15rem 0.45rem;
+    background: var(--tag-bg);
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .tag.deliverable { color: var(--accent); background: var(--deliverable-bg); }
+  .tag.current-tag { color: var(--accent); font-weight: 600; }
+
+  .week-body {
+    display: none;
+    padding: 0 1rem 0.85rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+  }
+  .week-body.open { display: block; }
+  .week-body p { margin-bottom: 0.5rem; }
+  .wb-label {
+    font-weight: 600;
+    color: var(--text);
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    margin-top: 0.6rem;
+    margin-bottom: 0.15rem;
+  }
+  .week-body .formula-block {
+    padding-left: 1rem;
+    border-left: 2px solid var(--accent);
+    margin: 0.5rem 0;
+  }
+  .week-body table {
+    width: 100%;
+    font-size: 0.8rem;
+    border-collapse: collapse;
+    margin: 0.5rem 0;
+  }
+  .week-body th {
+    text-align: left;
+    padding: 0.3rem 0.4rem;
+    border-bottom: 1px solid var(--border);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+  .week-body td {
+    padding: 0.3rem 0.4rem;
+    color: var(--text);
+  }
+  .week-body td:first-child {
+    font-weight: 600;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .sources-list {
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .break-row {
+    text-align: center;
+    font-size: 0.78rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    padding: 0.5rem 0;
+    margin-bottom: 0.75rem;
+  }
+
+  .bottom-section {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .bottom-section h2 {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1rem;
+  }
+  .del-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+  }
+  .del-table th {
+    text-align: left;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .del-table td {
+    padding: 0.5rem 0.6rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+  .del-table td:first-child { white-space: nowrap; color: var(--text-secondary); }
+  .del-table-wrap { overflow-x: auto; }
+
+  .reading-row {
+    display: flex;
+    gap: 0.75rem;
+    padding: 0.35rem 0;
+    font-size: 0.82rem;
+    align-items: baseline;
+  }
+  .reading-week {
+    min-width: 3rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+  .reading-title { color: var(--text); }
+
+  .chevron {
+    display: inline-block;
+    width: 0.6rem;
+    height: 0.6rem;
+    border-right: 1.5px solid var(--text-secondary);
+    border-bottom: 1.5px solid var(--text-secondary);
+    transform: rotate(-45deg);
+    transition: transform 0.15s ease;
+    flex-shrink: 0;
+    margin-top: 0.2rem;
+  }
+  .week-card.expanded .chevron { transform: rotate(45deg); }
+
+  @media (max-width: 600px) {
+    .container { padding: 1.25rem 1rem 3rem; }
+    header h1 { font-size: 1.35rem; }
+    .format-grid { grid-template-columns: 1fr; gap: 0.25rem; }
+    .fg-time { display: none; }
+    .week-head { flex-wrap: wrap; gap: 0.3rem; }
+    .week-tags { margin-top: 0.15rem; }
+    .meta-row { flex-direction: column; gap: 0.25rem; }
+    .reading-row { flex-direction: column; gap: 0.15rem; }
+    .site-nav { flex-wrap: wrap; gap: 0.5rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-title">Critical Thinking in Research</a>
+  <a href="index.html" class="active">Syllabus</a>
+  <a href="readings.html">Readings</a>
+  <a href="resources.html">Resources</a>
+</nav>
+
+<div class="container">
+
+<header>
+  <h1>Critical Thinking in Research</h1>
+  <div class="subtitle">Fall 2026 Lab Seminar</div>
+  <div class="meta-row">
+    <span><span class="meta-label">Students:</span> Carol, Marcio, Yishuang</span>
+    <span><span class="meta-label">Format:</span> Weekly, 1 hour, Tuesdays</span>
+    <span><span class="meta-label">Goal:</span> Committee presentations Dec 2</span>
+  </div>
+</header>
+
+<div class="why-box">
+  <strong>Why this exists:</strong> The August 2026 comps exposed a shared pattern &mdash; all three students can operate tools and run models, but struggle to articulate the scientific question the tool is meant to answer, explain what their models actually compute, scope their work, or synthesize results into a finding. <strong>The core shift:</strong> your job is not to show that you used ABAQUS. Your job is to ask ABAQUS a question, design experiments to probe the answer, and synthesize what you found.
+</div>
+
+<div class="format-grid">
+  <span class="fg-label">Warm-up</span><span class="fg-time">5 min</span><span class="fg-desc">State your current key finding in one sentence</span>
+  <span class="fg-label">Concept</span><span class="fg-time">15 min</span><span class="fg-desc">Becca introduces the week's principle + reading</span>
+  <span class="fg-label">Workshop</span><span class="fg-time">20 min</span><span class="fg-desc">Apply the concept to your own research, in writing</span>
+  <span class="fg-label">Discussion</span><span class="fg-time">15 min</span><span class="fg-desc">Group critique, hot seat (when ready), or open discussion</span>
+  <span class="fg-label">Takeaway</span><span class="fg-time">5 min</span><span class="fg-desc">What to prepare for next week</span>
+</div>
+
+<!-- PHASE 1 -->
+<div class="phase-section">
+  <div class="phase-header p1">Phase 1: The Question &mdash; Weeks 1&ndash;4</div>
+
+  <div class="week-card past" id="w1">
+    <div class="week-head" onclick="toggle('w1')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 1</span>
+      <span class="week-title">What does a good PhD look like?</span>
+      <span class="week-date">Aug 26</span>
+      <div class="week-tags"><span class="tag" style="font-style:italic">Done</span></div>
+    </div>
+    <div class="week-body">
+      <p>What distinguishes a strong PhD graduate from someone who just finished? Problem solvers, not stacks of papers. People who know how to ask questions, not just do technical work. The PhD is training you to think independently &mdash; to identify a problem, design a way to investigate it, and communicate what you found.</p>
+      <div class="wb-label">Discussion</div>
+      <p>What does "good enough" look like at the end? What are you optimizing for &mdash; and what are you not?</p>
+      <div class="wb-label">Reading for next week</div>
+      <p>Heilmeier's Catechism (DARPA, 1 page)</p>
+    </div>
+  </div>
+
+  <div class="week-card current expanded" id="w2">
+    <div class="week-head" onclick="toggle('w2')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 2</span>
+      <span class="week-title">Why does anyone care?</span>
+      <span class="week-date">Sep 2</span>
+      <div class="week-tags"><span class="tag current-tag">This week</span></div>
+    </div>
+    <div class="week-body open">
+      <p>Last week: what makes a good PhD. This week: the method for turning a topic into a question worth asking. Plus a first conversation about where the PhD leads &mdash; career paths shape who your audience is and what counts as a result.</p>
+
+      <div class="wb-label">Concept &mdash; Tasks vs. questions + the three-step formula (15 min)</div>
+      <p><strong>The core distinction:</strong> "I'm using ABAQUS to model walls" is a task. "Can fire-cut joist retrofits resist EF3 uplift without compromising reversibility?" is a question. A task has no wrong answer. A question can be wrong &mdash; and that's what makes it research.</p>
+      <p><strong>The Craft of Research formula</strong> (Booth et al., 3.4.1&ndash;3.4.3):</p>
+      <div class="formula-block">
+        <strong>1. Name your topic:</strong> "I am studying ___."<br>
+        <strong>2. Add your question:</strong> "...because I want to find out ___."<br>
+        <strong>3. Answer So What?:</strong> "...in order to help my reader understand ___."
+      </div>
+      <p><em>Worked example (Kallas &amp; Napolitano blast paper):</em> I am studying the <em>influence</em> of 3D geometric attributes on blast <em>vulnerability</em> of historic masonry buildings... because I want to find out whether geometric features from 3D models <em>predict damage better</em> than field-survey attributes... in order to help post-disaster responders understand which buildings to prioritize <em>without</em> measuring every facade by hand.</p>
+      <p><strong>Instrumental vs. expressive behavior</strong> (Rugg &amp; Petre, <em>Unwritten Rules</em>, Ch. 3): A student reading six key texts = instrumental work. A student reading the same irrelevant page in a state of panic = expressive work. If you can fill in all three blanks above, your work is instrumental. If you can only fill in step 1, you might be busy but not aimed.</p>
+
+      <div class="wb-label">Workshop &mdash; Write your three-step sentence (20 min)</div>
+      <p>Each student writes their own version of the three-step formula. Rules:</p>
+      <p>&bull; Maximum 3 research questions, each with all three steps<br>
+         &bull; No tool names in step 1 or step 3<br>
+         &bull; Step 2 must be something you genuinely don't know yet<br>
+         &bull; Step 3 must name a reader who is not your advisor</p>
+      <p>Write for 10 min, then each reads their best one aloud.</p>
+
+      <div class="wb-label">Career paths discussion (15 min)</div>
+      <p>The three-step formula ends with "help my reader understand." Who is your reader depends on where you end up.</p>
+      <table>
+        <thead><tr><th></th><th>Tenure-line</th><th>Teaching prof</th><th>Industry</th></tr></thead>
+        <tbody>
+          <tr><td>Primary job</td><td>Research + grants + teaching</td><td>Teaching + curriculum</td><td>Applied R&amp;D / practice</td></tr>
+          <tr><td>Your "reader"</td><td>Research community</td><td>Students &amp; practitioners</td><td>Clients &amp; agencies</td></tr>
+          <tr><td>Build during PhD</td><td>Papers, talks, grants</td><td>Teaching portfolio</td><td>Skills, internships</td></tr>
+          <tr><td>Tradeoff</td><td>Freedom vs. pressure</td><td>Stability vs. less research</td><td>Pay vs. less autonomy</td></tr>
+        </tbody>
+      </table>
+      <p><strong>Discussion prompts:</strong> Which path interests you? How does your step 3 "reader" change depending on path? What should you do <em>during</em> the PhD to keep options open?</p>
+
+      <div class="wb-label">Sources</div>
+      <div class="sources-list">
+        &bull; Booth et al., <em>The Craft of Research</em> (4th ed.), 3.4.1&ndash;3.4.3<br>
+        &bull; Rugg &amp; Petre, <em>The Unwritten Rules of PhD Research</em>, Ch. 3<br>
+        &bull; Feibelman, <em>A PhD Is Not Enough!</em>, Ch. 6<br>
+        &bull; Kallas &amp; Napolitano (2025), <em>Int. J. Disaster Risk Reduction</em>
+      </div>
+
+      <div class="wb-label">Reading for next week</div>
+      <p>Platt, "Strong Inference" (Science 1964, ~8 pp)</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w3">
+    <div class="week-head" onclick="toggle('w3')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 3</span>
+      <span class="week-title">What are you NOT doing?</span>
+      <span class="week-date">Sep 9</span>
+      <div class="week-tags"></div>
+    </div>
+    <div class="week-body">
+      <p>Scope is not a limitation &mdash; it is a design decision. Claiming EF5 when your results apply to EF2-3 is not ambitious, it is indefensible. Honest scope makes your actual contribution stronger.</p>
+      <div class="wb-label">Workshop</div>
+      <p>Write your scope paragraph. What is in. What is out. Why the boundary is where it is.</p>
+      <div class="wb-label">Reading for next week</div>
+      <p>Feynman, "Cargo Cult Science" (1974, ~5 pp)</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w4">
+    <div class="week-head" onclick="toggle('w4')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 4</span>
+      <span class="week-title">What does your tool compute?</span>
+      <span class="week-date">Sep 16</span>
+      <div class="week-tags"><span class="tag deliverable">Deliverable</span></div>
+    </div>
+    <div class="week-body">
+      <p>Your model is not your contribution. Your model is an instrument. You need to know what it measures, how it measures it, and where it breaks.</p>
+      <div class="wb-label">Workshop</div>
+      <p>For each model or tool you use, write: (1) what question it answers, (2) what calculation it performs, (3) what it assumes, (4) where it breaks.</p>
+      <div class="wb-label">Reading for next week</div>
+      <p>Whitesides, "Writing a Paper" (Adv. Materials 2004, ~4 pp)</p>
+      <div class="wb-label">Deliverable due</div>
+      <p>Research questions (revised) + scope paragraph. Becca gives written feedback before Week 5.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 2 -->
+<div class="phase-section">
+  <div class="phase-header p2">Phase 2: The Investigation &mdash; Weeks 5&ndash;8</div>
+
+  <div class="week-card" id="w5">
+    <div class="week-head" onclick="toggle('w5')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 5</span>
+      <span class="week-title">Designing computational experiments</span>
+      <span class="week-date">Sep 23</span>
+      <div class="week-tags"></div>
+    </div>
+    <div class="week-body">
+      <p>You do not "run the model." You design experiments. An experiment has a hypothesis, controlled variables, a measurable outcome, and a criterion for what counts as support or refutation.</p>
+      <div class="wb-label">Workshop</div>
+      <p>Design 3 computational experiments. For each: state the hypothesis, what you vary, what you hold constant, what you measure, and what result would change your conclusion.</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w6">
+    <div class="week-head" onclick="toggle('w6')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 6</span>
+      <span class="week-title">What counts as evidence?</span>
+      <span class="week-date">Sep 30</span>
+      <div class="week-tags"></div>
+    </div>
+    <div class="week-body">
+      <p>The difference between "my model ran" and "my results support the hypothesis." A converged simulation is not a finding. Evidence is a result that distinguishes between your hypothesis and an alternative.</p>
+      <div class="wb-label">Workshop</div>
+      <p>Take one result you already have. Write: (1) what it is, (2) what it supports, (3) what alternative it does NOT rule out, (4) what would rule that alternative out.</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w7">
+    <div class="week-head" onclick="toggle('w7')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 7</span>
+      <span class="week-title">Validation is not confidence</span>
+      <span class="week-date">Oct 7</span>
+      <div class="week-tags"><span class="tag deliverable">Deliverable</span></div>
+    </div>
+    <div class="week-body">
+      <p>Validation requires you to state in advance: what you compare against, what metric you use, what threshold counts as agreement, and what you do if it fails. Verification &ne; validation.</p>
+      <div class="wb-label">Workshop</div>
+      <p>Write your validation plan. For each claim: what is the evidence, and what would make you abandon the claim?</p>
+      <div class="wb-label">Deliverable due</div>
+      <p>Experimental design + validation plan.</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w8">
+    <div class="week-head" onclick="toggle('w8')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 8</span>
+      <span class="week-title">Midpoint presentation</span>
+      <span class="week-date">Oct 14</span>
+      <div class="week-tags"></div>
+    </div>
+    <div class="week-body">
+      <p>Each student gives a 10-minute presentation: Research question &rarr; method &rarr; preliminary results &rarr; what is next. First dry run of the December narrative.</p>
+      <p>~10 min presentation + ~7 min feedback per student.</p>
+    </div>
+  </div>
+</div>
+
+<!-- PHASE 3 -->
+<div class="phase-section">
+  <div class="phase-header p3">Phase 3: The Story &mdash; Weeks 9&ndash;14</div>
+
+  <div class="week-card" id="w9">
+    <div class="week-head" onclick="toggle('w9')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 9</span>
+      <span class="week-title">What did you find?</span>
+      <span class="week-date">Oct 21</span>
+      <div class="week-tags"></div>
+    </div>
+    <div class="week-body">
+      <p>If you cannot state your finding in one sentence without naming a software package, you have not yet found anything.</p>
+      <div class="wb-label">Workshop</div>
+      <p>Write your results as one-sentence findings. Rank them: which is the headline?</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w10">
+    <div class="week-head" onclick="toggle('w10')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 10</span>
+      <span class="week-title">Making your results visible</span>
+      <span class="week-date">Oct 28</span>
+      <div class="week-tags"></div>
+    </div>
+    <div class="week-body">
+      <p>Every figure must have a point. If you cannot write a one-sentence caption that states what the reader should see, the figure is not ready.</p>
+      <div class="wb-label">Workshop</div>
+      <p>Make a figure that makes your most important finding immediately clear. Write the one-sentence caption.</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w11">
+    <div class="week-head" onclick="toggle('w11')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 11</span>
+      <span class="week-title">Narrative arc and presentation structure</span>
+      <span class="week-date">Nov 4</span>
+      <div class="week-tags"><span class="tag deliverable">Deliverable</span></div>
+    </div>
+    <div class="week-body">
+      <p>The committee needs: (1) what problem, (2) how you're solving it, (3) what you found, (4) what's next. If more than 3 slides are before your first result, cut.</p>
+      <div class="wb-label">Workshop</div>
+      <p>Build your December presentation outline. Slide-by-slide, one sentence per slide. 20&ndash;25 minutes total.</p>
+      <div class="wb-label">Deliverable due</div>
+      <p>Presentation outline (slide-by-slide).</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w12">
+    <div class="week-head" onclick="toggle('w12')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 12</span>
+      <span class="week-title">Draft presentation + practice questions</span>
+      <span class="week-date">Nov 11</span>
+      <div class="week-tags"></div>
+    </div>
+    <div class="week-body">
+      <p>Full draft presentations. Becca and students play committee:</p>
+      <p>&bull; "What calculation does that tool actually perform?"<br>
+         &bull; "Why this method and not an alternative?"<br>
+         &bull; "What would make you wrong?"<br>
+         &bull; "Who uses this and under what circumstances?"</p>
+    </div>
+  </div>
+
+  <div class="week-card" id="w13">
+    <div class="week-head" onclick="toggle('w13')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 13</span>
+      <span class="week-title">Final practice + committee-style questioning</span>
+      <span class="week-date">Nov 18</span>
+      <div class="week-tags"><span class="tag deliverable">Deliverable</span></div>
+    </div>
+    <div class="week-body">
+      <p>Refined presentations. Becca plays each committee member's role:</p>
+      <p>&bull; Paul: "What does your loading actually represent physically?"<br>
+         &bull; Nate: "What is your computational strategy and is it feasible?"<br>
+         &bull; Orsolya: "Who uses this and what decisions does it support?"<br>
+         &bull; Maggie: "What data do you wish you had?"</p>
+      <div class="wb-label">Deliverable due</div>
+      <p>Final presentation draft.</p>
+    </div>
+  </div>
+
+  <div class="break-row">Thanksgiving week (Nov 25) &mdash; no session. Final revisions.</div>
+
+  <div class="week-card" id="w14">
+    <div class="week-head" onclick="toggle('w14')">
+      <span class="chevron"></span>
+      <span class="week-num">Week 14</span>
+      <span class="week-title">Committee presentations</span>
+      <span class="week-date">Dec 2</span>
+      <div class="week-tags"><span class="tag deliverable">Final</span></div>
+    </div>
+    <div class="week-body">
+      <p>Carol and Marcio: comprehensive exam retake.<br>
+         Yishuang: committee meeting.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DELIVERABLES -->
+<div class="bottom-section">
+  <h2>Deliverable Checkpoints</h2>
+  <div class="del-table-wrap">
+    <table class="del-table">
+      <thead><tr><th>Date</th><th>What is due</th><th>Feedback from</th></tr></thead>
+      <tbody>
+        <tr><td>Sep 16 (Wk 4)</td><td>Research questions (revised) + scope paragraph</td><td>Becca, written</td></tr>
+        <tr><td>Oct 7 (Wk 7)</td><td>Experimental design + validation plan</td><td>Becca, written</td></tr>
+        <tr><td>Nov 4 (Wk 11)</td><td>Presentation outline (slide-by-slide)</td><td>Becca + group</td></tr>
+        <tr><td>Nov 18 (Wk 13)</td><td>Final presentation draft</td><td>Becca (committee-style)</td></tr>
+        <tr><td>Dec 2 (Wk 14)</td><td>Committee presentation</td><td>Full committee</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- READINGS -->
+<div class="bottom-section">
+  <h2>Suggested Readings</h2>
+  <div class="reading-row"><span class="reading-week">Wk 1</span><span class="reading-title">Heilmeier's Catechism (DARPA, 1 pg)</span></div>
+  <div class="reading-row"><span class="reading-week">Wk 2</span><span class="reading-title">Platt, "Strong Inference" (Science 1964, ~8 pp)</span></div>
+  <div class="reading-row"><span class="reading-week">Wk 3</span><span class="reading-title">Feynman, "Cargo Cult Science" (1974, ~5 pp)</span></div>
+  <div class="reading-row"><span class="reading-week">Wk 4</span><span class="reading-title">Whitesides, "Writing a Paper" (Adv. Materials 2004, ~4 pp)</span></div>
+  <div class="reading-row"><span class="reading-week">Wk 5&ndash;6</span><span class="reading-title">Selected chapter from research design book (Becca assigns)</span></div>
+  <div class="reading-row"><span class="reading-week">Wk 7</span><span class="reading-title">Selected chapter from "How to Write an Impactful Research Paper"</span></div>
+  <div class="reading-row"><span class="reading-week">Wk 10</span><span class="reading-title">Selected sections from the scientific graphics book</span></div>
+</div>
+
+</div><!-- /container -->
+
+<script>
+function toggle(id) {
+  const card = document.getElementById(id);
+  const body = card.querySelector('.week-body');
+  card.classList.toggle('expanded');
+  body.classList.toggle('open');
+}
+</script>
+
+</body>
+</html>

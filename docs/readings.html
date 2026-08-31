@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Readings &mdash; Critical Thinking in Research</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #FAFAF7; --surface: #FFFFFF; --text: #1A1A18;
+    --text-secondary: #5A5A54; --accent: #8B4513; --border: #E5E2DC;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141413; --surface: #1E1E1C; --text: #E8E6E1;
+      --text-secondary: #9C9A93; --accent: #D4A574; --border: #2E2E2A;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.6;
+  }
+  .site-nav {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 1.5rem;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .site-nav .nav-title {
+    font-family: 'Source Serif 4', Georgia, serif; font-weight: 700;
+    font-size: 0.95rem; color: var(--text); text-decoration: none;
+  }
+  .site-nav a { font-size: 0.82rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; }
+  .site-nav a:hover { color: var(--accent); }
+  .site-nav a.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 0.15rem; }
+  .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  h1 {
+    font-family: 'Source Serif 4', Georgia, serif; font-size: 1.5rem;
+    font-weight: 700; margin-bottom: 1.5rem;
+  }
+  .reading-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 1rem 1.25rem; margin-bottom: 0.75rem;
+  }
+  .reading-card .rc-week {
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.06em; color: var(--text-secondary); margin-bottom: 0.2rem;
+  }
+  .reading-card .rc-title {
+    font-family: 'Source Serif 4', Georgia, serif; font-size: 0.95rem;
+    font-weight: 600; color: var(--text); margin-bottom: 0.25rem;
+  }
+  .reading-card .rc-why { font-size: 0.85rem; color: var(--text-secondary); }
+  h2 {
+    font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1rem;
+    font-weight: 600; color: var(--text); margin: 2rem 0 1rem;
+    padding-bottom: 0.3rem; border-bottom: 1px solid var(--border);
+  }
+  .book-list { font-size: 0.88rem; color: var(--text-secondary); line-height: 1.8; }
+  .book-list em { color: var(--text); }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-title">Critical Thinking in Research</a>
+  <a href="index.html">Syllabus</a>
+  <a href="readings.html" class="active">Readings</a>
+  <a href="resources.html">Resources</a>
+</nav>
+
+<div class="container">
+  <h1>Readings</h1>
+
+  <div class="reading-card">
+    <div class="rc-week">Week 1</div>
+    <div class="rc-title">Heilmeier's Catechism</div>
+    <div class="rc-why">DARPA, 1 page. Forces you to answer "what are you doing and why" before anything else.</div>
+  </div>
+
+  <div class="reading-card">
+    <div class="rc-week">Week 2</div>
+    <div class="rc-title">Booth et al., The Craft of Research &mdash; 3.4.1&ndash;3.4.3</div>
+    <div class="rc-why">4th ed., pp. 43&ndash;46. The three-step formula: Topic &rarr; Question &rarr; Significance.</div>
+  </div>
+
+  <div class="reading-card">
+    <div class="rc-week">Week 2 &rarr; 3</div>
+    <div class="rc-title">Platt, "Strong Inference"</div>
+    <div class="rc-why">Science, 1964, ~8 pp. The original case for hypothesis-driven research.</div>
+  </div>
+
+  <div class="reading-card">
+    <div class="rc-week">Week 3 &rarr; 4</div>
+    <div class="rc-title">Feynman, "Cargo Cult Science"</div>
+    <div class="rc-why">1974 Caltech commencement, ~5 pp. The difference between doing science and imitating it.</div>
+  </div>
+
+  <div class="reading-card">
+    <div class="rc-week">Week 4 &rarr; 5</div>
+    <div class="rc-title">Whitesides, "Writing a Paper"</div>
+    <div class="rc-why">Advanced Materials, 2004, ~4 pp. Building a paper from an outline, not accumulated text.</div>
+  </div>
+
+  <div class="reading-card">
+    <div class="rc-week">Weeks 5&ndash;6</div>
+    <div class="rc-title">Research design chapter (Becca assigns)</div>
+    <div class="rc-why">Experimental design principles.</div>
+  </div>
+
+  <div class="reading-card">
+    <div class="rc-week">Week 7</div>
+    <div class="rc-title">Chapter from "How to Write an Impactful Research Paper"</div>
+    <div class="rc-why">Connecting validation to the written argument.</div>
+  </div>
+
+  <div class="reading-card">
+    <div class="rc-week">Week 10</div>
+    <div class="rc-title">Scientific graphics book (Becca assigns)</div>
+    <div class="rc-why">Making results visible.</div>
+  </div>
+
+  <h2>Reference Books</h2>
+  <div class="book-list">
+    &bull; Booth, Colomb, Williams, Bizup, FitzGerald &mdash; <em>The Craft of Research</em> (4th ed., 2016)<br>
+    &bull; Feibelman &mdash; <em>A PhD Is Not Enough!</em> (rev. ed., 2011)<br>
+    &bull; Rugg &amp; Petre &mdash; <em>The Unwritten Rules of PhD Research</em> (2004)<br>
+    &bull; Heard &mdash; <em>The Scientist's Guide to Writing</em><br>
+    &bull; Tufte &mdash; <em>The Visual Display of Quantitative Information</em><br>
+    &bull; Olson &mdash; <em>Houston, We Have a Narrative</em>
+  </div>
+</div>
+
+</body>
+</html>

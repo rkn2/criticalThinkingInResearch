@@ -31,19 +31,22 @@ probe/validate/ablate the answer, and synthesize what you found.
 
 ## Phase 1: The Question (Weeks 1–4)
 
-### Week 1 — What is your research question? (Aug 25)
+### Week 1 — What does a good PhD look like? (Aug 26)
 
-The difference between a task and a question. "I'm using ABAQUS to model
-walls" is a task. "Can fire-cut joist retrofits resist EF3 uplift without
-compromising reversibility?" is a question. A question can be wrong.
+*Completed.*
 
-**Workshop:** Write your research question(s). Maximum 3. Each must be
-falsifiable — state what result would make you wrong.
+What distinguishes a strong PhD graduate from someone who just finished?
+Problem solvers, not stacks of papers. People who know how to ask questions,
+not just do technical work. The PhD is training you to think independently —
+to identify a problem, design a way to investigate it, and communicate what
+you found. The degree is not the papers or the simulations; it is the
+demonstrated ability to do that cycle on your own.
+
+**Discussion:** What does "good enough" look like at the end? What are you
+optimizing for — and what are you not?
 
 **Reading (for next week):** Heilmeier's Catechism (1 page; search "Heilmeier
 catechism DARPA").
-
-**Hot seat:** Carol — present your questions, group stress-tests them.
 
 ---
 

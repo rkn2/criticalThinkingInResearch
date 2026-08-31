@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resources &mdash; Critical Thinking in Research</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --bg: #FAFAF7; --surface: #FFFFFF; --text: #1A1A18;
+    --text-secondary: #5A5A54; --accent: #8B4513; --border: #E5E2DC;
+    --tag-bg: #F0EDE7;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141413; --surface: #1E1E1C; --text: #E8E6E1;
+      --text-secondary: #9C9A93; --accent: #D4A574; --border: #2E2E2A;
+      --tag-bg: #252522;
+    }
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif; font-size: 15px; line-height: 1.6;
+  }
+  .site-nav {
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 0.6rem 1.5rem; display: flex; align-items: center; gap: 1.5rem;
+    position: sticky; top: 0; z-index: 10;
+  }
+  .site-nav .nav-title {
+    font-family: 'Source Serif 4', Georgia, serif; font-weight: 700;
+    font-size: 0.95rem; color: var(--text); text-decoration: none;
+  }
+  .site-nav a { font-size: 0.82rem; color: var(--text-secondary); text-decoration: none; font-weight: 500; }
+  .site-nav a:hover { color: var(--accent); }
+  .site-nav a.active { color: var(--accent); border-bottom: 2px solid var(--accent); padding-bottom: 0.15rem; }
+  .container { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+  h1 {
+    font-family: 'Source Serif 4', Georgia, serif; font-size: 1.5rem;
+    font-weight: 700; margin-bottom: 0.5rem;
+  }
+  .page-desc { font-size: 0.88rem; color: var(--text-secondary); margin-bottom: 2rem; }
+  h2 {
+    font-family: 'Source Serif 4', Georgia, serif; font-size: 1.1rem;
+    font-weight: 600; color: var(--text); margin: 2rem 0 0.75rem;
+    padding-bottom: 0.3rem; border-bottom: 1px solid var(--border);
+  }
+  .concept-card {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 1rem 1.25rem; margin-bottom: 0.75rem;
+  }
+  .concept-card .cc-title {
+    font-family: 'Source Serif 4', Georgia, serif;
+    font-weight: 600; font-size: 0.95rem; color: var(--text);
+    margin-bottom: 0.25rem;
+  }
+  .concept-card .cc-source {
+    font-size: 0.75rem; color: var(--text-secondary);
+    margin-bottom: 0.35rem;
+  }
+  .concept-card .cc-body {
+    font-size: 0.85rem; color: var(--text-secondary); line-height: 1.7;
+  }
+  .formula-block {
+    padding-left: 1rem; border-left: 2px solid var(--accent);
+    margin: 0.5rem 0; font-size: 0.85rem; color: var(--text);
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="index.html" class="nav-title">Critical Thinking in Research</a>
+  <a href="index.html">Syllabus</a>
+  <a href="readings.html">Readings</a>
+  <a href="resources.html" class="active">Resources</a>
+</nav>
+
+<div class="container">
+  <h1>Resources</h1>
+  <div class="page-desc">Key concepts and frameworks from the seminar, collected for quick reference.</div>
+
+  <h2>Frameworks</h2>
+
+  <div class="concept-card">
+    <div class="cc-title">The Three-Step Formula</div>
+    <div class="cc-source">Booth et al., The Craft of Research, 3.4.1&ndash;3.4.3</div>
+    <div class="cc-body">
+      <div class="formula-block">
+        <strong>1. Topic:</strong> I am studying ___.<br>
+        <strong>2. Question:</strong> ...because I want to find out ___.<br>
+        <strong>3. Significance:</strong> ...in order to help my reader understand ___.
+      </div>
+      <p style="margin-top:0.5rem">Step 1 turns a subject into a topic. Step 2 turns a topic into a question. Step 3 answers "So what?" &mdash; why anyone else should care about the answer.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="cc-title">Instrumental vs. Expressive Behavior</div>
+    <div class="cc-source">Rugg &amp; Petre, The Unwritten Rules of PhD Research, Ch. 3</div>
+    <div class="cc-body">
+      <p><strong>Instrumental:</strong> behavior that moves you toward your goal. Reading the six key texts in your area.<br>
+      <strong>Expressive:</strong> behavior that demonstrates what sort of person you are. Reading the same irrelevant page in a state of panic.</p>
+      <p style="margin-top:0.4rem">If you can fill in all three blanks of the formula above, your work is instrumental. If you can only fill in step 1, you might be busy but not aimed.</p>
+    </div>
+  </div>
+
+  <div class="concept-card">
+    <div class="cc-title">Heilmeier's Catechism</div>
+    <div class="cc-source">George Heilmeier, DARPA</div>
+    <div class="cc-body">
+      <p>Before starting any project, answer:<br>
+      &bull; What are you trying to do?<br>
+      &bull; How is it done today, and what are the limits?<br>
+      &bull; What is new in your approach and why do you think it will be successful?<br>
+      &bull; Who cares? If successful, what difference will it make?<br>
+      &bull; What are the risks and payoffs?<br>
+      &bull; How much will it cost? How long will it take?<br>
+      &bull; What are the midterm and final "exams" to check for success?</p>
+    </div>
+  </div>
+
+  <h2>Career Paths</h2>
+
+  <div class="concept-card">
+    <div class="cc-title">Three Paths After the PhD (in AE)</div>
+    <div class="cc-source">Feibelman Ch. 6 + Rugg &amp; Petre Ch. 16 + Becca's perspective</div>
+    <div class="cc-body">
+      <p><strong>Tenure-line faculty:</strong> Research + grants + teaching + service. Evaluated on publications and funding. Your "reader" is the research community. Build papers, conference talks, and grant experience during the PhD.</p>
+      <p style="margin-top:0.4rem"><strong>Teaching professor:</strong> Teaching + curriculum + mentoring. Evaluated on teaching quality and student outcomes. Your "reader" is students and practitioners. Build a teaching portfolio during the PhD.</p>
+      <p style="margin-top:0.4rem"><strong>Industry:</strong> Applied R&amp;D or practice. Evaluated on deliverables and impact. Your "reader" is clients and agencies. Build technical skills and internship experience during the PhD.</p>
+      <p style="margin-top:0.4rem"><em>Key question:</em> How does your step 3 "reader" change depending on which path you're on?</p>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
