@@ -197,7 +197,7 @@ work-life balance and compensation.
 
 **For next week:**
 - Revise your three-step sentences based on today's feedback.
-- Read: Platt, "Strong Inference" (1964, Science, ~8 pages).
+- Read: Chamberlin, "The Method of Multiple Working Hypotheses" (1890, Science, ~6 pages).
 - Think about which career path interests you most, and write one paragraph
   about why. Bring it to next week.
 

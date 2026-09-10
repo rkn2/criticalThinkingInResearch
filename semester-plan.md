@@ -24,7 +24,7 @@ probe/validate/ablate the answer, and synthesize what you found.
 | Warm-up | 5 min | Each student states their current key finding in one sentence. Practiced every week from day 1 — synthesis is a muscle, not a skill you learn in November. |
 | Concept | 15 min | Becca introduces the week's principle, ties it to a reading. |
 | Workshop | 20 min | Students apply the concept to their own research, in writing. |
-| Hot seat | 15 min | One student presents their workshop output; the other two + Becca critique. Rotates weekly (Carol → Marcio → Yishuang → repeat). |
+| Hot seat | 10 min | Each student presents their workshop output (~2-4 min each); the others + Becca critique. |
 | Takeaway | 5 min | What to prepare for next week. |
 
 ---
@@ -68,12 +68,13 @@ is not your advisor.
 **Discussion:** Career paths (tenure-line, teaching prof, industry) — how
 does your step 3 "reader" change depending on path?
 
-**Reading (for next week):** Platt, "Strong Inference" (1964, Science,
-~8 pages). The original argument for hypothesis-driven research.
+**Reading (for next week):** Chamberlin, "The Method of Multiple Working Hypotheses" (1890, Science,
+~6 pages). The case for entertaining competing explanations instead of
+falling in love with one.
 
 ---
 
-### Week 3 — What are you NOT doing? (Sep 8)
+### Week 3 — What are you NOT doing? (Sep 15)
 
 Scope is not a limitation — it is a design decision. Claiming EF5 when your
 results apply to EF2-3 is not ambitious, it is indefensible. Claiming you
@@ -88,11 +89,9 @@ boundary is where it is. What assumption or evidence sets each boundary.
 commencement, ~5 pages). On the difference between doing science and doing
 something that looks like science.
 
-**Hot seat:** Yishuang — present scope, group probes the boundaries.
-
 ---
 
-### Week 4 — What does your tool compute? (Sep 15)
+### Week 4 — What does your tool compute? (Sep 22)
 
 Your model is not your contribution. Your model is an instrument. You need to
 know what it measures, how it measures it, and where it breaks — the way a lab
@@ -112,10 +111,6 @@ breaks.
 Materials, 2004, ~4 pages). On building a paper from an outline, not from
 accumulated text.
 
-**Hot seat:** Carol — explain what DIANA and Abaqus each do in your workflow
-and why you need both. Not what the software can do — what it does for your
-specific scientific question.
-
 **Deliverable due: Research questions (revised) + scope paragraph.**
 Becca gives written feedback before Week 5.
 
@@ -123,7 +118,7 @@ Becca gives written feedback before Week 5.
 
 ## Phase 2: The Investigation (Weeks 5–8)
 
-### Week 5 — Designing computational experiments (Sep 22)
+### Week 5 — Designing computational experiments (Sep 29)
 
 You do not "run the model." You design experiments. An experiment has a
 hypothesis, controlled variables, a measurable outcome, and a criterion for
@@ -138,12 +133,9 @@ place.
 state the hypothesis, what you vary, what you hold constant, what you measure,
 and what result would change your conclusion.
 
-**Hot seat:** Marcio — present experiments, group asks: "What would you learn
-from this that you don't already know?"
-
 ---
 
-### Week 6 — What counts as evidence? (Sep 29)
+### Week 6 — What counts as evidence? (Oct 6)
 
 The difference between "my model ran" and "my results support the hypothesis."
 A converged simulation is not a finding. A pretty contour plot is not
@@ -157,12 +149,9 @@ an alternative.
 **Reading (for next week):** One chapter from the data visualization book
 (Becca assigns).
 
-**Hot seat:** Yishuang — present a result from the fragility analysis, group
-tries to find alternative explanations.
-
 ---
 
-### Week 7 — Validation is not confidence (Oct 6)
+### Week 7 — Validation is not confidence (Oct 13)
 
 "I am very confident this will work" is not a validation plan. Validation
 requires you to state in advance: what you compare against, what metric you
@@ -176,15 +165,12 @@ validation. Citing someone else's validation of a different model is neither.
 **Workshop:** Write your validation plan. For each claim in your research:
 what is the evidence, and what would make you abandon the claim?
 
-**Hot seat:** Carol — present the flat-wall-to-3D validation pathway. Not
-"the seismic literature does this" — what will YOUR validation look like?
-
 **Deliverable due: Experimental design + validation plan.**
 Becca gives written feedback before Week 8.
 
 ---
 
-### Week 8 — Midpoint presentation (Oct 13)
+### Week 8 — Midpoint presentation (Oct 20)
 
 Each student gives a 10-minute presentation to the group:
 Research question → method → preliminary results → what is next.
@@ -203,7 +189,7 @@ everything on every slide in your own words?
 
 ## Phase 3: The Story (Weeks 9–12)
 
-### Week 9 — What did you find? (Oct 20)
+### Week 9 — What did you find? (Oct 27)
 
 A result is not "the model ran." A result is "the model shows that X because
 Y, and this matters because Z." If you cannot state your finding in one
@@ -213,11 +199,9 @@ sentence without naming a software package, you have not yet found anything.
 No method, no motivation — just: what did you learn? Then rank them: which
 one is the headline?
 
-**Hot seat:** Marcio — present findings, group asks "so what?" after each one.
-
 ---
 
-### Week 10 — Making your results visible (Oct 27)
+### Week 10 — Making your results visible (Nov 3)
 
 A good figure makes the finding obvious. A bad figure makes the reader do
 the work. Every figure must have a point — if you cannot write a one-sentence
@@ -230,12 +214,9 @@ your paper. Write the one-sentence caption.
 **Reading (for next week):** Selection from the scientific graphics book
 (Becca assigns).
 
-**Hot seat:** Yishuang — show a figure, group gives feedback: can you see the
-finding without reading the text?
-
 ---
 
-### Week 11 — Narrative arc and presentation structure (Nov 3)
+### Week 11 — Narrative arc and presentation structure (Nov 10)
 
 The committee does not need your life story. They need: (1) what problem you
 are solving, (2) how you are solving it, (3) what you found so far, (4) what
@@ -252,11 +233,9 @@ Time-check: if more than 3 slides are before your first result, cut.
 **Deliverable due: Presentation outline.**
 Becca gives written feedback.
 
-**Hot seat:** Carol — walk through the outline, group checks pacing.
-
 ---
 
-### Week 12 — Draft presentation + practice questions (Nov 10)
+### Week 12 — Draft presentation + practice questions (Nov 17)
 
 Full draft presentations (15-20 min each if time allows, otherwise rotate
 so each student presents a portion and the others present the following week).
@@ -271,7 +250,7 @@ Becca and students play committee. Ask the hard questions:
 
 ---
 
-### Week 13 — Final practice + committee-style questioning (Nov 17)
+### Week 13 — Final practice + committee-style questioning (Nov 24)
 
 Refined presentations. Becca plays each committee member's role — asks the
 kinds of questions Paul, Nate, Orsolya, and Maggie would ask based on
@@ -286,11 +265,11 @@ their disciplinary perspectives.
 
 ---
 
-*Thanksgiving week (Nov 24) — no session. Final revisions.*
+*Thanksgiving week (Nov 24) — conflicts with Week 13 (final practice). TBD whether to hold it that week, move it earlier, or combine with Week 12.*
 
 ---
 
-### Week 14 — Committee presentations (Dec 1)
+### Week 14 — Committee presentations (Dec 8)
 
 Carol and Marcio: comprehensive exam retake.
 Yishuang: committee meeting.
@@ -305,7 +284,7 @@ shift to presentation work in Phase 3.
 | Week | Reading | Why |
 |------|---------|-----|
 | 2 (in-session) | Heilmeier's Catechism (DARPA, 1 page) | Reference handout — the right questions to ask |
-| 2→3 | Platt, "Strong Inference" (Science 1964, ~8 pp) | The original case for hypothesis-driven research |
+| 2→3 | Chamberlin, "The Method of Multiple Working Hypotheses" (Science 1890, ~6 pp) | The case for competing explanations over a single ruling theory |
 | 3 | Feynman, "Cargo Cult Science" (1974, ~5 pp) | Intellectual honesty: the difference between doing science and imitating it |
 | 4 | Whitesides, "Writing a Paper" (Adv. Materials 2004, ~4 pp) | Building from an outline, not from accumulated text |
 | 5–6 | Selected chapter from research design book (Becca assigns) | Experimental design principles |
@@ -324,11 +303,11 @@ Other resources Becca may want to pull from:
 
 | Date | What is due | Feedback from |
 |------|-------------|---------------|
-| Sep 15 (Week 4) | Research questions (revised) + scope paragraph | Becca, written |
-| Oct 6 (Week 7) | Experimental design + validation plan | Becca, written |
-| Nov 3 (Week 11) | Presentation outline (slide-by-slide) | Becca + group |
-| Nov 17 (Week 13) | Final presentation draft | Becca (committee-style) |
-| Dec 1 (Week 14) | Committee presentation | Full committee |
+| Sep 22 (Week 4) | Research questions (revised) + scope paragraph | Becca, written |
+| Oct 13 (Week 7) | Experimental design + validation plan | Becca, written |
+| Nov 10 (Week 11) | Presentation outline (slide-by-slide) | Becca + group |
+| Nov 24 (Week 13) | Final presentation draft | Becca (committee-style) |
+| Dec 8 (Week 14) | Committee presentation | Full committee |
 
 ---
 
