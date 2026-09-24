@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 4 — From Question to Hypothesis</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Slab:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --bg: #F7F7F5;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-dim: #555555;
+    --accent: #001E44;
+    --accent2: #1E407C;
+    --accent3: #96BEE6;
+    --border: #D9D9D9;
+    --highlight: #EDF3FA;
+    --warn: #9B2335;
+    --good: #2D5F2D;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E0E0D;
+      --surface: #1A1A18;
+      --text: #E8E6E1;
+      --text-dim: #9A9890;
+      --accent: #96BEE6;
+      --accent2: #6FA3D4;
+      --accent3: #3A6EA0;
+      --border: #2E2E2A;
+      --highlight: #141E2A;
+      --warn: #E05A6A;
+      --good: #5DAA5D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E0E0D;
+    --surface: #1A1A18;
+    --text: #E8E6E1;
+    --text-dim: #9A9890;
+    --accent: #96BEE6;
+    --accent2: #6FA3D4;
+    --accent3: #3A6EA0;
+    --border: #2E2E2A;
+    --highlight: #141E2A;
+    --warn: #E05A6A;
+    --good: #5DAA5D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Roboto', system-ui, sans-serif; }
+
+  .slide { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 6rem; opacity: 0; transition: opacity 0.3s ease; }
+  .slide.active { display: flex; opacity: 1; }
+  .slide-inner { max-width: 960px; width: 100%; }
+
+  h1 { font-family: 'Roboto Slab', Georgia, serif; font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+  h2 { font-family: 'Roboto Slab', Georgia, serif; font-size: 2rem; font-weight: 700; line-height: 1.25; margin-bottom: 1.25rem; color: var(--accent); }
+  h3 { font-family: 'Roboto Slab', Georgia, serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent); }
+  p, li { font-size: 1.25rem; line-height: 1.65; color: var(--text); }
+  .dim { color: var(--text-dim); }
+  .warn { color: var(--warn); }
+
+  ul { list-style: none; padding-left: 0; }
+  ul li { padding: 0.3rem 0 0.3rem 1.5rem; position: relative; }
+  ul li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  .subtitle { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 2rem; }
+
+  blockquote { border-left: 3px solid var(--accent); padding: 0.75rem 1.25rem; margin: 0.75rem 0; font-style: italic; color: var(--text); font-size: 1.15rem; line-height: 1.6; background: var(--highlight); }
+  blockquote .source { display: block; font-style: normal; font-size: 0.85rem; color: var(--text-dim); margin-top: 0.4rem; }
+
+  .formula { border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 1rem 0; background: var(--highlight); font-size: 1.2rem; line-height: 1.8; }
+  .formula .step-num { font-weight: 700; color: var(--accent); }
+  .formula .blank { border-bottom: 2px solid var(--accent); display: inline-block; min-width: 10rem; margin: 0 0.15rem; }
+
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
+  .vs-box { padding: 1.5rem; border: 1px solid var(--border); background: var(--surface); }
+  .vs-box.bad { border-top: 3px solid var(--warn); }
+  .vs-box.good { border-top: 3px solid var(--good); }
+  .vs-box.neutral { border-top: 3px solid var(--accent2); }
+  .vs-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .vs-box.bad .vs-label { color: var(--warn); }
+  .vs-box.good .vs-label { color: var(--good); }
+  .vs-box.neutral .vs-label { color: var(--accent2); }
+  .vs-box p { font-size: 1.1rem; }
+
+  .arrow-flow { display: flex; align-items: center; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap; }
+  .arrow-step { padding: 0.75rem 1.25rem; border: 1px solid var(--border); background: var(--surface); font-size: 1rem; line-height: 1.4; text-align: center; flex: 1; }
+  .arrow-step.done { opacity: 0.5; }
+  .arrow-step.now { border-color: var(--accent); background: var(--highlight); font-weight: 600; }
+  .arrow-step.later { opacity: 0.7; border-style: dashed; }
+  .arrow-between { font-size: 1.5rem; color: var(--text-dim); flex-shrink: 0; }
+
+  .phase-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; padding: 0.35rem 0.75rem; display: inline-block; }
+  .phase-label.p1 { color: var(--accent2); background: var(--highlight); }
+  .phase-label.p2 { color: var(--good); background: rgba(45,95,45,0.08); }
+
+  .title-slide h1 { font-size: 3.5rem; margin-bottom: 0.25rem; }
+  .title-slide .week-label { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+  .title-slide .meta { font-size: 1rem; color: var(--text-dim); margin-top: 2rem; line-height: 1.8; }
+
+  .nav-hint { position: fixed; bottom: 1.5rem; right: 2rem; font-size: 0.75rem; color: var(--text-dim); opacity: 0.5; }
+  .progress { position: fixed; bottom: 0; left: 0; height: 3px; background: var(--accent2); transition: width 0.3s ease; }
+  .slide-num { position: fixed; bottom: 1.5rem; left: 2rem; font-size: 0.75rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 800px) {
+    .slide { padding: 2rem 2rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .title-slide h1 { font-size: 2.2rem; }
+    .vs-grid { grid-template-columns: 1fr; }
+    .formula { font-size: 1.05rem; }
+    p, li { font-size: 1.05rem; }
+    .arrow-flow { flex-direction: column; }
+    .arrow-between { transform: rotate(90deg); }
+  }
+  .cited { display: flex; gap: 1.5rem; align-items: center; margin: 0.75rem 0; }
+  .cited .quotes { flex: 1; min-width: 0; }
+  .cited blockquote { margin: 0.5rem 0; }
+  .cover { height: 160px; width: auto; flex-shrink: 0; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+  .article-head { display: block; max-width: 340px; width: 100%; margin-bottom: 1rem; border: 1px solid var(--border); background: #fff; padding: 0.4rem 0.6rem; }
+  @media (max-width: 800px) { .cover { height: 110px; } .cited { gap: 1rem; } }
+</style>
+</head>
+<body>
+
+
+<!-- SLIDE 1: Title -->
+<div class="slide active" id="s1">
+  <div class="slide-inner title-slide">
+    <div class="week-label">Week 4</div>
+    <h1>From Question to Hypothesis</h1>
+    <p class="subtitle">Separating what you don&rsquo;t know from what you think the answer is &mdash; and drawing the boundary around what you can test</p>
+    <div class="meta">
+      H3D Research Methods Class<br>
+      Fall 2026<br>
+      Carol &middot; Marcio &middot; Yishuang &middot; Young &middot; Borna
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: Where we are -->
+<div class="slide" id="s2">
+  <div class="slide-inner">
+    <h2>Where We Are</h2>
+    <div class="arrow-flow">
+      <div class="arrow-step now">
+        <strong>Research Question</strong><br>
+        <span class="dim" style="font-size:0.9rem;">one more pass</span>
+      </div>
+      <div class="arrow-between">&rarr;</div>
+      <div class="arrow-step now">
+        <strong>Hypothesis</strong><br>
+        <span class="dim" style="font-size:0.9rem;">today</span><br>
+        I predict ___
+      </div>
+      <div class="arrow-between">&rarr;</div>
+      <div class="arrow-step later">
+        <strong>Scope</strong><br>
+        <span class="dim" style="font-size:0.9rem;">today, then at home</span><br>
+        My evidence covers ___
+      </div>
+      <div class="arrow-between">&rarr;</div>
+      <div class="arrow-step later">
+        <strong>Your Tool</strong><br>
+        <span class="dim" style="font-size:0.9rem;">next session</span><br>
+        My model computes ___
+      </div>
+    </div>
+    <p style="margin-top:1.5rem;">Last week we spent the whole session on research questions &mdash; and that was the right call. They&rsquo;re close, but not done. Today we finish them, then use what you&rsquo;ve already written to get to hypotheses.</p>
+  </div>
+</div>
+
+<!-- SLIDE 3: Warm-up -->
+<div class="slide" id="s3">
+  <div class="slide-inner">
+    <h2>Warm-up: Read It Back</h2>
+    <p style="margin-bottom:1.25rem;">Pull up the research question you wrote last week. Read it aloud, exactly as written.</p>
+    <p style="margin-top:1.25rem;">Everyone else: as you listen, ask yourself one thing &mdash;</p>
+    <p style="font-size:1.4rem; margin-top:0.5rem;"><strong>Does this sentence ask something, or does it already contain an answer?</strong></p>
+  </div>
+</div>
+
+<!-- PART 1: FINISH THE QUESTION -->
+
+<!-- SLIDE 4: Hypothesis with a question mark -->
+<div class="slide" id="s4">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 1: Finish the Question</span>
+    <h2>A Hypothesis With a Question Mark</h2>
+    <p style="margin-bottom:1.25rem;">These two sentences both end in &ldquo;?&rdquo;. Only one of them is a research question.</p>
+    <div class="vs-grid">
+      <div class="vs-box bad">
+        <div class="vs-label">Looks like a question</div>
+        <p>&ldquo;Does the <strong>bond</strong> between the composite strip and lime-mortar brick govern the capacity of surface-mounted retrofits?&rdquo;</p>
+        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">You already believe the answer (bond). You&rsquo;ve named the mechanism and you&rsquo;re asking for &ldquo;yes.&rdquo; This is a hypothesis with a question mark on the end.</p>
+      </div>
+      <div class="vs-box good">
+        <div class="vs-label">Is a question</div>
+        <p>&ldquo;<strong>What</strong> governs the capacity of surface-mounted retrofits on historic lime-mortar brick?&rdquo;</p>
+        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">Bond is one possible answer. So is strip strength. So is the masonry itself. You genuinely don&rsquo;t know which yet.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 5: The diagnostic -->
+<div class="slide" id="s5">
+  <div class="slide-inner">
+    <h2>How to Tell Which One You Wrote</h2>
+    <ul>
+      <li><strong>Can it be answered &ldquo;yes&rdquo; or &ldquo;no&rdquo;?</strong> Yes/no questions are usually a single hypothesis being checked.</li>
+      <li><strong>Do you already expect &ldquo;yes&rdquo;?</strong> Then you&rsquo;ve written your prediction, not your uncertainty.</li>
+      <li><strong>Does the question name the answer?</strong> A specific mechanism, variable, or direction (&ldquo;does X <em>increase</em> Y?&rdquo;) that you already think is right.</li>
+    </ul>
+    <div class="formula" style="margin-top:1.5rem;">
+      If any of these is true, you wrote a <strong>hypothesis</strong>.<br>
+      <span class="dim">That&rsquo;s not a failure &mdash; you&rsquo;ll need it in twenty minutes. It just isn&rsquo;t the question yet.</span>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 6: Reduce the problem space -->
+<div class="slide" id="s6">
+  <div class="slide-inner">
+    <h2>A Good Question Has More Than One Answer</h2>
+    <div class="cited">
+    <img class="cover" src="img/cover-unwritten-rules.png" alt="Cover of The Unwritten Rules of PhD Research by Rugg and Petre">
+    <div class="quotes">
+    <blockquote>
+      A good research question reduces the problem space in an area. This means that the answer, whatever it is, eliminates one set of plausible possibilities.
+      <span class="source">&mdash; Rugg &amp; Petre, <em>The Unwritten Rules of PhD Research</em>, p. 146</span>
+    </blockquote>
+    <blockquote>
+      It is a good habit to work out the possible answers to your research question before you start your data collection&hellip;
+      <span class="source">&mdash; Rugg &amp; Petre, p. 147</span>
+    </blockquote>
+    </div>
+    </div>
+    <p style="margin-top:1.25rem;">Their first test of a research question: <strong>&ldquo;Are you trying to find something out, rather than prove something?&rdquo;</strong> <span class="dim">(p. 148)</span></p>
+  </div>
+</div>
+
+<!-- SLIDE 7: Work backward -->
+<div class="slide" id="s7">
+  <div class="slide-inner">
+    <h2>The Move: Work Backward</h2>
+    <div class="arrow-flow">
+      <div class="arrow-step">
+        <strong>What you wrote</strong><br>
+        <span class="dim" style="font-size:0.95rem;">&ldquo;Does bond govern capacity?&rdquo;</span>
+      </div>
+      <div class="arrow-between">&rarr;</div>
+      <div class="arrow-step">
+        <strong>Keep it</strong><br>
+        <span class="dim" style="font-size:0.95rem;">That&rsquo;s your hypothesis: bond governs.</span>
+      </div>
+      <div class="arrow-between">&rarr;</div>
+      <div class="arrow-step now">
+        <strong>Write the question it answers</strong><br>
+        <span class="dim" style="font-size:0.95rem;">&ldquo;What governs capacity?&rdquo;</span>
+      </div>
+    </div>
+    <p style="margin-top:1.5rem;"><strong>Check:</strong> list two <em>other</em> possible answers to your new question. If you can&rsquo;t think of any, the question is still too narrow &mdash; it&rsquo;s your hypothesis again in different words.</p>
+  </div>
+</div>
+
+<!-- SLIDE 8: Workshop 1 -->
+<div class="slide" id="s8">
+  <div class="slide-inner">
+    <h2>Workshop: Question or Hypothesis?</h2>
+    <p style="margin-bottom:1.25rem;">Take what you wrote last week.</p>
+    <ul>
+      <li><strong>Label it:</strong> question or hypothesis? Use the three checks.</li>
+      <li><strong>If it&rsquo;s a hypothesis,</strong> keep it on the page and write the question it answers above it.</li>
+      <li><strong>List three possible answers</strong> to your question &mdash; your favorite plus two real alternatives.</li>
+      <li><strong>Re-run last week&rsquo;s tests:</strong> names what you don&rsquo;t know? More than one possible answer? Could evidence change the answer?</li>
+    </ul>
+    <p style="margin-top:1.25rem; color:var(--text-dim);">Write for 8 minutes, then each reads their question and three answers aloud.</p>
+  </div>
+</div>
+
+<!-- PART 2: HYPOTHESES -->
+
+<!-- SLIDE 9: From question to hypothesis -->
+<div class="slide" id="s9">
+  <div class="slide-inner">
+    <span class="phase-label p2">Part 2: The Hypothesis</span>
+    <h2>What Is a Hypothesis?</h2>
+    <p style="font-size:1.3rem; margin-bottom:1.5rem;">A research question opens a door. A hypothesis walks through it.</p>
+    <div class="vs-grid">
+      <div class="vs-box neutral">
+        <div class="vs-label">Research question</div>
+        <p>What you&rsquo;re trying to <strong>find out</strong>.</p>
+        <p class="dim" style="font-size:0.95rem; margin-top:0.5rem;">It defines the territory. It has a range of possible answers. You don&rsquo;t know which one is right.</p>
+      </div>
+      <div class="vs-box good">
+        <div class="vs-label">Hypothesis</div>
+        <p>A proposed <strong>answer</strong> &mdash; specific and testable.</p>
+        <p class="dim" style="font-size:0.95rem; margin-top:0.5rem;">It picks one door, walks through it, and says: &ldquo;I think this is what&rsquo;s on the other side.&rdquo; It can be wrong.</p>
+      </div>
+    </div>
+    <p style="margin-top:1rem;">You just listed three possible answers. Each one is a candidate hypothesis &mdash; what C.&nbsp;S. Peirce called <strong>&ldquo;a hypothesis on probation.&rdquo;</strong> <span class="dim">(Booth et al., <em>The Craft of Research</em>, p. 65)</span></p>
+  </div>
+</div>
+
+<!-- SLIDE 10: Worked example -->
+<div class="slide" id="s10">
+  <div class="slide-inner">
+    <h2>Worked Example</h2>
+    <div style="padding:1rem 1.5rem; border:1px solid var(--border); background:var(--surface); margin-bottom:1rem;">
+      <div style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; color:var(--accent2); margin-bottom:0.4rem;">Research question</div>
+      <p style="font-size:1.15rem;">What governs the capacity of surface-mounted retrofits on historic lime-mortar brick, and how does that limit interact with preservation constraints?</p>
+    </div>
+    <div class="dim" style="font-size:0.8rem; font-weight:700; text-transform:uppercase; letter-spacing:0.06em; margin-bottom:0.4rem;">Possible answers</div>
+    <ul style="margin-bottom:1rem;">
+      <li><strong>A.</strong> The <strong>bond</strong> between strip and wall governs &mdash; so a lighter intervention is structurally optimal, which favors preservation.</li>
+      <li class="dim"><strong>B.</strong> The <strong>strip&rsquo;s own strength</strong> governs &mdash; more fibre, proportionally more capacity.</li>
+      <li class="dim"><strong>C.</strong> The <strong>masonry itself</strong> fails first &mdash; the retrofit barely engages.</li>
+    </ul>
+    <p>Pick one and commit: <strong>A is the hypothesis.</strong> B and C are its competitors.</p>
+  </div>
+</div>
+
+<!-- SLIDE 11: What would make you wrong -->
+<div class="slide" id="s11">
+  <div class="slide-inner">
+    <h2>What Would Make You Wrong?</h2>
+    <p style="font-size:1.3rem; margin-bottom:1.5rem;">If you can&rsquo;t answer this, you don&rsquo;t have a hypothesis &mdash; you have a hope.</p>
+    <div class="vs-grid">
+      <div class="vs-box good">
+        <div class="vs-label">The hypothesis holds if</div>
+        <p>The ACI reinforcement efficiency factor collapses to its floor on low-strength masonry, AND the FE model shows that connection layout &mdash; not strip strength &mdash; governs capacity.</p>
+      </div>
+      <div class="vs-box bad">
+        <div class="vs-label">The hypothesis fails if</div>
+        <p>&kappa;<sub>v</sub> does <em>not</em> collapse on low-f&prime;m masonry, OR the FE model shows that adding more fibre proportionally increases capacity.</p>
+      </div>
+    </div>
+    <div class="cited" style="margin-top:1.25rem;">
+    <img class="cover" src="img/cover-unwritten-rules.png" alt="Cover of The Unwritten Rules of PhD Research by Rugg and Petre">
+    <blockquote style="flex:1;">
+      Don&rsquo;t set out to collect data in support of your belief. Ask yourself: &lsquo;How could I tell if my belief was wrong?&rsquo; If you can&rsquo;t answer that question, then you&rsquo;re doing politics, not research.
+      <span class="source">&mdash; Rugg &amp; Petre, <em>The Unwritten Rules of PhD Research</em>, p. 215</span>
+    </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 12: Not a hypothesis -->
+<div class="slide" id="s12">
+  <div class="slide-inner">
+    <h2>These Are Not Hypotheses</h2>
+    <div class="vs-grid">
+      <div class="vs-box bad">
+        <div class="vs-label">Unfalsifiable</div>
+        <p>&ldquo;My model will provide useful results.&rdquo;</p>
+        <p class="dim" style="font-size:0.95rem; margin-top:0.5rem;">What result would make you say it <em>didn&rsquo;t</em>?</p>
+      </div>
+      <div class="vs-box bad">
+        <div class="vs-label">A task in disguise</div>
+        <p>&ldquo;I will use ABAQUS to simulate the wall.&rdquo;</p>
+        <p class="dim" style="font-size:0.95rem; margin-top:0.5rem;">That&rsquo;s a plan. What do you <em>expect to find</em>?</p>
+      </div>
+    </div>
+    <div class="vs-grid" style="margin-top:0;">
+      <div class="vs-box bad">
+        <div class="vs-label">Foregone conclusion</div>
+        <p>&ldquo;The retrofitted wall will perform better.&rdquo;</p>
+        <p class="dim" style="font-size:0.95rem; margin-top:0.5rem;">Of course it does. What is the interesting claim?</p>
+      </div>
+      <div class="vs-box bad">
+        <div class="vs-label">Too vague</div>
+        <p>&ldquo;Building characteristics affect damage.&rdquo;</p>
+        <p class="dim" style="font-size:0.95rem; margin-top:0.5rem;">Which characteristics? Which damage? Under what conditions?</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 13: Chamberlin -->
+<div class="slide" id="s13">
+  <div class="slide-inner">
+    <h2>Why You Need More Than One</h2>
+    <img class="article-head" src="img/cover-chamberlin.png" alt="Title block of Chamberlin, The Method of Multiple Working Hypotheses">
+    <blockquote>
+      The moment one has offered an original explanation for a phenomenon which seems satisfactory, that moment affection for his intellectual child springs into existence&hellip; There is an unconscious selection and magnifying of the phenomena that fall into harmony with the theory and support it, and an unconscious neglect of those that fail of coincidence.
+      <span class="source">&mdash; T. C. Chamberlin, <em>Science</em> (1890)</span>
+    </blockquote>
+    <p style="margin-top:1.25rem;">If you hold only one hypothesis, you design experiments to confirm it. If you hold <strong>two competing hypotheses</strong>, you design experiments to distinguish between them. That is a different &mdash; and better &mdash; kind of research.</p>
+    <p class="dim" style="margin-top:0.75rem;"><strong>Discuss:</strong> What is your &ldquo;intellectual child&rdquo;? What result would you be tempted to explain away?</p>
+  </div>
+</div>
+
+<!-- SLIDE 14: Workshop 2 -->
+<div class="slide" id="s14">
+  <div class="slide-inner">
+    <h2>Workshop: Propose an Answer</h2>
+    <p style="margin-bottom:1.25rem;">Start from your question and its three possible answers.</p>
+    <ul>
+      <li><strong>Pick one as your hypothesis</strong> &mdash; a proposed answer, specific enough to be wrong.</li>
+      <li><strong>Write what would make you wrong</strong> &mdash; what evidence would kill it?</li>
+      <li><strong>Pick a competing hypothesis</strong> from your other two answers.</li>
+      <li><strong>Name one experiment that distinguishes them</strong> &mdash; a result that would come out one way if you&rsquo;re right and another way if the competitor is.</li>
+    </ul>
+    <p style="margin-top:1.5rem; color:var(--text-dim);">Write for 10 minutes. Then each reads theirs aloud.</p>
+  </div>
+</div>
+
+<!-- PART 3: SCOPE -->
+
+<!-- SLIDE 15: Scope is a design decision -->
+<div class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 3: The Boundary</span>
+    <h2>Scope Is a Design Decision</h2>
+    <p style="font-size:1.3rem; margin-bottom:1.5rem;">Scope is not a limitation you apologize for. It is the boundary around what your evidence can actually test.</p>
+    <div class="vs-grid">
+      <div class="vs-box bad">
+        <div class="vs-label">Indefensible</div>
+        <p>Claiming your retrofit works against EF5 tornadoes when your loading represents EF2&ndash;3.</p>
+        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">That isn&rsquo;t ambitious. A committee member will find the gap in one question.</p>
+      </div>
+      <div class="vs-box bad">
+        <div class="vs-label">Imprecise</div>
+        <p>Claiming you <em>validated</em> a method when you <em>replicated</em> a published result.</p>
+        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">That isn&rsquo;t generous. It hides what you actually showed.</p>
+      </div>
+    </div>
+    <div class="cited" style="margin-top:1rem;">
+    <img class="cover" src="img/cover-craft-of-research.png" alt="Cover of The Craft of Research, fourth edition">
+    <blockquote style="flex:1;">
+      As paradoxical as it seems, you make your argument stronger and more credible by modestly acknowledging its limits&hellip; Limit your claims to what your argument can actually support by qualifying their scope and certainty.
+      <span class="source">&mdash; Booth et al., <em>The Craft of Research</em>, &sect;8.3, p. 129</span>
+    </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 16: Scope follows from the hypothesis -->
+<div class="slide" id="s16">
+  <div class="slide-inner">
+    <h2>Scope Comes From Your Hypothesis</h2>
+    <p style="margin-bottom:1.25rem;">Ask: <strong>under what conditions can my evidence actually tell hypothesis A apart from B and C?</strong> That&rsquo;s your scope.</p>
+    <div class="vs-grid">
+      <div class="vs-box good">
+        <div class="vs-label">In</div>
+        <p>Low-strength lime-mortar brick walls. Surface-mounted composite strips. The loading range my load model represents.</p>
+      </div>
+      <div class="vs-box neutral">
+        <div class="vs-label">Out</div>
+        <p>Modern cement-mortar masonry. Other retrofit families. Loading beyond what my load model represents.</p>
+      </div>
+    </div>
+    <p style="margin-top:1rem;">Every boundary needs a <strong>reason</strong>: the material data I have, the assumption my model makes, the loading my code provisions cover. &ldquo;I didn&rsquo;t have time&rdquo; is not a reason. &ldquo;The model assumes X, which stops holding past Y&rdquo; is.</p>
+  </div>
+</div>
+
+<!-- SLIDE 17: Scope paragraph template -->
+<div class="slide" id="s17">
+  <div class="slide-inner">
+    <h2>Your Scope Paragraph</h2>
+    <p style="margin-bottom:1.25rem;">Four parts. One short paragraph. No tool names unless the tool sets the boundary.</p>
+    <div class="formula" style="font-size:1.15rem;">
+      <span class="step-num">1. In:</span> My work covers <span class="blank">&nbsp;</span><br>
+      <span class="step-num">2. Out:</span> It does not cover <span class="blank">&nbsp;</span><br>
+      <span class="step-num">3. Why here:</span> The boundary is here because <span class="blank">&nbsp;</span><br>
+      <span class="step-num">4. What sets it:</span> The evidence or assumption behind that boundary is <span class="blank">&nbsp;</span>
+    </div>
+    <p style="margin-top:1.25rem;"><strong>Test:</strong> could a committee member push on any one of your boundaries and find you don&rsquo;t have a reason? Then that boundary isn&rsquo;t designed yet.</p>
+  </div>
+</div>
+
+<!-- SLIDE 18: Takeaway -->
+<div class="slide" id="s18">
+  <div class="slide-inner">
+    <h2>For Next Session</h2>
+    <ul>
+      <li><strong>Revise</strong> your research question and your hypothesis pair (your hypothesis + a competing one) based on today&rsquo;s feedback</li>
+      <li><strong>Write</strong> your scope paragraph using the four-part template</li>
+      <li><strong>Next session:</strong> What does your tool compute? &mdash; your model is an instrument, and you need to know where it breaks</li>
+    </ul>
+    <div class="formula" style="margin-top:2rem; font-size:1.1rem;">
+      <strong>Deliverable &mdash; due next session:</strong><br>
+      Research question (revised) + hypothesis pair + scope paragraph
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="slide-num" id="slideNum">1 / 18</div>
+<div class="progress" id="progress"></div>
+<div class="nav-hint">&#8592; &#8594; to navigate</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function show(idx) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, idx));
+    slides[current].classList.add('active');
+    document.getElementById('slideNum').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', function(e) {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) show(diff > 0 ? current + 1 : current - 1);
+  });
+
+  show(0);
+})();
+</script>
+
+</body>
+</html>
