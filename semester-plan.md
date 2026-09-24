@@ -45,14 +45,18 @@ demonstrated ability to do that cycle on your own.
 **Discussion:** What does "good enough" look like at the end? What are you
 optimizing for — and what are you not?
 
+**Career paths:** tenure-line, teaching prof, industry. What each job is,
+what you're evaluated on, what to build during the PhD, and the tradeoffs
+(Feibelman Ch. 6). Which path interests you, and what should you do during
+the PhD to keep options open?
+
 ---
 
 ### Week 2 — Why does anyone care? (Sep 2)
 
 Tasks vs. questions, and the method for turning a topic into a question
 worth asking. The Craft of Research three-step formula (3.4.1–3.4.3):
-Topic → Question → Significance. Plus a first conversation about career
-paths — who your "reader" is depends on where you end up.
+Topic → Question → Significance.
 
 **No pre-reading.** Heilmeier's Catechism handed out in session as a
 reference sheet.
@@ -64,9 +68,6 @@ reference sheet.
 **Workshop:** Write your three-step sentence. Maximum 3 research questions,
 each with all three steps. No tool names. Step 3 must name a reader who
 is not your advisor.
-
-**Discussion:** Career paths (tenure-line, teaching prof, industry) — how
-does your step 3 "reader" change depending on path?
 
 **Reading (for next week):** Chamberlin, "The Method of Multiple Working Hypotheses" (1890, Science,
 ~6 pages). The case for entertaining competing explanations instead of
