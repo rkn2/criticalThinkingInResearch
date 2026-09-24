@@ -132,7 +132,7 @@
   <div class="slide-inner title-slide">
     <div class="week-label">Week 4</div>
     <h1>From Question to Hypothesis</h1>
-    <p class="subtitle">Separating what you don&rsquo;t know from what you think the answer is, and drawing the boundary around what you can test</p>
+    <p class="subtitle">Separating what you don&rsquo;t know from what you think the answer is, and why you need more than one</p>
     <div class="meta">
       H3D Research Methods Class<br>
       Fall 2026<br>
@@ -159,7 +159,7 @@
       <div class="arrow-between">&rarr;</div>
       <div class="arrow-step later">
         <strong>Scope</strong><br>
-        <span class="dim" style="font-size:0.9rem;">today, then at home</span><br>
+        <span class="dim" style="font-size:0.9rem;">next session</span><br>
         My evidence covers ___
       </div>
       <div class="arrow-between">&rarr;</div>
@@ -383,8 +383,26 @@
   </div>
 </div>
 
-<!-- SLIDE 14: Workshop 2 -->
+<!-- SLIDE 14: xkcd machine learning -->
 <div class="slide" id="s14">
+  <div class="slide-inner">
+    <h2>Stir Until It Looks Right</h2>
+    <div class="vs-grid" style="align-items:center;">
+      <div>
+        <p>This is the intellectual child with a computer attached. Once you like an answer, it is easy to keep tuning the model, the mesh, or the inputs until the output agrees with you.</p>
+        <p style="margin-top:1rem;">That is confirmation bias. The pile will always produce <em>an</em> answer. The question is whether you would have accepted a different one.</p>
+        <p class="dim" style="margin-top:1rem;"><strong>Ask yourself:</strong> When did you last stop adjusting because the result looked right, rather than because you had a reason to stop?</p>
+      </div>
+      <div style="text-align:center;">
+        <img src="img/xkcd-machine-learning.png" alt="xkcd 1838, Machine Learning: a person stands on a pile of linear algebra and stirs it until the answers look right" style="max-width:100%; max-height:55vh; border:1px solid var(--border); background:#fff;">
+        <p class="dim" style="font-size:0.8rem; margin-top:0.4rem;">xkcd 1838, Randall Munroe</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 15: Workshop 2 -->
+<div class="slide" id="s15">
   <div class="slide-inner">
     <h2>Workshop: Propose an Answer</h2>
     <p style="margin-bottom:1.25rem;">Start from your question and its three possible answers.</p>
@@ -398,88 +416,27 @@
   </div>
 </div>
 
-<!-- PART 3: SCOPE -->
-
-<!-- SLIDE 15: Scope is a design decision -->
-<div class="slide" id="s15">
-  <div class="slide-inner">
-    <span class="phase-label p1">Part 3: The Boundary</span>
-    <h2>Scope Is a Design Decision</h2>
-    <p style="font-size:1.3rem; margin-bottom:1.5rem;">Scope is not a limitation you apologize for. It is the boundary around what your evidence can actually test.</p>
-    <div class="vs-grid">
-      <div class="vs-box bad">
-        <div class="vs-label">Indefensible</div>
-        <p>Claiming your retrofit works against EF5 tornadoes when your loading represents EF2&ndash;3.</p>
-        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">That isn&rsquo;t ambitious. A committee member will find the gap in one question.</p>
-      </div>
-      <div class="vs-box bad">
-        <div class="vs-label">Imprecise</div>
-        <p>Claiming you <em>validated</em> a method when you <em>replicated</em> a published result.</p>
-        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">That isn&rsquo;t generous. It hides what you actually showed.</p>
-      </div>
-    </div>
-    <div class="cited" style="margin-top:1rem;">
-    <img class="cover" src="img/cover-craft-of-research.png" alt="Cover of The Craft of Research, fourth edition">
-    <blockquote style="flex:1;">
-      As paradoxical as it seems, you make your argument stronger and more credible by modestly acknowledging its limits&hellip; Limit your claims to what your argument can actually support by qualifying their scope and certainty.
-      <span class="source">&mdash; Booth et al., <em>The Craft of Research</em>, &sect;8.3, p. 129</span>
-    </blockquote>
-    </div>
-  </div>
-</div>
-
-<!-- SLIDE 16: Scope follows from the hypothesis -->
+<!-- SLIDE 16: Takeaway -->
 <div class="slide" id="s16">
   <div class="slide-inner">
-    <h2>Scope Comes From Your Hypothesis</h2>
-    <p style="margin-bottom:1.25rem;">Ask: <strong>under what conditions can my evidence actually tell hypothesis A apart from B and C?</strong> That&rsquo;s your scope.</p>
-    <div class="vs-grid">
-      <div class="vs-box good">
-        <div class="vs-label">In</div>
-        <p>Low-strength lime-mortar brick walls. Surface-mounted composite strips. The loading range my load model represents.</p>
-      </div>
-      <div class="vs-box neutral">
-        <div class="vs-label">Out</div>
-        <p>Modern cement-mortar masonry. Other retrofit families. Loading beyond what my load model represents.</p>
-      </div>
-    </div>
-    <p style="margin-top:1rem;">Every boundary needs a <strong>reason</strong>: the material data I have, the assumption my model makes, the loading my code provisions cover. &ldquo;I didn&rsquo;t have time&rdquo; is not a reason. &ldquo;The model assumes X, which stops holding past Y&rdquo; is.</p>
-  </div>
-</div>
-
-<!-- SLIDE 17: Scope paragraph template -->
-<div class="slide" id="s17">
-  <div class="slide-inner">
-    <h2>Your Scope Paragraph</h2>
-    <p style="margin-bottom:1.25rem;">Four parts. One short paragraph. No tool names unless the tool sets the boundary.</p>
-    <div class="formula" style="font-size:1.15rem;">
-      <span class="step-num">1. In:</span> My work covers <span class="blank">&nbsp;</span><br>
-      <span class="step-num">2. Out:</span> It does not cover <span class="blank">&nbsp;</span><br>
-      <span class="step-num">3. Why here:</span> The boundary is here because <span class="blank">&nbsp;</span><br>
-      <span class="step-num">4. What sets it:</span> The evidence or assumption behind that boundary is <span class="blank">&nbsp;</span>
-    </div>
-    <p style="margin-top:1.25rem;"><strong>Test:</strong> could a committee member push on any one of your boundaries and find you don&rsquo;t have a reason? Then that boundary isn&rsquo;t designed yet.</p>
-  </div>
-</div>
-
-<!-- SLIDE 18: Takeaway -->
-<div class="slide" id="s18">
-  <div class="slide-inner">
     <h2>For Next Session</h2>
+    <p style="margin-bottom:1.25rem;">Bring your <strong>research question and hypothesis pair</strong>, written as a set:</p>
     <ul>
-      <li><strong>Revise</strong> your research question and your hypothesis pair (your hypothesis + a competing one) based on today&rsquo;s feedback</li>
-      <li><strong>Write</strong> your scope paragraph using the four-part template</li>
-      <li><strong>Next session:</strong> What does your tool compute? Your model is an instrument, and you need to know where it breaks</li>
+      <li><strong>Your research question</strong>, revised. It asks what you don&rsquo;t know, and it has more than one possible answer.</li>
+      <li><strong>Your hypothesis</strong>: the answer you expect, specific enough to be wrong, plus what would make you wrong.</li>
+      <li><strong>A competing hypothesis</strong>: another answer to the same question, and the result that would tell the two apart.</li>
     </ul>
-    <div class="formula" style="margin-top:2rem; font-size:1.1rem;">
+    <p style="margin-top:1rem;"><strong>Check:</strong> both hypotheses answer the question. If one of them answers a different question, the pair doesn&rsquo;t hold together yet.</p>
+    <div class="formula" style="margin-top:1.5rem; font-size:1.1rem;">
       <strong>Deliverable, due next session:</strong><br>
-      Research question (revised) + hypothesis pair + scope paragraph
+      Research question (revised) + hypothesis pair
     </div>
+    <p class="dim" style="margin-top:1rem;"><strong>Next session:</strong> scope, for your question and for your hypothesis.</p>
   </div>
 </div>
 
 <!-- Navigation -->
-<div class="slide-num" id="slideNum">1 / 18</div>
+<div class="slide-num" id="slideNum">1 / 16</div>
 <div class="progress" id="progress"></div>
 <div class="nav-hint">&#8592; &#8594; to navigate</div>
 

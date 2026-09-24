@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 5 — Scope, Then What Does Your Tool Compute?</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Slab:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --bg: #F7F7F5;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-dim: #555555;
+    --accent: #001E44;
+    --accent2: #1E407C;
+    --accent3: #96BEE6;
+    --border: #D9D9D9;
+    --highlight: #EDF3FA;
+    --warn: #9B2335;
+    --good: #2D5F2D;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E0E0D;
+      --surface: #1A1A18;
+      --text: #E8E6E1;
+      --text-dim: #9A9890;
+      --accent: #96BEE6;
+      --accent2: #6FA3D4;
+      --accent3: #3A6EA0;
+      --border: #2E2E2A;
+      --highlight: #141E2A;
+      --warn: #E05A6A;
+      --good: #5DAA5D;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E0E0D;
+    --surface: #1A1A18;
+    --text: #E8E6E1;
+    --text-dim: #9A9890;
+    --accent: #96BEE6;
+    --accent2: #6FA3D4;
+    --accent3: #3A6EA0;
+    --border: #2E2E2A;
+    --highlight: #141E2A;
+    --warn: #E05A6A;
+    --good: #5DAA5D;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Roboto', system-ui, sans-serif; }
+
+  .slide { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 6rem; opacity: 0; transition: opacity 0.3s ease; }
+  .slide.active { display: flex; opacity: 1; }
+  .slide-inner { max-width: 960px; width: 100%; }
+
+  h1 { font-family: 'Roboto Slab', Georgia, serif; font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+  h2 { font-family: 'Roboto Slab', Georgia, serif; font-size: 2rem; font-weight: 700; line-height: 1.25; margin-bottom: 1.25rem; color: var(--accent); }
+  h3 { font-family: 'Roboto Slab', Georgia, serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent); }
+  p, li { font-size: 1.25rem; line-height: 1.65; color: var(--text); }
+  .dim { color: var(--text-dim); }
+  .warn { color: var(--warn); }
+
+  ul { list-style: none; padding-left: 0; }
+  ul li { padding: 0.3rem 0 0.3rem 1.5rem; position: relative; }
+  ul li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  .subtitle { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 2rem; }
+
+  blockquote { border-left: 3px solid var(--accent); padding: 0.75rem 1.25rem; margin: 0.75rem 0; font-style: italic; color: var(--text); font-size: 1.15rem; line-height: 1.6; background: var(--highlight); }
+  blockquote .source { display: block; font-style: normal; font-size: 0.85rem; color: var(--text-dim); margin-top: 0.4rem; }
+
+  .formula { border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 1rem 0; background: var(--highlight); font-size: 1.2rem; line-height: 1.8; }
+  .formula .step-num { font-weight: 700; color: var(--accent); }
+  .formula .blank { border-bottom: 2px solid var(--accent); display: inline-block; min-width: 10rem; margin: 0 0.15rem; }
+
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
+  .vs-box { padding: 1.5rem; border: 1px solid var(--border); background: var(--surface); }
+  .vs-box.bad { border-top: 3px solid var(--warn); }
+  .vs-box.good { border-top: 3px solid var(--good); }
+  .vs-box.neutral { border-top: 3px solid var(--accent2); }
+  .vs-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .vs-box.bad .vs-label { color: var(--warn); }
+  .vs-box.good .vs-label { color: var(--good); }
+  .vs-box.neutral .vs-label { color: var(--accent2); }
+  .vs-box p { font-size: 1.1rem; }
+
+  .arrow-flow { display: flex; align-items: center; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap; }
+  .arrow-step { padding: 0.75rem 1.25rem; border: 1px solid var(--border); background: var(--surface); font-size: 1rem; line-height: 1.4; text-align: center; flex: 1; }
+  .arrow-step.done { opacity: 0.5; }
+  .arrow-step.now { border-color: var(--accent); background: var(--highlight); font-weight: 600; }
+  .arrow-step.later { opacity: 0.7; border-style: dashed; }
+  .arrow-between { font-size: 1.5rem; color: var(--text-dim); flex-shrink: 0; }
+
+  .phase-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; padding: 0.35rem 0.75rem; display: inline-block; }
+  .phase-label.p1 { color: var(--accent2); background: var(--highlight); }
+  .phase-label.p2 { color: var(--good); background: rgba(45,95,45,0.08); }
+
+  .title-slide h1 { font-size: 3.5rem; margin-bottom: 0.25rem; }
+  .title-slide .week-label { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+  .title-slide .meta { font-size: 1rem; color: var(--text-dim); margin-top: 2rem; line-height: 1.8; }
+
+  .nav-hint { position: fixed; bottom: 1.5rem; right: 2rem; font-size: 0.75rem; color: var(--text-dim); opacity: 0.5; }
+  .progress { position: fixed; bottom: 0; left: 0; height: 3px; background: var(--accent2); transition: width 0.3s ease; }
+  .slide-num { position: fixed; bottom: 1.5rem; left: 2rem; font-size: 0.75rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 800px) {
+    .slide { padding: 2rem 2rem; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .title-slide h1 { font-size: 2.2rem; }
+    .vs-grid { grid-template-columns: 1fr; }
+    .formula { font-size: 1.05rem; }
+    p, li { font-size: 1.05rem; }
+    .arrow-flow { flex-direction: column; }
+    .arrow-between { transform: rotate(90deg); }
+  }
+  .cited { display: flex; gap: 1.5rem; align-items: center; margin: 0.75rem 0; }
+  .cited .quotes { flex: 1; min-width: 0; }
+  .cited blockquote { margin: 0.5rem 0; }
+  .cover { height: 160px; width: auto; flex-shrink: 0; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+  .article-head { display: block; max-width: 340px; width: 100%; margin-bottom: 1rem; border: 1px solid var(--border); background: #fff; padding: 0.4rem 0.6rem; }
+  @media (max-width: 800px) { .cover { height: 110px; } .cited { gap: 1rem; } }
+</style>
+</head>
+<body>
+
+
+<!-- SLIDE 1: Title -->
+<div class="slide active" id="s1">
+  <div class="slide-inner title-slide">
+    <div class="week-label">Week 5</div>
+    <h1>Scope, Then What Does Your Tool Compute?</h1>
+    <p class="subtitle">Drawing the boundary around your question and your hypothesis, then knowing your instrument</p>
+    <div class="meta">
+      H3D Research Methods Class<br>
+      Fall 2026<br>
+      Carol &middot; Marcio &middot; Yishuang &middot; Young &middot; Borna
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 2: Scope is a design decision -->
+<div class="slide" id="s2">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 1: The Boundary</span>
+    <h2>Scope Is a Design Decision</h2>
+    <p style="font-size:1.3rem; margin-bottom:1.5rem;">Scope is not a limitation you apologize for. It is the boundary around what your evidence can actually test.</p>
+    <div class="vs-grid">
+      <div class="vs-box bad">
+        <div class="vs-label">Indefensible</div>
+        <p>Claiming your retrofit works against EF5 tornadoes when your loading represents EF2&ndash;3.</p>
+        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">That isn&rsquo;t ambitious. A committee member will find the gap in one question.</p>
+      </div>
+      <div class="vs-box bad">
+        <div class="vs-label">Imprecise</div>
+        <p>Claiming you <em>validated</em> a method when you <em>replicated</em> a published result.</p>
+        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">That isn&rsquo;t generous. It hides what you actually showed.</p>
+      </div>
+    </div>
+    <div class="cited" style="margin-top:1rem;">
+    <img class="cover" src="img/cover-craft-of-research.png" alt="Cover of The Craft of Research, fourth edition">
+    <blockquote style="flex:1;">
+      As paradoxical as it seems, you make your argument stronger and more credible by modestly acknowledging its limits&hellip; Limit your claims to what your argument can actually support by qualifying their scope and certainty.
+      <span class="source">&mdash; Booth et al., <em>The Craft of Research</em>, &sect;8.3, p. 129</span>
+    </blockquote>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3: Scope both -->
+<div class="slide" id="s3">
+  <div class="slide-inner">
+    <h2>Scope the Question and the Hypothesis</h2>
+    <p style="margin-bottom:1.25rem;">You need a boundary on both. They are drawn differently.</p>
+    <div class="vs-grid">
+      <div class="vs-box neutral">
+        <div class="vs-label">Scoping the question</div>
+        <p>Which problem are you asking about? Which structures, hazards, and conditions does the answer need to cover?</p>
+        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">Set by the gap and by who cares about the answer.</p>
+      </div>
+      <div class="vs-box neutral">
+        <div class="vs-label">Scoping the hypothesis</div>
+        <p>Under what conditions can your evidence actually tell your answer apart from the competing one?</p>
+        <p class="dim" style="font-size:0.9rem; margin-top:0.5rem;">Set by your data, your model&rsquo;s assumptions, and your loading.</p>
+      </div>
+    </div>
+    <p style="margin-top:1rem;">If the hypothesis scope is narrower than the question scope, say so. That gap is where your answer stops and future work starts.</p>
+  </div>
+</div>
+
+<!-- SLIDE 4: Scope follows from the hypothesis -->
+<div class="slide" id="s4">
+  <div class="slide-inner">
+    <h2>Scoping Your Hypothesis</h2>
+    <p style="margin-bottom:1.25rem;">Ask: <strong>under what conditions can my evidence actually tell hypothesis A apart from B and C?</strong> That&rsquo;s your scope.</p>
+    <div class="vs-grid">
+      <div class="vs-box good">
+        <div class="vs-label">In</div>
+        <p>Low-strength lime-mortar brick walls. Surface-mounted composite strips. The loading range my load model represents.</p>
+      </div>
+      <div class="vs-box neutral">
+        <div class="vs-label">Out</div>
+        <p>Modern cement-mortar masonry. Other retrofit families. Loading beyond what my load model represents.</p>
+      </div>
+    </div>
+    <p style="margin-top:1rem;">Every boundary needs a <strong>reason</strong>: the material data I have, the assumption my model makes, the loading my code provisions cover. &ldquo;I didn&rsquo;t have time&rdquo; is not a reason. &ldquo;The model assumes X, which stops holding past Y&rdquo; is.</p>
+  </div>
+</div>
+
+<!-- SLIDE 5: Scope paragraph template -->
+<div class="slide" id="s5">
+  <div class="slide-inner">
+    <h2>Your Scope Paragraph</h2>
+    <p style="margin-bottom:1.25rem;">Four parts. One short paragraph. No tool names unless the tool sets the boundary.</p>
+    <div class="formula" style="font-size:1.15rem;">
+      <span class="step-num">1. In:</span> My work covers <span class="blank">&nbsp;</span><br>
+      <span class="step-num">2. Out:</span> It does not cover <span class="blank">&nbsp;</span><br>
+      <span class="step-num">3. Why here:</span> The boundary is here because <span class="blank">&nbsp;</span><br>
+      <span class="step-num">4. What sets it:</span> The evidence or assumption behind that boundary is <span class="blank">&nbsp;</span>
+    </div>
+    <p style="margin-top:1.25rem;">Write it once for your question and once for your hypothesis.</p>
+    <p style="margin-top:0.75rem;"><strong>Test:</strong> could a committee member push on any one of your boundaries and find you don&rsquo;t have a reason? Then that boundary isn&rsquo;t designed yet.</p>
+  </div>
+</div>
+
+<!-- TODO: tool section (what does your tool compute?) goes before this slide -->
+
+<!-- SLIDE 6: Takeaway -->
+<div class="slide" id="s6">
+  <div class="slide-inner">
+    <h2>For Next Session</h2>
+    <ul>
+      <li><strong>Revise</strong> your research question and hypothesis pair based on the written feedback</li>
+      <li><strong>Write</strong> your scope paragraph using the four-part template, for your question and for your hypothesis</li>
+      <li><strong>Next session:</strong> Designing computational experiments</li>
+    </ul>
+    <div class="formula" style="margin-top:2rem; font-size:1.1rem;">
+      <strong>Deliverable, due next session:</strong><br>
+      Scope paragraph (question + hypothesis)
+    </div>
+  </div>
+</div>
+
+<!-- Navigation -->
+<div class="slide-num" id="slideNum">1 / 6</div>
+<div class="progress" id="progress"></div>
+<div class="nav-hint">&#8592; &#8594; to navigate</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+
+  function show(idx) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, idx));
+    slides[current].classList.add('active');
+    document.getElementById('slideNum').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(current + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', function(e) {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) show(diff > 0 ? current + 1 : current - 1);
+  });
+
+  show(0);
+})();
+</script>
+
+</body>
+</html>

@@ -101,23 +101,18 @@ hypothesis-with-a-question-mark (yes/no? already expect yes? names the
 answer?) and work backward: keep the hypothesis, write the question it
 answers, list three possible answers. Then hypotheses: a proposed answer,
 specific and testable; what would make you wrong; Chamberlin on multiple
-working hypotheses. Then, if time allows, scope as a design decision
-(otherwise scope opens Week 5). Claiming EF5 when your
-results apply to EF2-3 is not ambitious, it is indefensible. Claiming you
-validated the flat-to-3D translation when you demonstrated replication is
-not generous, it is imprecise.
+working hypotheses, then xkcd 1838 (Machine Learning) on confirmation
+bias: the intellectual child with a computer attached. Scope moved to
+Week 5 (decided Sep 24); the deck ends on the research question +
+hypothesis pair.
 
 **Workshops:** (1) Question or hypothesis? Label last week's sentence, write
 the question it answers, list three possible answers. (2) Propose an answer:
 one hypothesis, what would make you wrong, a competing hypothesis, and an
 experiment that distinguishes them.
 
-**Take-home:** Scope paragraph using the four-part template: what is in,
-what is out, why the boundary is there, and what evidence or assumption
-sets it.
-
 **Deliverable due next session: Research question (revised) + hypothesis
-pair + scope paragraph.** Becca gives written feedback.
+pair.** Becca gives written feedback.
 
 ---
 
@@ -125,8 +120,19 @@ pair + scope paragraph.** Becca gives written feedback.
 
 ### Week 5 — Scope, then what does your tool compute? (Oct 1)
 
-If scope didn't fit in Week 4, open with it: the four-part scope paragraph
-(in, out, why the boundary is there, what evidence or assumption sets it).
+Slides: `docs/week05-slides.html` (scope section done; tool section still
+to build).
+
+Open with scope: the four-part scope paragraph (in, out, why the boundary
+is there, what evidence or assumption sets it). Claiming EF5 when your
+results apply to EF2-3 is not ambitious, it is indefensible. Claiming you
+validated the flat-to-3D translation when you demonstrated replication is
+not generous, it is imprecise.
+
+**Note from Week 4 (Sep 24):** scope both the research question and the
+hypothesis. They are different processes. Question scope comes from the gap
+and who cares about the answer; hypothesis scope comes from where your
+evidence can tell your answer apart from the competing one.
 
 Your model is not your contribution. Your model is an instrument. You need to
 know what it measures, how it measures it, and where it breaks, the way a lab
@@ -143,7 +149,7 @@ answers, (2) what calculation it performs, (3) what it assumes, (4) where it
 breaks.
 
 **Deliverable due: Research question (revised) + hypothesis pair.** Scope
-paragraph too if scope was covered in Week 4; otherwise due Week 6.
+paragraph (question + hypothesis) due Week 6.
 
 ---
 
@@ -313,7 +319,8 @@ Other resources Becca may want to pull from:
 
 | Date | What is due | Feedback from |
 |------|-------------|---------------|
-| Oct 1 (Week 5) | Research question (revised) + hypothesis pair (+ scope paragraph, or Oct 8 if scope slips) | Becca, written |
+| Oct 1 (Week 5) | Research question (revised) + hypothesis pair | Becca, written |
+| Oct 8 (Week 6) | Scope paragraph (question + hypothesis) | Becca, written |
 | Oct 15 (Week 7) | Experimental design | Becca, written |
 | Nov 12 (Week 11) | Presentation outline (slide-by-slide) | Becca + group |
 | Dec 3 (Week 13) | Final presentation draft | Becca (committee-style) |
