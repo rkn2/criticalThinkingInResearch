@@ -33,7 +33,7 @@ probe/validate/ablate the answer, and synthesize what you found.
 
 ### Week 1 — What does a good PhD look like? (Sep 1)
 
-*Completed.*
+*Completed.* Slides: `docs/week01-slides.html`.
 
 What distinguishes a strong PhD graduate from someone who just finished?
 Problem solvers, not stacks of papers. People who know how to ask questions,
