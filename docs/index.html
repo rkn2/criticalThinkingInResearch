@@ -369,15 +369,7 @@
 </header>
 
 <div class="why-box">
-  <strong>Why this exists:</strong> The August 2026 comps exposed a shared pattern &mdash; all three students can operate tools and run models, but struggle to articulate the scientific question the tool is meant to answer, explain what their models actually compute, scope their work, or synthesize results into a finding. <strong>The core shift:</strong> your job is not to show that you used ABAQUS. Your job is to ask ABAQUS a question, design experiments to probe the answer, and synthesize what you found.
-</div>
-
-<div class="format-grid">
-  <span class="fg-label">Warm-up</span><span class="fg-time">5 min</span><span class="fg-desc">State your current key finding in one sentence</span>
-  <span class="fg-label">Concept</span><span class="fg-time">15 min</span><span class="fg-desc">Becca introduces the week's principle + reading</span>
-  <span class="fg-label">Workshop</span><span class="fg-time">20 min</span><span class="fg-desc">Apply the concept to your own research, in writing</span>
-  <span class="fg-label">Discussion</span><span class="fg-time">15 min</span><span class="fg-desc">Group critique, hot seat (when ready), or open discussion</span>
-  <span class="fg-label">Takeaway</span><span class="fg-time">5 min</span><span class="fg-desc">What to prepare for next week</span>
+  <strong>Why this exists:</strong> Many graduate students can operate tools and run models but struggle to articulate the scientific question the tool is meant to answer, explain what their models actually compute, scope their work, or synthesize results into a finding. <strong>The core shift:</strong> your job is not to show that you used ABAQUS. Your job is to ask ABAQUS a question, design experiments to probe the answer, and synthesize what you found.
 </div>
 
 <!-- PHASE 1 -->
@@ -485,7 +477,7 @@
       <div class="week-tags"><span class="tag current-tag">This week</span></div>
     </div>
     <div class="week-body open">
-      <p>Many research questions from last week were really hypotheses with a question mark on the end. We read them back, tell which is which, and work backward from the hypothesis to the question it answers. Then: what makes a hypothesis testable, what would make you wrong, and why you need more than one (Chamberlin). Then scope: the boundary around what your evidence can actually test.</p>
+      <p>Many research questions from last week were really hypotheses with a question mark on the end. We read them back, tell which is which, and work backward from the hypothesis to the question it answers. Then: what makes a hypothesis testable, what would make you wrong, and why you need more than one (Chamberlin). Then, if time allows, scope: the boundary around what your evidence can actually test. Otherwise scope opens Week 5.</p>
       <div class="wb-label">Workshops</div>
       <p>&bull; Question or hypothesis? Label last week's sentence, write the question it answers, list three possible answers.<br>
          &bull; Propose an answer: one hypothesis, what would make you wrong, a competing hypothesis, and an experiment that distinguishes them.</p>
@@ -511,16 +503,16 @@
     <div class="week-head" onclick="toggle('w5')">
       <span class="chevron"></span>
       <span class="week-num">Week 5</span>
-      <span class="week-title">What does your tool compute? Designing computational experiments</span>
+      <span class="week-title">Scope, then what does your tool compute?</span>
       <span class="week-date">Oct 1</span>
       <div class="week-tags"><span class="tag deliverable">Deliverable</span></div>
     </div>
     <div class="week-body">
-      <p>Your model is not your contribution. Your model is an instrument. You need to know what it measures, how it measures it, and where it breaks. And you do not "run the model" &mdash; you design experiments with a hypothesis, controlled variables, a measurable outcome, and a criterion for what counts as support or refutation.</p>
+      <p>If we didn't reach it in Week 4, we start with scope: the boundary around what your evidence can actually test, and the reason each boundary sits where it does. Then: your model is not your contribution. Your model is an instrument. You need to know what it measures, how it measures it, and where it breaks.</p>
       <div class="wb-label">Workshop</div>
-      <p>For each model or tool you use, write: (1) what question it answers, (2) what calculation it performs, (3) what it assumes, (4) where it breaks. Then design one computational experiment: the hypothesis, what you vary, what you hold constant, what you measure, and what result would change your conclusion.</p>
+      <p>For each model or tool you use, write: (1) what question it answers, (2) what calculation it performs, (3) what it assumes, (4) where it breaks.</p>
       <div class="wb-label">Deliverable due</div>
-      <p>Research question (revised) + hypothesis pair + scope paragraph.</p>
+      <p>Research question (revised) + hypothesis pair. Scope paragraph too if we covered scope in Week 4; otherwise it is due Week 6.</p>
     </div>
   </div>
 
@@ -528,14 +520,14 @@
     <div class="week-head" onclick="toggle('w6')">
       <span class="chevron"></span>
       <span class="week-num">Week 6</span>
-      <span class="week-title">What counts as evidence?</span>
+      <span class="week-title">Designing computational experiments</span>
       <span class="week-date">Oct 8</span>
       <div class="week-tags"></div>
     </div>
     <div class="week-body">
-      <p>The difference between "my model ran" and "my results support the hypothesis." A converged simulation is not a finding. Evidence is a result that distinguishes between your hypothesis and an alternative.</p>
+      <p>You do not "run the model." You design experiments with a hypothesis, controlled variables, a measurable outcome, and a criterion for what counts as support or refutation. A parameter sweep is not an experiment unless you can say what you expect to see and what it would mean if you see something else.</p>
       <div class="wb-label">Workshop</div>
-      <p>Take one result you already have. Write: (1) what it is, (2) what it supports, (3) what alternative it does NOT rule out, (4) what would rule that alternative out.</p>
+      <p>Design one computational experiment: the hypothesis, what you vary, what you hold constant, what you measure, and what result would change your conclusion.</p>
     </div>
   </div>
 
@@ -543,16 +535,16 @@
     <div class="week-head" onclick="toggle('w7')">
       <span class="chevron"></span>
       <span class="week-num">Week 7</span>
-      <span class="week-title">Validation is not confidence</span>
+      <span class="week-title">What counts as evidence?</span>
       <span class="week-date">Oct 15</span>
       <div class="week-tags"><span class="tag deliverable">Deliverable</span></div>
     </div>
     <div class="week-body">
-      <p>Validation requires you to state in advance: what you compare against, what metric you use, what threshold counts as agreement, and what you do if it fails. Verification &ne; validation.</p>
+      <p>The difference between "my model ran" and "my results support the hypothesis." A converged simulation is not a finding. Evidence is a result that distinguishes between your hypothesis and an alternative.</p>
       <div class="wb-label">Workshop</div>
-      <p>Write your validation plan. For each claim: what is the evidence, and what would make you abandon the claim?</p>
+      <p>Take one result you already have. Write: (1) what it is, (2) what it supports, (3) what alternative it does NOT rule out, (4) what would rule that alternative out.</p>
       <div class="wb-label">Deliverable due</div>
-      <p>Experimental design + validation plan.</p>
+      <p>Experimental design.</p>
     </div>
   </div>
 
@@ -682,8 +674,8 @@
     <table class="del-table">
       <thead><tr><th>Date</th><th>What is due</th><th>Feedback from</th></tr></thead>
       <tbody>
-        <tr><td>Oct 1 (Wk 5)</td><td>Research question (revised) + hypothesis pair + scope paragraph</td><td>Becca, written</td></tr>
-        <tr><td>Oct 15 (Wk 7)</td><td>Experimental design + validation plan</td><td>Becca, written</td></tr>
+        <tr><td>Oct 1 (Wk 5)</td><td>Research question (revised) + hypothesis pair (+ scope paragraph, or Oct 8 if scope slips)</td><td>Becca, written</td></tr>
+        <tr><td>Oct 15 (Wk 7)</td><td>Experimental design</td><td>Becca, written</td></tr>
         <tr><td>Nov 12 (Wk 11)</td><td>Presentation outline (slide-by-slide)</td><td>Becca + group</td></tr>
         <tr><td>Dec 3 (Wk 13)</td><td>Final presentation draft</td><td>Becca (committee-style)</td></tr>
         <tr><td>Dec 8 (Wk 14)</td><td>Committee presentation</td><td>Full committee</td></tr>
@@ -700,7 +692,7 @@
   <div class="reading-row"><span class="reading-week">TBD</span><span class="reading-title">Feynman, "Cargo Cult Science" (1974, ~5 pp)</span></div>
   <div class="reading-row"><span class="reading-week">TBD</span><span class="reading-title">Whitesides, "Writing a Paper" (Adv. Materials 2004, ~4 pp)</span></div>
   <div class="reading-row"><span class="reading-week">Wk 5&ndash;6</span><span class="reading-title">Selected chapter from research design book (Becca assigns)</span></div>
-  <div class="reading-row"><span class="reading-week">Wk 7</span><span class="reading-title">Selected chapter from "How to Write an Impactful Research Paper"</span></div>
+  <div class="reading-row"><span class="reading-week">TBD</span><span class="reading-title">Selected chapter from "How to Write an Impactful Research Paper"</span></div>
   <div class="reading-row"><span class="reading-week">Wk 10</span><span class="reading-title">Selected sections from the scientific graphics book</span></div>
 </div>
 

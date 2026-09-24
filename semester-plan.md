@@ -100,7 +100,8 @@ hypothesis-with-a-question-mark (yes/no? already expect yes? names the
 answer?) and work backward: keep the hypothesis, write the question it
 answers, list three possible answers. Then hypotheses: a proposed answer,
 specific and testable; what would make you wrong; Chamberlin on multiple
-working hypotheses. Then scope as a design decision. Claiming EF5 when your
+working hypotheses. Then, if time allows, scope as a design decision
+(otherwise scope opens Week 5). Claiming EF5 when your
 results apply to EF2-3 is not ambitious, it is indefensible. Claiming you
 validated the flat-to-3D translation when you demonstrated replication is
 not generous, it is imprecise.
@@ -121,10 +122,13 @@ pair + scope paragraph.** Becca gives written feedback.
 
 ## Phase 2: The Investigation (Weeks 5–8)
 
-### Week 5 — What does your tool compute? Designing computational experiments (Oct 1)
+### Week 5 — Scope, then what does your tool compute? (Oct 1)
+
+If scope didn't fit in Week 4, open with it: the four-part scope paragraph
+(in, out, why the boundary is there, what evidence or assumption sets it).
 
 Your model is not your contribution. Your model is an instrument. You need to
-know what it measures, how it measures it, and where it breaks — the way a lab
+know what it measures, how it measures it, and where it breaks, the way a lab
 scientist knows their microscope's resolution limits.
 
 If you built a dashboard that converts wind speed to structural load via
@@ -133,25 +137,31 @@ opening the dashboard. If you run DIANA for nonlinear masonry analysis, you
 must be able to explain what the constitutive model assumes, where it
 simplifies reality, and what that simplification means for your results.
 
-And you do not "run the model." You design experiments. An experiment has a
-hypothesis, controlled variables, a measurable outcome, and a criterion for
-what counts as support or refutation. A parameter sweep is not an experiment
-unless you can say what you expect to see and what it would mean if you see
-something else. An ablation study is not optional — it is how you prove each
-component of your method earns its place.
-
 **Workshop:** For each model or tool you use, write: (1) what question it
 answers, (2) what calculation it performs, (3) what it assumes, (4) where it
-breaks. Then design one computational experiment: the hypothesis, what you
-vary, what you hold constant, what you measure, and what result would change
-your conclusion.
+breaks.
 
-**Deliverable due: Research question (revised) + hypothesis pair + scope
-paragraph.**
+**Deliverable due: Research question (revised) + hypothesis pair.** Scope
+paragraph too if scope was covered in Week 4; otherwise due Week 6.
 
 ---
 
-### Week 6 — What counts as evidence? (Oct 8)
+### Week 6 — Designing computational experiments (Oct 8)
+
+You do not "run the model." You design experiments. An experiment has a
+hypothesis, controlled variables, a measurable outcome, and a criterion for
+what counts as support or refutation. A parameter sweep is not an experiment
+unless you can say what you expect to see and what it would mean if you see
+something else. An ablation study is not optional. It is how you prove each
+component of your method earns its place.
+
+**Workshop:** Design one computational experiment: the hypothesis, what you
+vary, what you hold constant, what you measure, and what result would change
+your conclusion.
+
+---
+
+### Week 7 — What counts as evidence? (Oct 15)
 
 The difference between "my model ran" and "my results support the hypothesis."
 A converged simulation is not a finding. A pretty contour plot is not
@@ -162,27 +172,10 @@ an alternative.
 (2) what it supports, (3) what alternative explanation it does NOT rule out,
 (4) what additional experiment would rule that alternative out.
 
-**Reading (for next week):** One chapter from the data visualization book
-(Becca assigns).
+**Deliverable due: Experimental design.** Becca gives written feedback
+before Week 8.
 
----
-
-### Week 7 — Validation is not confidence (Oct 15)
-
-"I am very confident this will work" is not a validation plan. Validation
-requires you to state in advance: what you compare against, what metric you
-use, what threshold counts as agreement, and what you do if it fails.
-
-Verification (does the code solve the equations correctly?) is different from
-validation (do the equations represent the real phenomenon?). You need both.
-Cross-code comparison is verification. Comparison to experimental data is
-validation. Citing someone else's validation of a different model is neither.
-
-**Workshop:** Write your validation plan. For each claim in your research:
-what is the evidence, and what would make you abandon the claim?
-
-**Deliverable due: Experimental design + validation plan.**
-Becca gives written feedback before Week 8.
+"Validation is not confidence" was dropped as a standalone topic (Sep 24).
 
 ---
 
@@ -304,7 +297,7 @@ shift to presentation work in Phase 3.
 | TBD | Feynman, "Cargo Cult Science" (1974, ~5 pp) | Intellectual honesty: the difference between doing science and imitating it |
 | TBD | Whitesides, "Writing a Paper" (Adv. Materials 2004, ~4 pp) | Building from an outline, not from accumulated text |
 | 5–6 | Selected chapter from research design book (Becca assigns) | Experimental design principles |
-| 7 | Selected chapter from "How to Write an Impactful Research Paper" | Connecting validation to the written argument |
+| TBD | Selected chapter from "How to Write an Impactful Research Paper" | Connecting evidence to the written argument |
 | 10 | Selected sections from the scientific graphics book | Making results visible |
 
 Other resources Becca may want to pull from:
@@ -319,8 +312,8 @@ Other resources Becca may want to pull from:
 
 | Date | What is due | Feedback from |
 |------|-------------|---------------|
-| Oct 1 (Week 5) | Research question (revised) + hypothesis pair + scope paragraph | Becca, written |
-| Oct 15 (Week 7) | Experimental design + validation plan | Becca, written |
+| Oct 1 (Week 5) | Research question (revised) + hypothesis pair (+ scope paragraph, or Oct 8 if scope slips) | Becca, written |
+| Oct 15 (Week 7) | Experimental design | Becca, written |
 | Nov 12 (Week 11) | Presentation outline (slide-by-slide) | Becca + group |
 | Dec 3 (Week 13) | Final presentation draft | Becca (committee-style) |
 | Dec 8 (Week 14) | Committee presentation | Full committee |
