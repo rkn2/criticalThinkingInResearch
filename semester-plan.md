@@ -133,13 +133,14 @@ hypothesis. They are different processes. Question scope comes from the gap
 and who cares about the answer; hypothesis scope comes from where your
 evidence can tell your answer apart from the competing one.
 
-Then stress-test it through committee questions. Two kinds cross your
-boundary: "think with me" (tests your reasoning; "what would happen if...")
-and "do more work" (proposes a change; "you should also..."). If unsure,
-ask which one it is. Answer in three moves: engage (reason out loud),
-locate (where the boundary is and why), place (what it would take, future
-work). Don't agree to new work in the room. If a push shows a boundary has
-no reason, the boundary moves.
+Then stress-test it through committee questions. The boundary is where
+you show what you know: a question past your line usually checks whether
+you understand the other side, not whether you'll do it. Talk about it in
+the conditional (predict, mechanism, literature, cost) without signing up
+("I could add that"). Answer: reason past the line, anchor the line, name
+the cost. A real request for more work: engage, then follow up with your
+advisor; don't agree in the room. If a push shows a boundary has no
+reason, the boundary moves.
 
 **Workshops:** (1) Scope paragraph, once for the question and once for the
 hypothesis. (2) What will you defend? One-sentence claim, the boundary a committee member is most likely to push on, and the
