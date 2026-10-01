@@ -88,6 +88,7 @@
   .b-rq { fill: var(--surface); stroke: var(--accent2); stroke-width: 2; }
   .b-h { fill: var(--highlight); stroke: var(--good); stroke-width: 2.5; }
   .b-lab { fill: var(--accent); font: 700 13px 'Roboto', system-ui, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+  .b-hl { fill: var(--good); font: 700 18px 'Roboto Slab', Georgia, serif; }
   .b-sub { fill: var(--text-dim); font: italic 13px 'Roboto', system-ui, sans-serif; }
   .b-note rect { fill: var(--bg); stroke: var(--accent2); stroke-width: 1.25; }
   .b-note text { fill: var(--text); font: 500 13px 'Roboto', system-ui, sans-serif; }
@@ -418,28 +419,37 @@
     <h2>Workshop: Map Your Boundary</h2>
     <div class="map-grid">
       <figure class="bmap">
-        <svg viewBox="0 0 480 380" role="img" aria-label="Boundary map: hypothesis in the center, research question as a ring around it, committee questions placed inside and outside the rings">
+        <svg viewBox="0 0 480 380" role="img" aria-label="Boundary map: research question bubble with three hypotheses inside it, and committee questions placed inside and outside the bubble">
           <rect class="b-out" x="2" y="2" width="476" height="376" rx="10"/>
           <text class="b-lab" x="18" y="26">Not this work</text>
           <circle class="b-rq" cx="240" cy="200" r="165"/>
           <text class="b-lab" x="240" y="92" text-anchor="middle">Research question</text>
           <text class="b-sub" x="240" y="110" text-anchor="middle">Retrofitting historic URM for tornadoes</text>
-          <circle class="b-h" cx="240" cy="222" r="66"/>
-          <text class="b-lab" x="240" y="212" text-anchor="middle">Hypothesis A</text>
-          <text class="b-sub" x="240" y="230" text-anchor="middle">Bond limits strips</text>
-          <text class="b-sub" x="240" y="246" text-anchor="middle">on lime-mortar brick</text>
-          <g class="b-note"><rect x="104" y="140" width="104" height="28" rx="4"/><text x="156" y="159" text-anchor="middle">Cement mortar?</text></g>
-          <g class="b-note"><rect x="316" y="150" width="66" height="28" rx="4"/><text x="349" y="169" text-anchor="middle">EF4&ndash;5?</text></g>
-          <g class="b-note"><rect x="150" y="304" width="180" height="28" rx="4"/><text x="240" y="323" text-anchor="middle">Fire-cut joist retrofits?</text></g>
+          <circle class="b-h" cx="148" cy="222" r="44"/>
+          <text class="b-hl" x="148" y="214" text-anchor="middle">A</text>
+          <text class="b-sub" x="148" y="232" text-anchor="middle">Bond</text>
+          <text class="b-sub" x="148" y="247" text-anchor="middle">governs</text>
+          <circle class="b-h" cx="240" cy="222" r="44"/>
+          <text class="b-hl" x="240" y="214" text-anchor="middle">B</text>
+          <text class="b-sub" x="240" y="232" text-anchor="middle">Strip strength</text>
+          <text class="b-sub" x="240" y="247" text-anchor="middle">governs</text>
+          <circle class="b-h" cx="332" cy="222" r="44"/>
+          <text class="b-hl" x="332" y="214" text-anchor="middle">C</text>
+          <text class="b-sub" x="332" y="232" text-anchor="middle">Masonry</text>
+          <text class="b-sub" x="332" y="247" text-anchor="middle">fails first</text>
+          <g class="b-note"><rect x="110" y="128" width="104" height="28" rx="4"/><text x="162" y="147" text-anchor="middle">Cement mortar?</text></g>
+          <g class="b-note"><rect x="290" y="128" width="66" height="28" rx="4"/><text x="323" y="147" text-anchor="middle">EF4&ndash;5?</text></g>
+          <g class="b-note"><rect x="150" y="294" width="180" height="28" rx="4"/><text x="240" y="313" text-anchor="middle">Fire-cut joist retrofits?</text></g>
           <g class="b-note far"><rect x="352" y="22" width="110" height="28" rx="4"/><text x="407" y="41" text-anchor="middle">Earthquakes?</text></g>
           <g class="b-note far"><rect x="16" y="336" width="140" height="28" rx="4"/><text x="86" y="355" text-anchor="middle">New construction?</text></g>
         </svg>
-        <figcaption>Between the rings, your question covers it but your evidence doesn&rsquo;t. Outside, it isn&rsquo;t your topic.</figcaption>
+        <figcaption>Inside the bubble but outside every hypothesis: your question covers it, your evidence doesn&rsquo;t. Outside the bubble: not this work.</figcaption>
       </figure>
       <div class="map-steps">
-        <p><span class="step-num">1. Draw it.</span> Your hypothesis in the center, your research question around it.</p>
-        <p><span class="step-num">2. Brainstorm.</span> Every question a committee member could ask about what&rsquo;s past your line. Put each one where it lands. Aim for five.</p>
-        <p><span class="step-num">3. Answer the hardest.</span> Reason past the line, anchor the line, name the cost.</p>
+        <p><span class="step-num">1. Draw your question.</span> One big bubble for your research question.</p>
+        <p><span class="step-num">2. Add your hypotheses.</span> Each one gets its own circle inside the bubble.</p>
+        <p><span class="step-num">3. Brainstorm.</span> Every question a committee member could ask about what&rsquo;s past your lines. Put each one where it lands. Aim for five.</p>
+        <p><span class="step-num">4. Answer the hardest.</span> Reason past the line, anchor the line, name the cost.</p>
         <p class="dim" style="margin-top:0.5rem;">Write.</p>
         <p style="font-size:1.05rem;"><strong>Hot seat:</strong> we pick a question off your map and play committee. Show us you understand the other side without signing up to go there.</p>
       </div>

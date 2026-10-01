@@ -143,10 +143,11 @@ advisor; don't agree in the room. If a push shows a boundary has no
 reason, the boundary moves.
 
 **Workshops:** (1) Scope paragraph, once for the question and once for the
-hypothesis (paragraph or table). (2) Map your boundary: hypothesis in
-the center, research question as a ring around it, brainstorm committee
-questions and place each where it lands (between the rings = question
-covers it, evidence doesn't; outside = not this work). Answer the hardest:
+hypothesis (paragraph or table). (2) Map your boundary: research
+question as a bubble, each hypothesis as its own circle inside it,
+brainstorm committee questions and place each where it lands (inside the
+bubble but outside every hypothesis = question covers it, evidence
+doesn't; outside = not this work). Answer the hardest:
 reason, anchor, cost.
 
 "What does your tool compute?" (model as instrument) was dropped (decided
