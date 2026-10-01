@@ -120,8 +120,7 @@ pair.** Becca gives written feedback.
 
 ### Week 5 — Scope, then what does your tool compute? (Oct 1)
 
-Slides: `docs/week05-slides.html` (scope section done; tool section still
-to build).
+Slides: `docs/week05-slides.html` (scope, then tool section).
 
 Open with scope: the four-part scope paragraph (in, out, why the boundary
 is there, what evidence or assumption sets it). Claiming EF5 when your
