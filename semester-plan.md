@@ -133,11 +133,10 @@ hypothesis. They are different processes. Question scope comes from the gap
 and who cares about the answer; hypothesis scope comes from where your
 evidence can tell your answer apart from the competing one.
 
-Then look ahead to Dec 8: the committee will push on your boundaries.
+Then stress-test it: a committee will push on your boundaries.
 
 **Workshops:** (1) Scope paragraph, once for the question and once for the
-hypothesis. (2) What will you defend? One-sentence claim for the December
-talk, the boundary a committee member is most likely to push on, and the
+hypothesis. (2) What will you defend? One-sentence claim, the boundary a committee member is most likely to push on, and the
 answer.
 
 "What does your tool compute?" (model as instrument) was dropped (decided
