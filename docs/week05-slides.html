@@ -76,6 +76,14 @@
   .formula .blank { border-bottom: 2px solid var(--accent); display: inline-block; min-width: 10rem; margin: 0 0.15rem; }
 
   .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
+  .table-wrap { overflow-x: auto; }
+  .scope-table { width: 100%; border-collapse: collapse; font-size: 1rem; line-height: 1.4; }
+  .scope-table th { text-align: left; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent2); padding: 0.5rem 0.75rem 0.2rem; }
+  .scope-table tr.sub td { font-size: 0.85rem; color: var(--text-dim); font-style: italic; padding-top: 0; border-bottom: 2px solid var(--accent); }
+  .scope-table td { padding: 0.55rem 0.75rem; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .scope-table td:first-child { font-weight: 700; color: var(--accent); white-space: nowrap; width: 7.5rem; }
+  .scope-table tbody td:not(:first-child) { background: var(--surface); }
+  .vs-grid.wide-right { grid-template-columns: 1fr 2fr; }
   .vs-box { padding: 1.5rem; border: 1px solid var(--border); background: var(--surface); }
   .vs-box.bad { border-top: 3px solid var(--warn); }
   .vs-box.good { border-top: 3px solid var(--good); }
@@ -111,7 +119,7 @@
     h1 { font-size: 2rem; }
     h2 { font-size: 1.5rem; }
     .title-slide h1 { font-size: 2.2rem; }
-    .vs-grid { grid-template-columns: 1fr; }
+    .vs-grid, .vs-grid.wide-right { grid-template-columns: 1fr; }
     .formula { font-size: 1.05rem; }
     p, li { font-size: 1.05rem; }
     .arrow-flow { flex-direction: column; }
@@ -197,17 +205,21 @@
   <div class="slide-inner">
     <h2>Scoping Your Hypothesis</h2>
     <p style="margin-bottom:1.25rem;">Ask: <strong>under what conditions can my evidence actually tell hypothesis A apart from B and C?</strong> That&rsquo;s your scope.</p>
-    <div class="vs-grid">
+    <div class="vs-grid wide-right">
       <div class="vs-box good">
         <div class="vs-label">In</div>
-        <p>Low-strength lime-mortar brick walls. Surface-mounted composite strips. The loading range my load model represents.</p>
+        <p>Low-strength lime-mortar brick walls</p>
+        <p style="margin-top:0.5rem;">Surface-mounted composite strips</p>
+        <p style="margin-top:0.5rem;">The loading range my load model represents</p>
       </div>
       <div class="vs-box neutral">
-        <div class="vs-label">Out</div>
-        <p>Modern cement-mortar masonry. Other retrofit families. Loading beyond what my load model represents.</p>
+        <div class="vs-label">Out, and why</div>
+        <p><strong>Modern cement-mortar masonry,</strong> <span class="dim">because the bond limit I&rsquo;m testing shows up on low-strength masonry, and my material data is lime mortar.</span></p>
+        <p style="margin-top:0.5rem;"><strong>Other retrofit families,</strong> <span class="dim">because my hypothesis is about strip-to-wall bond, and other retrofits don&rsquo;t depend on it.</span></p>
+        <p style="margin-top:0.5rem;"><strong>Loading beyond my load model,</strong> <span class="dim">because past that range I have no basis for the pressures on the wall.</span></p>
       </div>
     </div>
-    <p style="margin-top:1rem;">Every boundary needs a <strong>reason</strong>: the material data I have, the assumption my model makes, the loading my code provisions cover. &ldquo;I didn&rsquo;t have time&rdquo; is not a reason. &ldquo;The model assumes X, which stops holding past Y&rdquo; is.</p>
+    <p style="margin-top:1rem;">Every &ldquo;out&rdquo; needs a <strong>because</strong>: the material data I have, the assumption my model makes, the loading my code provisions cover. &ldquo;I didn&rsquo;t have time&rdquo; is not a reason. &ldquo;The model assumes X, which stops holding past Y&rdquo; is.</p>
   </div>
 </div>
 
@@ -222,34 +234,38 @@
       <span class="step-num">3. Why here:</span> The boundary is here because <span class="blank">&nbsp;</span><br>
       <span class="step-num">4. What sets it:</span> The evidence or assumption behind that boundary is <span class="blank">&nbsp;</span>
     </div>
-    <p style="margin-top:1.25rem;">Write it once for your question and once for your hypothesis.</p>
+    <p style="margin-top:1.25rem;">Write it once for your question and once for your hypothesis, or as a table (next slide).</p>
     <p style="margin-top:0.75rem;"><strong>Test:</strong> could a committee member push on any one of your boundaries and find you don&rsquo;t have a reason? Then that boundary isn&rsquo;t designed yet.</p>
   </div>
 </div>
 
-<!-- SLIDE 6: Committee will push on boundaries -->
-<div class="slide" id="s6">
+<!-- SLIDE 5b: Scope table option -->
+<div class="slide" id="s5b">
   <div class="slide-inner">
-    <span class="phase-label p1">Testing Your Scope</span>
-    <h2>Your Committee Will Push on Your Boundaries</h2>
-    <p style="font-size:1.3rem; margin-bottom:1.25rem;">The hardest committee questions are about what you actually showed. Scope is where you answer them before anyone asks.</p>
-    <div class="vs-grid">
-      <div class="vs-box bad">
-        <div class="vs-label">Without a scope</div>
-        <p>A committee member asks, &ldquo;Does this hold for modern masonry?&rdquo; You weren&rsquo;t ready for it, and now you are defending a claim you never meant to make.</p>
-      </div>
-      <div class="vs-box good">
-        <div class="vs-label">With a scope</div>
-        <p>Your slide already says &ldquo;lime-mortar brick, because that is the material data I have.&rdquo; The question becomes a conversation about future work.</p>
-      </div>
+    <h2>Or Make It a Table</h2>
+    <p style="margin-bottom:1rem;">Rows are the four parts. Each column is one question or hypothesis. Add a column for every hypothesis you are carrying.</p>
+    <div class="table-wrap">
+    <table class="scope-table">
+      <thead>
+        <tr><th></th><th>Research question</th><th>Hypothesis A</th></tr>
+        <tr class="sub"><td></td><td>Structural limits of retrofitting historic URM against tornadoes, and how they interact with preservation</td><td>Strip-to-wall bond, not strip strength, limits surface-mounted retrofits on lime-mortar brick</td></tr>
+      </thead>
+      <tbody>
+        <tr><td>In</td><td>Historic URM buildings, any retrofit, tornado loading</td><td>Surface-mounted composite strips on low-strength lime-mortar brick, within the loading my model represents</td></tr>
+        <tr><td>Out</td><td>Modern masonry and new construction. Other hazards.</td><td>Cement-mortar masonry. Other retrofit families. Loading beyond my model.</td></tr>
+        <tr><td>Why here</td><td>The gap is in historic buildings, where preservation limits which retrofits are allowed.</td><td>This is where bond (A) can be told apart from strip strength (B).</td></tr>
+        <tr><td>What sets it</td><td>Who needs the answer: owners and engineers of historic buildings</td><td>My lime-mortar material data and the loading my model represents</td></tr>
+      </tbody>
+    </table>
     </div>
-    <p style="margin-top:1rem;">Naming what you are <em>not</em> claiming makes what you <em>are</em> claiming credible.</p>
+    <p style="margin-top:0.75rem;" class="dim">Read down a column and you have that column&rsquo;s scope paragraph.</p>
   </div>
 </div>
 
 <!-- SLIDE 7: The boundary is where you show what you know -->
 <div class="slide" id="s6b">
   <div class="slide-inner">
+    <span class="phase-label p1">In the Committee Meeting</span>
     <h2>Your Boundary Is Where You Show What You Know</h2>
     <p style="margin-bottom:1.25rem;">When a committee member asks about something past your line, they usually aren&rsquo;t asking you to do it. They are checking whether you understand what&rsquo;s on the other side.</p>
     <div class="vs-grid">
