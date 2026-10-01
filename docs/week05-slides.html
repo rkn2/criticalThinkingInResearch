@@ -77,6 +77,8 @@
 
   .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
   .table-wrap { overflow-x: auto; }
+  .scope-table .hide { color: transparent !important; }
+  .scope-table .hide * { visibility: hidden; }
   .scope-table { width: 100%; border-collapse: collapse; font-size: 1rem; line-height: 1.4; }
   .scope-table th { text-align: left; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent2); padding: 0.5rem 0.75rem 0.2rem; }
   .scope-table tr.sub td { font-size: 0.85rem; color: var(--text-dim); font-style: italic; padding-top: 0; border-bottom: 2px solid var(--accent); }
@@ -239,8 +241,54 @@
   </div>
 </div>
 
-<!-- SLIDE 5b: Scope table option -->
-<div class="slide" id="s5b">
+<!-- SLIDE 5b-1: Scope table build (1 of 3) -->
+<div class="slide" id="s5b1">
+  <div class="slide-inner">
+    <h2>Or Make It a Table</h2>
+    <p style="margin-bottom:1rem;">Rows are the four parts. Each column is one question or hypothesis. Add a column for every hypothesis you are carrying.</p>
+    <div class="table-wrap">
+    <table class="scope-table">
+      <thead>
+        <tr><th></th><th class="hide">Research question</th><th class="hide">Hypothesis A</th></tr>
+        <tr class="sub"><td></td><td class="hide">Structural limits of retrofitting historic URM against tornadoes, and how they interact with preservation</td><td class="hide">Strip-to-wall bond, not strip strength, limits surface-mounted retrofits on lime-mortar brick</td></tr>
+      </thead>
+      <tbody>
+        <tr><td>In</td><td class="hide">Historic URM buildings, any retrofit, tornado loading</td><td class="hide">Surface-mounted composite strips on low-strength lime-mortar brick, within the loading my model represents</td></tr>
+        <tr><td>Out</td><td class="hide">Modern masonry and new construction. Other hazards.</td><td class="hide">Cement-mortar masonry. Other retrofit families. Loading beyond my model.</td></tr>
+        <tr><td>Why here</td><td class="hide">The gap is in historic buildings, where preservation limits which retrofits are allowed.</td><td class="hide">This is where bond (A) can be told apart from strip strength (B).</td></tr>
+        <tr><td>What sets it</td><td class="hide">Who needs the answer: owners and engineers of historic buildings</td><td class="hide">My lime-mortar material data and the loading my model represents</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="margin-top:0.75rem; visibility:hidden;" class="dim">Read down a column and you have that column&rsquo;s scope paragraph.</p>
+  </div>
+</div>
+
+<!-- SLIDE 5b-2: Scope table build (2 of 3) -->
+<div class="slide" id="s5b2">
+  <div class="slide-inner">
+    <h2>Or Make It a Table</h2>
+    <p style="margin-bottom:1rem;">Rows are the four parts. Each column is one question or hypothesis. Add a column for every hypothesis you are carrying.</p>
+    <div class="table-wrap">
+    <table class="scope-table">
+      <thead>
+        <tr><th></th><th>Research question</th><th class="hide">Hypothesis A</th></tr>
+        <tr class="sub"><td></td><td>Structural limits of retrofitting historic URM against tornadoes, and how they interact with preservation</td><td class="hide">Strip-to-wall bond, not strip strength, limits surface-mounted retrofits on lime-mortar brick</td></tr>
+      </thead>
+      <tbody>
+        <tr><td>In</td><td>Historic URM buildings, any retrofit, tornado loading</td><td class="hide">Surface-mounted composite strips on low-strength lime-mortar brick, within the loading my model represents</td></tr>
+        <tr><td>Out</td><td>Modern masonry and new construction. Other hazards.</td><td class="hide">Cement-mortar masonry. Other retrofit families. Loading beyond my model.</td></tr>
+        <tr><td>Why here</td><td>The gap is in historic buildings, where preservation limits which retrofits are allowed.</td><td class="hide">This is where bond (A) can be told apart from strip strength (B).</td></tr>
+        <tr><td>What sets it</td><td>Who needs the answer: owners and engineers of historic buildings</td><td class="hide">My lime-mortar material data and the loading my model represents</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p style="margin-top:0.75rem; visibility:hidden;" class="dim">Read down a column and you have that column&rsquo;s scope paragraph.</p>
+  </div>
+</div>
+
+<!-- SLIDE 5b-3: Scope table build (3 of 3) -->
+<div class="slide" id="s5b3">
   <div class="slide-inner">
     <h2>Or Make It a Table</h2>
     <p style="margin-bottom:1rem;">Rows are the four parts. Each column is one question or hypothesis. Add a column for every hypothesis you are carrying.</p>
@@ -400,7 +448,7 @@
 </div>
 
 <!-- Navigation -->
-<div class="slide-num" id="slideNum">1 / 13</div>
+<div class="slide-num" id="slideNum">1 / 15</div>
 <div class="progress" id="progress"></div>
 <div class="nav-hint">&#8592; &#8594; to navigate</div>
 
