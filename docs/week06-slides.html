@@ -124,6 +124,11 @@
   .article-head { display: block; max-width: 340px; width: 100%; margin-bottom: 1rem; border: 1px solid var(--border); background: #fff; padding: 0.4rem 0.6rem; }
   @media (max-width: 800px) { .cover { height: 110px; } .cited { gap: 1rem; } }
   /* Week 6: pyramids, story table, storymap */
+  [data-step] { transition: opacity 0.45s ease, transform 0.45s ease; }
+  .slide [data-step]:not(.on) { opacity: 0; }
+  .slide p[data-step]:not(.on), .slide tr[data-step]:not(.on) { transform: translateY(8px); }
+  @media (prefers-reduced-motion: reduce) { [data-step] { transition: none; } .slide [data-step] { transform: none !important; } }
+
   .pyr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; margin: 1rem 0; }
   .pyr { display: flex; flex-direction: column; align-items: center; gap: 0.35rem; }
   .pyr-cap { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.4rem; }
@@ -182,20 +187,20 @@
     <h2>We Are Trained to Build Up to the Result</h2>
     <p style="margin-bottom:1rem;">Papers teach us to establish credibility first: background, then methods, then, finally, the result. A listener stops paying attention long before they get there.</p>
     <div class="pyr-grid">
-      <div class="pyr">
+      <div class="pyr" data-step="1">
         <div class="pyr-cap" style="color:var(--warn);">How we are trained</div>
         <div class="pyr-row" style="width:100%;">Background</div>
         <div class="pyr-row" style="width:75%;">Supporting details</div>
         <div class="pyr-row key" style="width:45%;">Result</div>
       </div>
-      <div class="pyr">
+      <div class="pyr" data-step="2">
         <div class="pyr-cap" style="color:var(--good);">What a listener needs</div>
         <div class="pyr-row key" style="width:100%;">Result</div>
         <div class="pyr-row" style="width:75%;">Why it matters</div>
         <div class="pyr-row" style="width:45%;">Supporting details</div>
       </div>
     </div>
-    <p style="margin-top:0.5rem;">Invert the pyramid. Start with the big picture, then fill in the details.</p>
+    <p style="margin-top:0.5rem;" data-step="3">Invert the pyramid. Start with the big picture, then fill in the details.</p>
     <p class="credit" style="margin-top:0.75rem;">After Somerville &amp; Hassol (2011), &ldquo;Communicating the science of climate change,&rdquo; <em>Physics Today</em>, via Shorr</p>
   </div>
 </div>
@@ -214,12 +219,12 @@
       </div>
       <div class="vs-box good">
         <div class="vs-label">What it means</div>
-        <p>&ldquo;We eliminated a major source of noise.&rdquo;</p>
-        <p style="margin-top:0.6rem;">&ldquo;I&rsquo;m teaching a computer what to look for.&rdquo;</p>
-        <p style="margin-top:0.6rem;">&ldquo;?&rdquo;</p>
+        <p data-step="1">&ldquo;We eliminated a major source of noise.&rdquo;</p>
+        <p data-step="2" style="margin-top:0.6rem;">&ldquo;I&rsquo;m teaching a computer what to look for.&rdquo;</p>
+        <p data-step="3" style="margin-top:0.6rem;">&ldquo;?&rdquo;</p>
       </div>
     </div>
-    <p style="margin-top:1rem;">If you can&rsquo;t fill in the right-hand side for the third one, the 200 analyses are what you <em>did</em>. They aren&rsquo;t yet what you <em>found</em>.</p>
+    <p style="margin-top:1rem;" data-step="3">If you can&rsquo;t fill in the right-hand side for the third one, the 200 analyses are what you <em>did</em>. They aren&rsquo;t yet what you <em>found</em>.</p>
   </div>
 </div>
 
@@ -230,13 +235,13 @@
     <h2>Research Fits a Story Template</h2>
     <p style="margin-bottom:0.75rem;">Good stories have clear stakes, hard obstacles, an exciting solution, and a resolution. So does good research.</p>
     <table class="story-table">
-      <tr><td>Goal</td><td>The big problem you&rsquo;re trying to solve</td></tr>
-      <tr><td>Obstacle</td><td>Why it&rsquo;s hard, and why it hasn&rsquo;t been done</td></tr>
-      <tr><td>Approach</td><td>What you do that gets past the obstacle</td></tr>
-      <tr><td>Result</td><td>What you found (so far)</td></tr>
-      <tr><td>Benefit</td><td>How that result moves the original goal forward</td></tr>
+      <tr data-step="1"><td>Goal</td><td>The big problem you&rsquo;re trying to solve</td></tr>
+      <tr data-step="2"><td>Obstacle</td><td>Why it&rsquo;s hard, and why it hasn&rsquo;t been done</td></tr>
+      <tr data-step="3"><td>Approach</td><td>What you do that gets past the obstacle</td></tr>
+      <tr data-step="4"><td>Result</td><td>What you found (so far)</td></tr>
+      <tr data-step="5"><td>Benefit</td><td>How that result moves the original goal forward</td></tr>
     </table>
-    <p style="margin-top:0.75rem;">The elements are a checklist. A missing one is a hole in your talk.</p>
+    <p style="margin-top:0.75rem;" data-step="6">The elements are a checklist. A missing one is a hole in your talk.</p>
   </div>
 </div>
 
@@ -246,13 +251,13 @@
     <h2>&ldquo;We Want ___, But ___&rdquo;</h2>
     <p style="margin-bottom:0.75rem;">Chain the obstacles. Each obstacle you solve becomes the next, more specific goal. Here is how Radiolab tells the story of Fritz Haber:</p>
     <table class="story-table">
-      <tr><td>Goal</td><td>The world couldn&rsquo;t feed a growing population.</td></tr>
-      <tr><td>Obstacle</td><td>We couldn&rsquo;t grow enough food, because plants need nitrogen.</td></tr>
-      <tr><td>Obstacle</td><td>There&rsquo;s plenty of nitrogen in the air, but not in a usable form.</td></tr>
-      <tr><td>Obstacle</td><td>It isn&rsquo;t usable because nitrogen clings tightly to itself.</td></tr>
-      <tr><td>Approach</td><td>Haber found a way, using temperature and pressure&hellip;</td></tr>
-      <tr><td>Result</td><td>&hellip;to turn nitrogen gas into ammonia.</td></tr>
-      <tr><td>Benefit</td><td>That discovery helps feed billions of people.</td></tr>
+      <tr data-step="1"><td>Goal</td><td>The world couldn&rsquo;t feed a growing population.</td></tr>
+      <tr data-step="2"><td>Obstacle</td><td>We couldn&rsquo;t grow enough food, because plants need nitrogen.</td></tr>
+      <tr data-step="3"><td>Obstacle</td><td>There&rsquo;s plenty of nitrogen in the air, but not in a usable form.</td></tr>
+      <tr data-step="4"><td>Obstacle</td><td>It isn&rsquo;t usable because nitrogen clings tightly to itself.</td></tr>
+      <tr data-step="5"><td>Approach</td><td>Haber found a way, using temperature and pressure&hellip;</td></tr>
+      <tr data-step="6"><td>Result</td><td>&hellip;to turn nitrogen gas into ammonia.</td></tr>
+      <tr data-step="7"><td>Benefit</td><td>That discovery helps feed billions of people.</td></tr>
     </table>
   </div>
 </div>
@@ -261,16 +266,16 @@
 <div class="slide" id="s7">
   <div class="slide-inner">
     <h2>The Same Chain, in Our Work</h2>
-    <p class="dim" style="margin-bottom:0.75rem;">Built from the Week 2 example: Kallas &amp; Napolitano (2025), <em>Int. J. Disaster Risk Reduction</em></p>
+    <p class="dim" style="margin-bottom:0.75rem;">Built from the research question and hypotheses we scoped last week</p>
     <table class="story-table">
-      <tr><td>Goal</td><td>After a blast, responders need to know which historic buildings to check first.</td></tr>
-      <tr><td>Obstacle</td><td>Judging vulnerability means surveying every facade by hand.</td></tr>
-      <tr><td>Obstacle</td><td>The attributes a field survey records may not be the ones that drive damage.</td></tr>
-      <tr><td>Approach</td><td>Extract geometric attributes from 3D models and test whether they predict damage better.</td></tr>
-      <tr class="blank-row"><td>Result</td><td>This is the line your committee is waiting for.</td></tr>
-      <tr><td>Benefit</td><td>Responders can prioritize without measuring every facade.</td></tr>
+      <tr data-step="1"><td>Goal</td><td>Historic brick buildings in tornado country need retrofits that don&rsquo;t destroy what makes them historic.</td></tr>
+      <tr data-step="2"><td>Obstacle</td><td>We don&rsquo;t know the structural limits of retrofitting historic URM against tornadoes, or how those limits interact with preservation.</td></tr>
+      <tr data-step="3"><td>Obstacle</td><td>Design equations assume the strip&rsquo;s own strength governs. On low-strength lime-mortar brick, that may not hold.</td></tr>
+      <tr data-step="4"><td>Approach</td><td>Test whether bond (A), strip strength (B), or the masonry itself (C) governs, with the design efficiency factor and an FE model.</td></tr>
+      <tr data-step="5" class="blank-row"><td>Result</td><td>This is the line your committee is waiting for.</td></tr>
+      <tr data-step="6"><td>Benefit</td><td>If bond governs, a lighter intervention is structurally optimal, which favors preservation.</td></tr>
     </table>
-    <p style="margin-top:0.75rem;">Notice where your earlier work lands: <strong>Goal</strong> is your Step 3 (why anyone cares). The last <strong>Obstacle</strong> is your research question. <strong>Approach</strong> is your hypothesis and how you test it. <strong>Result</strong> is the finding, inside your scope.</p>
+    <p style="margin-top:0.75rem;" data-step="7">Notice where your earlier work lands: <strong>Goal</strong> is your Step 3 (why anyone cares). The first <strong>Obstacle</strong> is your research question. <strong>Approach</strong> is your competing hypotheses and how you tell them apart. <strong>Result</strong> and <strong>Benefit</strong> have to stay inside your scope.</p>
   </div>
 </div>
 
@@ -282,19 +287,19 @@
     <p style="margin-bottom:0.5rem;">Down into detail and back up to the big picture. Left to right from problem to solution.</p>
     <div class="smap">
       <div class="axis">Big picture</div>
-      <div class="cell"><b>Goal</b>What we want is not what we have</div>
+      <div class="cell" data-step="1"><b>Goal</b>What we want is not what we have</div>
       <div class="empty"></div>
-      <div class="cell"><b>Benefit</b>A better world</div>
+      <div class="cell" data-step="5"><b>Benefit</b>A better world</div>
       <div class="axis">Detail</div>
-      <div class="cell"><b>Obstacle</b>Here&rsquo;s how we see the problem</div>
-      <div class="cell"><b>Approach</b>Here&rsquo;s how we try to solve it</div>
-      <div class="cell"><b>Result</b>What we found</div>
+      <div class="cell" data-step="2"><b>Obstacle</b>Here&rsquo;s how we see the problem</div>
+      <div class="cell" data-step="3"><b>Approach</b>Here&rsquo;s how we try to solve it</div>
+      <div class="cell" data-step="4"><b>Result</b>What we found</div>
       <div></div>
       <div class="foot">Problem</div>
       <div class="foot"></div>
       <div class="foot">Solution</div>
     </div>
-    <p style="margin-top:0.5rem;">A talk follows a <strong>U-shape</strong>: start at the goal, go down through the obstacles, across your approach, up through your results, and finish at the benefit.</p>
+    <p style="margin-top:0.5rem;" data-step="5">A talk follows a <strong>U-shape</strong>: start at the goal, go down through the obstacles, across your approach, up through your results, and finish at the benefit.</p>
   </div>
 </div>
 
@@ -310,10 +315,10 @@
       <div class="cell lost"><b>Benefit</b>&nbsp;</div>
       <div class="axis">Detail</div>
       <div class="cell lost"><b>Obstacle</b>&nbsp;</div>
-      <div class="cell stuck"><b>Approach</b>&ldquo;Here&rsquo;s what I did&rdquo;</div>
+      <div class="cell stuck" data-step="1"><b>Approach</b>&ldquo;Here&rsquo;s what I did&rdquo;</div>
       <div class="cell lost"><b>Result</b>&nbsp;</div>
     </div>
-    <p style="margin-top:0.5rem;">That is the &ldquo;here&rsquo;s what I did&rdquo; talk instead of the &ldquo;here&rsquo;s what I learned&rdquo; talk. It is the pattern this class exists to fix.</p>
+    <p style="margin-top:0.5rem;" data-step="2">That is the &ldquo;here&rsquo;s what I did&rdquo; talk instead of the &ldquo;here&rsquo;s what I learned&rdquo; talk. It is the pattern this class exists to fix.</p>
   </div>
 </div>
 
@@ -323,11 +328,11 @@
     <h2>To Fill a Gap, Ask the Question</h2>
     <p style="margin-bottom:0.75rem;">Every element has a question that pulls it out of you. Your committee will ask these if you don&rsquo;t.</p>
     <table class="story-table">
-      <tr><td>Goal</td><td>Why do you want to solve that problem?</td></tr>
-      <tr><td>Obstacle</td><td>Why is that hard? Why hasn&rsquo;t it been done?</td></tr>
-      <tr><td>Approach</td><td>What do you do? What problem does that solve?</td></tr>
-      <tr><td>Result</td><td>What happened when you did that?</td></tr>
-      <tr><td>Benefit</td><td>What does that result make possible?</td></tr>
+      <tr data-step="1"><td>Goal</td><td>Why do you want to solve that problem?</td></tr>
+      <tr data-step="2"><td>Obstacle</td><td>Why is that hard? Why hasn&rsquo;t it been done?</td></tr>
+      <tr data-step="3"><td>Approach</td><td>What do you do? What problem does that solve?</td></tr>
+      <tr data-step="4"><td>Result</td><td>What happened when you did that?</td></tr>
+      <tr data-step="5"><td>Benefit</td><td>What does that result make possible?</td></tr>
     </table>
   </div>
 </div>
@@ -338,18 +343,18 @@
     <h2>Name Your Obstacle Precisely</h2>
     <p style="margin-bottom:0.75rem;">&ldquo;Nobody has done this&rdquo; is not an obstacle. Why don&rsquo;t we know the answer yet?</p>
     <div class="vs-grid">
-      <div class="vs-box neutral">
+      <div class="vs-box neutral" data-step="1">
         <p><strong>Lack of data:</strong> no one has collected it, or not enough of it</p>
         <p style="margin-top:0.4rem;"><strong>Lack of resolution:</strong> the data can&rsquo;t show what is happening</p>
         <p style="margin-top:0.4rem;"><strong>Inconsistent findings:</strong> plenty of data, but it disagrees</p>
       </div>
-      <div class="vs-box neutral">
+      <div class="vs-box neutral" data-step="2">
         <p><strong>Lack of accuracy:</strong> we don&rsquo;t trust the data or the models we have</p>
         <p style="margin-top:0.4rem;"><strong>Lack of resources:</strong> possible in theory, impractical in time or computing</p>
         <p style="margin-top:0.4rem;"><strong>Lack of theory:</strong> the models are empirical and don&rsquo;t transfer</p>
       </div>
     </div>
-    <p style="margin-top:1rem;">Each kind of obstacle calls for a different approach. The more precisely you name it, the more obviously your approach fits it.</p>
+    <p style="margin-top:1rem;" data-step="3">Each kind of obstacle calls for a different approach. The more precisely you name it, the more obviously your approach fits it.</p>
     <p class="credit" style="margin-top:0.5rem;">Adapted from Judith A. Swan, Princeton Writing Program, &ldquo;Motives in Research&rdquo;</p>
   </div>
 </div>
@@ -363,8 +368,8 @@
     <div class="formula" style="font-size:1.1rem;">
       <span class="step-num">Goal:</span> What&rsquo;s at stake? What happens if you&rsquo;re wildly successful?<br>
       <span class="step-num">Obstacle:</span> Why hasn&rsquo;t this been solved? Which kind of obstacle is it?<br>
-      <span class="step-num">Approach:</span> What do you do that gets past it?<br>
-      <span class="step-num">Result:</span> What have you found so far?<br>
+      <span class="step-num">Approach:</span> Which hypotheses are you testing, and how will you tell them apart?<br>
+      <span class="step-num">Result:</span> What have you found so far, inside your scope?<br>
       <span class="step-num">Benefit:</span> How does that result move the goal forward?
     </div>
     <p style="margin-top:1rem;">Write.</p>
@@ -378,12 +383,12 @@
     <h2>Workshop: Half-Life Your Message</h2>
     <p style="margin-bottom:0.5rem;">Tell your story to a partner. Then tell it again in half the time. Then again.</p>
     <div class="halflife">
-      <div style="height:7rem; font-size:2.2rem;">60s</div>
-      <div style="height:5.5rem; font-size:1.8rem;">30s</div>
-      <div style="height:4rem; font-size:1.4rem;">15s</div>
-      <div style="height:3rem; font-size:1.1rem;">8s</div>
+      <div data-step="1" style="height:7rem; font-size:2.2rem;">60s</div>
+      <div data-step="2" style="height:5.5rem; font-size:1.8rem;">30s</div>
+      <div data-step="3" style="height:4rem; font-size:1.4rem;">15s</div>
+      <div data-step="4" style="height:3rem; font-size:1.1rem;">8s</div>
     </div>
-    <p>Each round forces you to choose what survives. Whatever is left at 8 seconds is your key finding.</p>
+    <p data-step="4">Each round forces you to choose what survives. Whatever is left at 8 seconds is your key finding.</p>
     <p style="margin-top:0.75rem;">The goal is discovery, not a perfect soundbite. Notice what you cut first and what you refused to cut.</p>
     <p class="credit" style="margin-top:0.5rem;">Aurbach, Prater, Patterson &amp; Zikmund-Fisher (2018), via Shorr</p>
   </div>
@@ -395,7 +400,7 @@
     <h2>For Next Session</h2>
     <ul>
       <li><strong>Finish</strong> your storymap: all five elements, in sentences</li>
-      <li><strong>Check</strong> it against your scope paragraph: is the Result you claim inside your boundary?</li>
+      <li><strong>Check</strong> it against your scope paragraph and boundary map: are your Result and Benefit inside your boundary?</li>
       <li><strong>October 22:</strong> your midpoint talk follows this U-shape. Goal and obstacle in one or two slides, then get to what you found.</li>
     </ul>
     <div class="formula" style="margin-top:2rem; font-size:1.1rem;">
@@ -415,30 +420,55 @@
   const slides = document.querySelectorAll('.slide');
   const total = slides.length;
   let current = 0;
+  let step = 0;
 
-  function show(idx) {
+  function maxStep(slide) {
+    let m = 0;
+    slide.querySelectorAll('[data-step]').forEach(function(el) { m = Math.max(m, +el.dataset.step); });
+    return m;
+  }
+
+  function setStep(n) {
+    step = n;
+    slides[current].querySelectorAll('[data-step]').forEach(function(el) {
+      el.classList.toggle('on', +el.dataset.step <= step);
+    });
+  }
+
+  function show(idx, atEnd) {
     slides[current].classList.remove('active');
     current = Math.max(0, Math.min(total - 1, idx));
     slides[current].classList.add('active');
+    setStep(atEnd ? maxStep(slides[current]) : 0);
     document.getElementById('slideNum').textContent = (current + 1) + ' / ' + total;
     document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
   }
 
+  function next() {
+    if (step < maxStep(slides[current])) setStep(step + 1);
+    else if (current < total - 1) show(current + 1, false);
+  }
+
+  function prev() {
+    if (step > 0) setStep(step - 1);
+    else if (current > 0) show(current - 1, true);
+  }
+
   document.addEventListener('keydown', function(e) {
-    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); show(current + 1); }
-    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(current - 1); }
-    else if (e.key === 'Home') { e.preventDefault(); show(0); }
-    else if (e.key === 'End') { e.preventDefault(); show(total - 1); }
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0, false); }
+    else if (e.key === 'End') { e.preventDefault(); show(total - 1, true); }
   });
 
   let touchStartX = 0;
   document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
   document.addEventListener('touchend', function(e) {
     const diff = touchStartX - e.changedTouches[0].screenX;
-    if (Math.abs(diff) > 50) show(diff > 0 ? current + 1 : current - 1);
+    if (Math.abs(diff) > 50) { if (diff > 0) next(); else prev(); }
   });
 
-  show(0);
+  show(0, false);
 })();
 </script>
 

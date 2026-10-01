@@ -167,11 +167,13 @@ Start of presentation work, aimed at the Oct 22 midpoint talk.
 
 Invert the pyramid: lead with the result, not the background. Say what each
 detail means. The story template (Goal, Obstacle, Approach, Result, Benefit),
-chained as "we want X, but Y" (Radiolab's Haber story, then Kallas &
-Napolitano). The storymap's U-shape, and the broken path that stays on
+chained as "we want X, but Y" (Radiolab's Haber story, then the URM
+tornado retrofit question and hypotheses A/B/C from Week 5). The storymap's U-shape, and the broken path that stays on
 "here's what I did." Name the obstacle precisely (Swan, "Motives in
-Research"). Ties back: Goal = Step 3, last Obstacle = research question,
-Approach = hypothesis + test, Result = finding inside the scope.
+Research"). Ties back: Goal = Step 3, first Obstacle = research question,
+Approach = competing hypotheses + how you tell them apart, Result and
+Benefit stay inside the scope (check against the scope paragraph and
+boundary map). Click-to-reveal builds as in Week 5.
 
 **Workshops:** (1) Build your storymap, all five elements. (2) Half-life
 your message: 60, 30, 15, 8 seconds with a partner (Aurbach et al. 2018).
