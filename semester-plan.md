@@ -118,11 +118,11 @@ pair.** Becca gives written feedback.
 
 ## Phase 2: The Investigation (Weeks 5–8)
 
-### Week 5 — Scope, then what does your tool compute? (Oct 1)
+### Week 5 — Scope: what are you not claiming? (Oct 1)
 
-Slides: `docs/week05-slides.html` (scope, then tool section).
+Slides: `docs/week05-slides.html`.
 
-Open with scope: the four-part scope paragraph (in, out, why the boundary
+Scope: the four-part scope paragraph (in, out, why the boundary
 is there, what evidence or assumption sets it). Claiming EF5 when your
 results apply to EF2-3 is not ambitious, it is indefensible. Claiming you
 validated the flat-to-3D translation when you demonstrated replication is
@@ -133,19 +133,15 @@ hypothesis. They are different processes. Question scope comes from the gap
 and who cares about the answer; hypothesis scope comes from where your
 evidence can tell your answer apart from the competing one.
 
-Your model is not your contribution. Your model is an instrument. You need to
-know what it measures, how it measures it, and where it breaks, the way a lab
-scientist knows their microscope's resolution limits.
+Then look ahead to Dec 8: the committee will push on your boundaries.
 
-If you built a dashboard that converts wind speed to structural load via
-ASCE 7-22, you must be able to explain every step of that conversion without
-opening the dashboard. If you run DIANA for nonlinear masonry analysis, you
-must be able to explain what the constitutive model assumes, where it
-simplifies reality, and what that simplification means for your results.
+**Workshops:** (1) Scope paragraph, once for the question and once for the
+hypothesis. (2) What will you defend? One-sentence claim for the December
+talk, the boundary a committee member is most likely to push on, and the
+answer.
 
-**Workshop:** For each model or tool you use, write: (1) what question it
-answers, (2) what calculation it performs, (3) what it assumes, (4) where it
-breaks.
+"What does your tool compute?" (model as instrument) was dropped (decided
+Oct 1).
 
 **Deliverable due: Research question (revised) + hypothesis pair.** Scope
 paragraph (question + hypothesis) due Week 6.
