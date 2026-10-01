@@ -94,7 +94,7 @@ question mark on the end.
 
 ### Week 4 — From question to hypothesis (Sep 24)
 
-Slides: `docs/week04-slides.html`.
+*Completed.* Slides: `docs/week04-slides.html`.
 
 Read back last week's research questions. Tell a question from a
 hypothesis-with-a-question-mark (yes/no? already expect yes? names the
