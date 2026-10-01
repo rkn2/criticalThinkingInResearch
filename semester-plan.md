@@ -148,15 +148,34 @@ paragraph (question + hypothesis) due Week 6.
 
 ---
 
-### Week 6 — Designing computational experiments (Oct 8)
+### Week 6 — Telling a research story (Oct 8)
 
-You do not "run the model." You design experiments. An experiment has a
-hypothesis, controlled variables, a measurable outcome, and a criterion for
-what counts as support or refutation. A parameter sweep is not an experiment
-unless you can say what you expect to see and what it would mean if you see
-something else. An ablation study is not optional. It is how you prove each
-component of your method earns its place.
+Slides: `docs/week06-slides.html`. Adapted from Ardon Shorr, "Telling
+Research Stories" (Princeton, Spring 2020; source in OneDrive
+`archivedDocs/Princeton/Courses/2020Spring/Slides & Handouts/3 Stories`).
+Start of presentation work, aimed at the Oct 22 midpoint talk.
 
+Invert the pyramid: lead with the result, not the background. Say what each
+detail means. The story template (Goal, Obstacle, Approach, Result, Benefit),
+chained as "we want X, but Y" (Radiolab's Haber story, then Kallas &
+Napolitano). The storymap's U-shape, and the broken path that stays on
+"here's what I did." Name the obstacle precisely (Swan, "Motives in
+Research"). Ties back: Goal = Step 3, last Obstacle = research question,
+Approach = hypothesis + test, Result = finding inside the scope.
+
+**Workshops:** (1) Build your storymap, all five elements. (2) Half-life
+your message: 60, 30, 15, 8 seconds with a partner (Aurbach et al. 2018).
+
+**Deliverable due: Scope paragraph (question + hypothesis).** Bring the
+storymap next session.
+
+**Bumped (decided Oct 1), placement TBD:** Designing computational
+experiments. You do not "run the model." You design experiments. An
+experiment has a hypothesis, controlled variables, a measurable outcome, and
+a criterion for what counts as support or refutation. A parameter sweep is
+not an experiment unless you can say what you expect to see and what it
+would mean if you see something else. An ablation study is not optional. It
+is how you prove each component of your method earns its place.
 **Workshop:** Design one computational experiment: the hypothesis, what you
 vary, what you hold constant, what you measure, and what result would change
 your conclusion.
