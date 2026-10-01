@@ -76,6 +76,23 @@
   .formula .blank { border-bottom: 2px solid var(--accent); display: inline-block; min-width: 10rem; margin: 0 0.15rem; }
 
   .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
+  .map-grid { display: grid; grid-template-columns: 1.15fr 1fr; gap: 2rem; align-items: center; }
+  .map-grid > * { min-width: 0; }
+  .bmap { margin: 0; }
+  .bmap svg { width: 100%; height: auto; display: block; max-height: 52vh; }
+  .bmap figcaption { font-size: 0.9rem; color: var(--text-dim); margin-top: 0.5rem; line-height: 1.45; }
+  .map-steps { display: flex; flex-direction: column; gap: 0.75rem; }
+  .map-steps p { font-size: 1.1rem; line-height: 1.5; }
+  .map-steps .step-num { font-weight: 700; color: var(--accent); }
+  .b-out { fill: none; stroke: var(--border); stroke-width: 1.5; stroke-dasharray: 6 5; }
+  .b-rq { fill: var(--surface); stroke: var(--accent2); stroke-width: 2; }
+  .b-h { fill: var(--highlight); stroke: var(--good); stroke-width: 2.5; }
+  .b-lab { fill: var(--accent); font: 700 13px 'Roboto', system-ui, sans-serif; letter-spacing: 0.06em; text-transform: uppercase; }
+  .b-sub { fill: var(--text-dim); font: italic 13px 'Roboto', system-ui, sans-serif; }
+  .b-note rect { fill: var(--bg); stroke: var(--accent2); stroke-width: 1.25; }
+  .b-note text { fill: var(--text); font: 500 13px 'Roboto', system-ui, sans-serif; }
+  .b-note.far rect { stroke: var(--text-dim); stroke-dasharray: 3 3; }
+  .b-note.far text { fill: var(--text-dim); }
   .table-wrap { overflow-x: auto; }
   .scope-table .hide { color: transparent !important; }
   .scope-table .hide * { visibility: hidden; }
@@ -121,7 +138,7 @@
     h1 { font-size: 2rem; }
     h2 { font-size: 1.5rem; }
     .title-slide h1 { font-size: 2.2rem; }
-    .vs-grid, .vs-grid.wide-right { grid-template-columns: 1fr; }
+    .vs-grid, .vs-grid.wide-right, .map-grid { grid-template-columns: 1fr; }
     .formula { font-size: 1.05rem; }
     p, li { font-size: 1.05rem; }
     .arrow-flow { flex-direction: column; }
@@ -395,18 +412,38 @@
   </div>
 </div>
 
-<!-- SLIDE 7: Workshop: what will you defend -->
+<!-- SLIDE 7: Workshop: boundary map -->
 <div class="slide" id="s7">
   <div class="slide-inner">
-    <h2>Workshop: What Will You Defend?</h2>
-    <p style="margin-bottom:1.25rem;">Picture a committee member reading your scope paragraph. Write three lines.</p>
-    <div class="formula" style="font-size:1.15rem;">
-      <span class="step-num">1. My claim:</span> My work shows <span class="blank">&nbsp;</span><br>
-      <span class="step-num">2. The push:</span> The boundary a committee member is most likely to question is <span class="blank">&nbsp;</span><br>
-      <span class="step-num">3. My answer:</span> When they do, I will say <span class="blank">&nbsp;</span>
+    <h2>Workshop: Map Your Boundary</h2>
+    <div class="map-grid">
+      <figure class="bmap">
+        <svg viewBox="0 0 480 380" role="img" aria-label="Boundary map: hypothesis in the center, research question as a ring around it, committee questions placed inside and outside the rings">
+          <rect class="b-out" x="2" y="2" width="476" height="376" rx="10"/>
+          <text class="b-lab" x="18" y="26">Not this work</text>
+          <circle class="b-rq" cx="240" cy="200" r="165"/>
+          <text class="b-lab" x="240" y="92" text-anchor="middle">Research question</text>
+          <text class="b-sub" x="240" y="110" text-anchor="middle">Retrofitting historic URM for tornadoes</text>
+          <circle class="b-h" cx="240" cy="222" r="66"/>
+          <text class="b-lab" x="240" y="212" text-anchor="middle">Hypothesis A</text>
+          <text class="b-sub" x="240" y="230" text-anchor="middle">Bond limits strips</text>
+          <text class="b-sub" x="240" y="246" text-anchor="middle">on lime-mortar brick</text>
+          <g class="b-note"><rect x="104" y="140" width="104" height="28" rx="4"/><text x="156" y="159" text-anchor="middle">Cement mortar?</text></g>
+          <g class="b-note"><rect x="316" y="150" width="66" height="28" rx="4"/><text x="349" y="169" text-anchor="middle">EF4&ndash;5?</text></g>
+          <g class="b-note"><rect x="150" y="304" width="180" height="28" rx="4"/><text x="240" y="323" text-anchor="middle">Fire-cut joist retrofits?</text></g>
+          <g class="b-note far"><rect x="352" y="22" width="110" height="28" rx="4"/><text x="407" y="41" text-anchor="middle">Earthquakes?</text></g>
+          <g class="b-note far"><rect x="16" y="336" width="140" height="28" rx="4"/><text x="86" y="355" text-anchor="middle">New construction?</text></g>
+        </svg>
+        <figcaption>Between the rings, your question covers it but your evidence doesn&rsquo;t. Outside, it isn&rsquo;t your topic.</figcaption>
+      </figure>
+      <div class="map-steps">
+        <p><span class="step-num">1. Draw it.</span> Your hypothesis in the center, your research question around it.</p>
+        <p><span class="step-num">2. Brainstorm.</span> Every question a committee member could ask about what&rsquo;s past your line. Put each one where it lands. Aim for five.</p>
+        <p><span class="step-num">3. Answer the hardest.</span> Reason past the line, anchor the line, name the cost.</p>
+        <p class="dim" style="margin-top:0.5rem;">Write.</p>
+        <p style="font-size:1.05rem;"><strong>Hot seat:</strong> we pick a question off your map and play committee. Show us you understand the other side without signing up to go there.</p>
+      </div>
     </div>
-    <p style="margin-top:1.25rem;">Write.</p>
-    <p style="margin-top:0.75rem;"><strong>Hot seat:</strong> read us your claim. We play committee and ask about what&rsquo;s past your line. Show us you understand the other side, without signing up to go there. If you can&rsquo;t give a reason for a boundary, it goes back into your scope paragraph.</p>
   </div>
 </div>
 
