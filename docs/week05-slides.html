@@ -106,7 +106,8 @@
   .slide-num { position: fixed; bottom: 1.5rem; left: 2rem; font-size: 0.75rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
 
   @media (max-width: 800px) {
-    .slide { padding: 2rem 2rem; }
+    .slide { padding: 1.5rem 1rem 3.5rem; justify-content: flex-start; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .slide-inner { margin-block: auto; }
     h1 { font-size: 2rem; }
     h2 { font-size: 1.5rem; }
     .title-slide h1 { font-size: 2.2rem; }
