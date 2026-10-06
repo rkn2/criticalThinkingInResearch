@@ -468,6 +468,12 @@
     if (Math.abs(diff) > 50) { if (diff > 0) next(); else prev(); }
   });
 
+  document.addEventListener('click', function(e) {
+    if (e.button !== 0 || e.target.closest('a, button, input, select, textarea, summary, video')) return;
+    if (window.getSelection().toString()) return;
+    next();
+  });
+
   show(0, false);
 })();
 </script>
