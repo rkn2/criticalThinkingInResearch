@@ -12,11 +12,16 @@
     --tag-bg: #F0EDE7;
   }
   @media (prefers-color-scheme: dark) {
-    :root {
+    :root:not([data-theme="light"]) {
       --bg: #141413; --surface: #1E1E1C; --text: #E8E6E1;
       --text-secondary: #9C9A93; --accent: #D4A574; --border: #2E2E2A;
       --tag-bg: #252522;
     }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141413; --surface: #1E1E1C; --text: #E8E6E1;
+    --text-secondary: #9C9A93; --accent: #D4A574; --border: #2E2E2A;
+    --tag-bg: #252522;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -66,6 +71,34 @@
     padding-left: 1rem; border-left: 2px solid var(--accent);
     margin: 0.5rem 0; font-size: 0.85rem; color: var(--text);
   }
+  .jump { display: flex; flex-wrap: wrap; gap: 0.4rem 0.9rem; font-size: 0.82rem; margin: -1rem 0 1.5rem; }
+  .jump a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .jump a:hover { text-decoration: underline; }
+  .chain { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0.5rem; margin: 0.25rem 0 0.75rem; }
+  .chain div { background: var(--surface); border: 1px solid var(--border); border-top: 2px solid var(--accent); padding: 0.6rem 0.7rem; font-size: 0.8rem; color: var(--text-secondary); line-height: 1.45; min-width: 0; }
+  .chain b { display: block; color: var(--text); font-family: 'Source Serif 4', Georgia, serif; font-size: 0.92rem; }
+  .chain .wk { display: block; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--accent); margin-bottom: 0.15rem; }
+  .map { width: 100%; border-collapse: collapse; font-size: 0.85rem; margin: 0.25rem 0; }
+  .map td { padding: 0.4rem 0.6rem; border-bottom: 1px solid var(--border); vertical-align: top; color: var(--text-secondary); }
+  .map td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; width: 7rem; }
+  .cc-body ul { list-style: none; margin: 0.3rem 0; }
+  .cc-body li { padding-left: 1rem; position: relative; }
+  .cc-body li::before { content: ''; position: absolute; left: 0.2rem; top: 0.7em; width: 4px; height: 4px; border-radius: 50%; background: var(--accent); }
+  .cc-body strong, .cc-body b { color: var(--text); font-weight: 600; }
+  .cc-body p + p, .cc-body p + ul, .cc-body ul + p, .cc-body .formula-block + p { margin-top: 0.45rem; }
+  .cc-link { font-size: 0.78rem; margin-top: 0.5rem; }
+  .cc-link a { color: var(--accent); text-decoration: none; font-weight: 500; }
+  .cc-link a:hover { text-decoration: underline; }
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 0.4rem; }
+  .two > div { min-width: 0; }
+  .two .lab { display: block; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; margin-bottom: 0.15rem; color: var(--accent); }
+  .small-list { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.8; }
+  .small-list a { color: var(--accent); text-decoration: none; }
+  @media (max-width: 700px) {
+    .chain { grid-template-columns: 1fr 1fr; }
+    .two { grid-template-columns: 1fr; }
+    .site-nav { flex-wrap: wrap; gap: 0.4rem 1rem; }
+  }
 </style>
 </head>
 <body>
@@ -79,59 +112,207 @@
 
 <div class="container">
   <h1>Resources</h1>
-  <div class="page-desc">Key concepts and frameworks from the seminar, collected for quick reference.</div>
+  <div class="page-desc">What we built in Weeks 1&ndash;6, collected for the talks and questions that fill the rest of the semester.</div>
+  <div class="jump">
+    <a href="#chain">How the pieces connect</a>
+    <a href="#talk">Building a talk</a>
+    <a href="#feedback">Giving feedback</a>
+    <a href="#questions">Answering questions</a>
+    <a href="#checks">Checks for each piece</a>
+    <a href="#earlier">Earlier in the semester</a>
+  </div>
 
-  <h2>Frameworks</h2>
-
+  <h2 id="chain">How the Pieces Connect</h2>
+  <div class="chain">
+    <div><span class="wk">Week 2</span><b>Three-step sentence</b>Topic, question, and why a reader cares.</div>
+    <div><span class="wk">Weeks 3&ndash;4</span><b>Research question</b>What you don&rsquo;t know, with more than one possible answer.</div>
+    <div><span class="wk">Week 4</span><b>Hypotheses</b>Competing proposed answers, each specific enough to be wrong.</div>
+    <div><span class="wk">Week 5</span><b>Scope</b>Where your evidence can tell those answers apart.</div>
+    <div><span class="wk">Week 6</span><b>Story</b>All of it in one U-shaped talk that leads with what you learned.</div>
+  </div>
   <div class="concept-card">
-    <div class="cc-title">The Three-Step Formula</div>
-    <div class="cc-source">Booth et al., The Craft of Research, 3.4.1&ndash;3.4.3</div>
+    <div class="cc-title">Where Each Piece Lands in a Talk</div>
+    <div class="cc-body">
+      <table class="map">
+        <tr><td>Goal</td><td>Your Step 3: why anyone outside your lab cares.</td></tr>
+        <tr><td>Obstacles</td><td>Each &ldquo;but&rdquo; digs one level deeper, down to your research question.</td></tr>
+        <tr><td>Approach</td><td>Your competing hypotheses, and the result that would tell them apart.</td></tr>
+        <tr><td>Result</td><td>What you found, inside your scope. No result yet? Say what you expect and mark it as expected.</td></tr>
+        <tr><td>Benefit</td><td>How the result moves the goal forward, still inside your scope.</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <h2 id="talk">Building a Talk</h2>
+  <div class="concept-card">
+    <div class="cc-title">The Story Template</div>
+    <div class="cc-source">Ardon Shorr, &ldquo;Telling Research Stories,&rdquo; Princeton (2020)</div>
     <div class="cc-body">
       <div class="formula-block">
-        <strong>1. Topic:</strong> I am studying ___.<br>
-        <strong>2. Question:</strong> ...because I want to find out ___.<br>
-        <strong>3. Significance:</strong> ...in order to help my reader understand ___.
+        <strong>Goal:</strong> the big problem you&rsquo;re trying to solve<br>
+        <strong>Obstacle:</strong> why it&rsquo;s hard, and why it hasn&rsquo;t been done<br>
+        <strong>Approach:</strong> what you do that gets past the obstacle<br>
+        <strong>Result:</strong> what you found (so far)<br>
+        <strong>Benefit:</strong> how that result moves the goal forward
       </div>
-      <p style="margin-top:0.5rem">Step 1 turns a subject into a topic. Step 2 turns a topic into a question. Step 3 answers "So what?" &mdash; why anyone else should care about the answer.</p>
+      <p>The elements are a checklist. A missing one is a hole in your talk. To fill a gap, ask its question: Why solve that? Why is it hard? What do you do? What happened? What does that make possible?</p>
+    </div>
+    <div class="cc-link"><a href="week06-slides.html">Week 6 slides</a></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="cc-title">&ldquo;We Want ___, But ___&rdquo;</div>
+    <div class="cc-body">
+      <p>Chain the obstacles. Each &ldquo;but&rdquo; becomes the next, narrower goal. Keep asking until you reach your research question.</p>
+      <div class="formula-block">
+        <strong>Goal:</strong> The world couldn&rsquo;t feed a growing population.<br>
+        <strong>But</strong> we couldn&rsquo;t grow enough food, because plants need nitrogen.<br>
+        <strong>But</strong> the nitrogen in the air isn&rsquo;t in a form plants can use.<br>
+        <strong>But</strong> it won&rsquo;t change form, because nitrogen clings tightly to itself.<br>
+        <strong>Approach:</strong> Haber used temperature and pressure&hellip; <strong>Result:</strong> &hellip;to turn nitrogen gas into ammonia.
+      </div>
+      <p>Name each obstacle precisely. &ldquo;Nobody has done this&rdquo; is not an obstacle. Which kind is it?</p>
+      <div class="two">
+        <div><ul><li><strong>Lack of data:</strong> not collected, or not enough</li><li><strong>Lack of resolution:</strong> the data can&rsquo;t show what&rsquo;s happening</li><li><strong>Inconsistent findings:</strong> plenty of data, but it disagrees</li></ul></div>
+        <div><ul><li><strong>Lack of accuracy:</strong> we don&rsquo;t trust the data or models</li><li><strong>Lack of resources:</strong> possible in theory, impractical in time or computing</li><li><strong>Lack of theory:</strong> the models are empirical and don&rsquo;t transfer</li></ul></div>
+      </div>
+    </div>
+    <div class="cc-source" style="margin-top:0.5rem;">Haber chain via Radiolab and Shorr; obstacle types after Judith A. Swan, &ldquo;Motives in Research&rdquo;</div>
+  </div>
+
+  <div class="concept-card">
+    <div class="cc-title">The U-Shape, and the Broken Path</div>
+    <div class="cc-body">
+      <p>A talk starts at the goal (big picture), goes down through the obstacles, across your approach (detail), up through your result, and finishes at the benefit (big picture again).</p>
+      <p>The most common failure stays on the bottom row: all approach, no goal it serves, no benefit it delivers. That is the &ldquo;here&rsquo;s what I did&rdquo; talk instead of the &ldquo;here&rsquo;s what I learned&rdquo; talk.</p>
+    </div>
+    <div class="cc-link"><a href="week06-slides.html">Annotated 5-minute example pitch, Week 6 slides 14&ndash;21</a></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="cc-title">Lead With What You Learned</div>
+    <div class="cc-source">After Somerville &amp; Hassol (2011), <em>Physics Today</em>; Aurbach et al. (2018)</div>
+    <div class="cc-body">
+      <ul>
+        <li><strong>Invert the pyramid.</strong> Papers build up to the result. A listener needs the result first, then why it matters, then the details.</li>
+        <li><strong>Say what the detail means.</strong> Every figure and number gets a sentence that tells the audience what to take from it. A slide title can state the finding.</li>
+        <li><strong>Half-life your message.</strong> Tell it in 60 seconds, then 30, 15, and 8. Whatever survives at 8 seconds is your key finding.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="feedback">Giving Feedback on a Talk</h2>
+  <div class="concept-card">
+    <div class="cc-title">Six Questions, in Storymap Terms</div>
+    <div class="cc-body">
+      <ul>
+        <li>Is the goal clear, and who cares?</li>
+        <li>Do the &ldquo;but&rdquo;s dig down to a research question?</li>
+        <li>Are there competing hypotheses, and a way to tell them apart?</li>
+        <li>Is there a result, or only &ldquo;here&rsquo;s what I did&rdquo;?</li>
+        <li>Does the benefit stay inside the scope?</li>
+        <li>Can the speaker say it in 8 seconds?</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2 id="questions">Answering Questions</h2>
+  <div class="concept-card">
+    <div class="cc-title">Your Boundary Is Where You Show What You Know</div>
+    <div class="cc-body">
+      <p>A question about something past your line usually isn&rsquo;t a request to do it. It checks whether you understand the other side. &ldquo;That&rsquo;s out of scope&rdquo; makes the line look like where you stopped looking.</p>
+      <div class="formula-block">
+        <strong>1. Reason past the line:</strong> what you&rsquo;d expect there, and why.<br>
+        <strong>2. Anchor the line:</strong> why your work stops here.<br>
+        <strong>3. Name the cost:</strong> what it would take to cross, and that it is not part of this work.
+      </div>
+      <div class="two">
+        <div><span class="lab">Shows you can think</span><ul><li>Predict: &ldquo;I&rsquo;d expect&hellip; because&hellip;&rdquo;</li><li>Mechanism: &ldquo;What changes past that point is&hellip;&rdquo;</li><li>Literature: &ldquo;Others who looked at that found&hellip;&rdquo;</li><li>Cost: &ldquo;Answering it would take&hellip;&rdquo;</li></ul></div>
+        <div><span class="lab">Signs you up for work</span><ul><li>&ldquo;I could add that.&rdquo;</li><li>&ldquo;That should be easy to include.&rdquo;</li><li>&ldquo;I&rsquo;ll look into running that.&rdquo;</li><li>&ldquo;I haven&rsquo;t had time yet.&rdquo;</li></ul></div>
+      </div>
+      <p>If a push shows a boundary has no reason, the boundary moves.</p>
+    </div>
+    <div class="cc-link"><a href="week05-slides.html">Week 5 slides</a></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="cc-title">When It Really Is a Request for More Work</div>
+    <div class="cc-body">
+      <p>&ldquo;You should also&hellip;&rdquo; or &ldquo;Before you defend, I&rsquo;d want to see&hellip;&rdquo; is a proposal to change your project. In the room, engage the same way: reason about it, anchor your line, name the cost. Then say you&rsquo;ll think about how it fits and follow up with your advisor. Don&rsquo;t agree to new work on the spot.</p>
     </div>
   </div>
 
   <div class="concept-card">
-    <div class="cc-title">Instrumental vs. Expressive Behavior</div>
-    <div class="cc-source">Rugg &amp; Petre, The Unwritten Rules of PhD Research, Ch. 3</div>
+    <div class="cc-title">Questions a Committee Asks</div>
     <div class="cc-body">
-      <p><strong>Instrumental:</strong> behavior that moves you toward your goal. Reading the six key texts in your area.<br>
-      <strong>Expressive:</strong> behavior that demonstrates what sort of person you are. Reading the same irrelevant page in a state of panic.</p>
-      <p style="margin-top:0.4rem">If you can fill in all three blanks of the formula above, your work is instrumental. If you can only fill in step 1, you might be busy but not aimed.</p>
+      <ul>
+        <li>What calculation does that tool actually perform?</li>
+        <li>Why this method and not an alternative?</li>
+        <li>What would make you wrong?</li>
+        <li>Who uses this, and under what circumstances?</li>
+        <li>What does your loading represent physically?</li>
+        <li>Is your computational strategy feasible?</li>
+        <li>What decisions does this support?</li>
+        <li>What data do you wish you had, and what do you do without it?</li>
+      </ul>
     </div>
   </div>
 
+  <h2 id="checks">Checks for Each Piece</h2>
   <div class="concept-card">
-    <div class="cc-title">Heilmeier's Catechism</div>
-    <div class="cc-source">George Heilmeier, DARPA</div>
+    <div class="cc-title">The Three-Step Sentence</div>
+    <div class="cc-source">Booth et al., <em>The Craft of Research</em>, 3.4.1&ndash;3.4.3</div>
     <div class="cc-body">
-      <p>Before starting any project, answer:<br>
-      &bull; What are you trying to do?<br>
-      &bull; How is it done today, and what are the limits?<br>
-      &bull; What is new in your approach and why do you think it will be successful?<br>
-      &bull; Who cares? If successful, what difference will it make?<br>
-      &bull; What are the risks and payoffs?<br>
-      &bull; How much will it cost? How long will it take?<br>
-      &bull; What are the midterm and final "exams" to check for success?</p>
+      <div class="formula-block">
+        <strong>1.</strong> I am studying ___<br>
+        <strong>2.</strong> because I want to find out ___<br>
+        <strong>3.</strong> in order to help my reader understand ___
+      </div>
+      <p>No tool names in Step 1 or Step 3. Step 2 must be something you don&rsquo;t know yet. Step 3 names a reader who is not your advisor.</p>
     </div>
+    <div class="cc-link"><a href="week02-slides.html">Week 2 slides</a></div>
   </div>
 
-  <h2>Career Paths</h2>
+  <div class="concept-card">
+    <div class="cc-title">Is Your Research Question Real?</div>
+    <div class="cc-body">
+      <p>Three tests: it names what you don&rsquo;t know; it has more than one possible answer; you can imagine evidence that would change the answer.</p>
+      <p>Common problems: too broad (a topic, not a question), a foregone conclusion (&ldquo;does my retrofit help?&rdquo;), tool-centric, or a restatement of Step 1.</p>
+      <p><strong>A hypothesis with a question mark</strong> can be answered yes or no, you already expect yes, or it names the answer. Keep it as your hypothesis and work backward to the question it answers. Then list two other possible answers. If you can&rsquo;t, the question is still too narrow.</p>
+    </div>
+    <div class="cc-link"><a href="week03-slides.html">Week 3</a> &middot; <a href="week04-slides.html">Week 4 slides</a></div>
+  </div>
 
   <div class="concept-card">
-    <div class="cc-title">Three Paths After the PhD (in AE)</div>
-    <div class="cc-source">Feibelman Ch. 6 + Rugg &amp; Petre Ch. 16 + Becca's perspective</div>
+    <div class="cc-title">Is It a Hypothesis?</div>
+    <div class="cc-source">Chamberlin, &ldquo;The Method of Multiple Working Hypotheses&rdquo; (1890)</div>
     <div class="cc-body">
-      <p><strong>Tenure-line faculty:</strong> Research + grants + teaching + service. Evaluated on publications and funding. Your "reader" is the research community. Build papers, conference talks, and grant experience during the PhD.</p>
-      <p style="margin-top:0.4rem"><strong>Teaching professor:</strong> Teaching + curriculum + mentoring. Evaluated on teaching quality and student outcomes. Your "reader" is students and practitioners. Build a teaching portfolio during the PhD.</p>
-      <p style="margin-top:0.4rem"><strong>Industry:</strong> Applied R&amp;D or practice. Evaluated on deliverables and impact. Your "reader" is clients and agencies. Build technical skills and internship experience during the PhD.</p>
-      <p style="margin-top:0.4rem"><em>Key question:</em> How does your step 3 "reader" change depending on which path you're on?</p>
+      <p>A hypothesis is a proposed answer, specific enough to be wrong. Write what would make you wrong. If you can&rsquo;t, you have a hope, not a hypothesis. Then write a competing answer and the result that would tell the two apart.</p>
+      <p>Not hypotheses: unfalsifiable (&ldquo;my model will provide useful results&rdquo;), a task in disguise (&ldquo;I will simulate the wall&rdquo;), a foregone conclusion, or too vague (&ldquo;building characteristics affect damage&rdquo;).</p>
+      <p>Carry more than one. Once you like an answer, it is easy to keep tuning the model until it agrees with you.</p>
     </div>
+    <div class="cc-link"><a href="week04-slides.html">Week 4 slides</a></div>
+  </div>
+
+  <div class="concept-card">
+    <div class="cc-title">The Scope Paragraph</div>
+    <div class="cc-body">
+      <div class="formula-block">
+        <strong>In:</strong> My work covers ___<br>
+        <strong>Out:</strong> It does not cover ___<br>
+        <strong>Why here:</strong> The boundary is here because ___<br>
+        <strong>What sets it:</strong> The evidence or assumption behind that boundary is ___
+      </div>
+      <p>Write it once for your question and once for your hypothesis; the hypothesis boundary is usually smaller. It is set by where your evidence can tell your answer apart from the competing ones. Every &ldquo;out&rdquo; needs a because. &ldquo;I didn&rsquo;t have time&rdquo; is not one.</p>
+    </div>
+    <div class="cc-link"><a href="week05-slides.html">Week 5 slides</a></div>
+  </div>
+
+  <h2 id="earlier">Earlier in the Semester</h2>
+  <div class="small-list">
+    &bull; <strong>Heilmeier&rsquo;s Catechism</strong> (DARPA): What are you trying to do? How is it done today? What&rsquo;s new? Who cares? Risks, cost, and how you&rsquo;ll check for success. <a href="week02-slides.html">Week 2</a><br>
+    &bull; <strong>Instrumental vs. expressive</strong> (Rugg &amp; Petre, Ch. 3): work that moves you toward your goal vs. work that only shows effort. <a href="week02-slides.html">Week 2</a><br>
+    &bull; <strong>Career paths</strong> (Feibelman, Ch. 6): tenure-line, teaching professor, industry, and what to build during the PhD for each. <a href="week01-slides.html">Week 1</a>
   </div>
 </div>
 
