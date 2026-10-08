@@ -175,6 +175,15 @@ Approach = competing hypotheses + how you tell them apart, Result and
 Benefit stay inside the scope (check against the scope paragraph and
 boundary map). Click-to-reveal builds as in Week 5.
 
+**Example talk (added Oct 7):** after the half-life workshop, a 4-minute
+annotated example talk (six slides plus a debrief). Each slide is 80% talk,
+20% meta panel: a mini U-shape storymap showing where the slide sits, plus
+notes tying it to this week's concepts. The left arm of the U is drawn as a
+staircase (goal, but, narrower goal, but, ... research question) to show the
+"we want X, but Y" chain digging in. Setting is Saanchi's Mayfield
+historic-masonry work, fictionalized: the numbers are illustrative and the
+slides say so.
+
 **Workshops:** (1) Build your storymap, all five elements. (2) Half-life
 your message: 60, 30, 15, 8 seconds with a partner (Aurbach et al. 2018).
 
@@ -331,6 +340,8 @@ shift to presentation work in Phase 3.
 | TBD | Whitesides, "Writing a Paper" (Adv. Materials 2004, ~4 pp) | Building from an outline, not from accumulated text |
 | 5–6 | Selected chapter from research design book (Becca assigns) | Experimental design principles |
 | TBD | Selected chapter from "How to Write an Impactful Research Paper" | Connecting evidence to the written argument |
+| 7 | Popper, *The Myth of the Framework* (1994), Ch. 8 "Models, Instruments, and Truth" | A model is an instrument for testing a theory, not the theory or the world; a converged run is not evidence |
+| 12–13 | Popper, *The Myth of the Framework*, Ch. 2 (title essay) | Rational discussion across frameworks is possible and most fruitful when the frameworks differ; prep for questions from committee members in other disciplines |
 | 10 | Selected sections from the scientific graphics book | Making results visible |
 
 Other resources Becca may want to pull from:
@@ -338,6 +349,18 @@ Other resources Becca may want to pull from:
 - Heard — "The Scientist's Guide to Writing"
 - Tufte — "The Visual Display of Quantitative Information" (for figures)
 - Olson — "Houston, We Have a Narrative" (for research storytelling)
+- Popper — "The Myth of the Framework: In Defence of Science and Rationality"
+  (ed. Notturno, Routledge 1994). Chapters and where they fit:
+  - Ch. 1 "The Rationality of Scientific Revolutions" (conjecture and
+    error elimination; bold, refutable hypotheses): would have paired with
+    Week 4 alongside Chamberlin. Use as a callback in Week 7.
+  - Ch. 2 "The Myth of the Framework": Weeks 12–13, committee questioning
+    across disciplines (Paul, Nate, Orsolya, Maggie).
+  - Ch. 4 "Science: Problems, Aims, Responsibilities" (science starts from
+    problems, not observations or tools): would have fit Weeks 2–3.
+  - Ch. 8 "Models, Instruments, and Truth": Week 7 (evidence), or the
+    bumped computational-experiments session; also the dropped "what does
+    your tool compute?" topic.
 
 ---
 

@@ -18,6 +18,8 @@
     --highlight: #EDF3FA;
     --warn: #9B2335;
     --good: #2D5F2D;
+    --s1: #2a78d6;
+    --s2: #eb6834;
   }
   @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
@@ -32,6 +34,8 @@
       --highlight: #141E2A;
       --warn: #E05A6A;
       --good: #5DAA5D;
+      --s1: #3987e5;
+      --s2: #d95926;
     }
   }
   :root[data-theme="dark"] {
@@ -46,6 +50,8 @@
     --highlight: #141E2A;
     --warn: #E05A6A;
     --good: #5DAA5D;
+    --s1: #3987e5;
+    --s2: #d95926;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -151,6 +157,58 @@
   .halflife div { flex: 1; text-align: center; border: 1px solid var(--accent); background: var(--highlight); font-family: 'Roboto Slab', Georgia, serif; font-weight: 700; color: var(--accent); display: flex; align-items: center; justify-content: center; }
   .credit { font-size: 0.85rem; color: var(--text-dim); margin-top: 1.5rem; }
   @media (max-width: 800px) { .pyr-grid { grid-template-columns: 1fr; } .story-table td { font-size: 0.95rem; } .smap .cell { font-size: 0.85rem; padding: 0.5rem; } }
+
+  /* Week 6: example talk (talk frame on the right, meta panel on the left) */
+  .slide.ex { padding: 2rem 2.5rem 3.25rem; }
+  .ex .slide-inner { max-width: 1400px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,4fr); gap: 1.5rem; align-items: stretch; }
+  .meta { background: var(--highlight); border-left: 3px solid var(--accent); padding: 1rem 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .meta-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent2); }
+  .meta p { font-size: 0.92rem; line-height: 1.45; }
+  .meta p b { color: var(--accent); }
+  .meta .time { font-size: 0.8rem; color: var(--text-dim); margin-top: auto; }
+  .talk { position: relative; background: var(--surface); border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0,0,0,0.12); aspect-ratio: 16 / 9; padding: 2.25rem 3rem 2.5rem; display: flex; flex-direction: column; justify-content: center; }
+  .talk h2 { font-size: 1.75rem; margin-bottom: 1rem; }
+  .talk p, .talk li { font-size: 1.15rem; }
+  .talk .talk-foot { position: absolute; bottom: 0.7rem; left: 3rem; right: 3rem; display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); }
+  .talk-title h1 { font-size: 2.3rem; color: var(--accent); }
+  .u-mini svg { width: 100%; height: auto; display: block; }
+  .u-mini .u-path { fill: none; stroke: var(--border); stroke-width: 2.5; stroke-linejoin: round; }
+  .u-mini .u-node circle { fill: var(--surface); stroke: var(--accent2); stroke-width: 1.5; }
+  .u-mini .u-node text { fill: var(--accent2); font: 700 9px Roboto, sans-serif; text-anchor: middle; dominant-baseline: central; }
+  .u-mini .u-node.here circle { fill: var(--accent); stroke: var(--accent); }
+  .u-mini .u-node.here text { fill: var(--surface); }
+  .u-mini .u-node.preview circle { stroke-dasharray: 2 2; stroke: var(--accent); stroke-width: 2; }
+  .u-mini .u-lab { fill: var(--text-dim); font: 500 6.5px Roboto, sans-serif; }
+  .u-big { max-width: 560px; margin: 0.5rem auto 0; }
+  .stair { margin: 0.25rem 0 0; }
+  .stair div { font-size: 1.08rem; line-height: 1.35; padding: 0.3rem 0.7rem; margin-bottom: 0.3rem; border-left: 3px solid var(--accent2); }
+  .stair .but { border-left-color: var(--warn); }
+  .stair .but em { color: var(--warn); font-style: normal; font-weight: 700; }
+  .stair .want em { color: var(--accent2); font-style: normal; font-weight: 700; }
+  .stair .rq { border: 1px solid var(--accent); border-left-width: 3px; background: var(--highlight); font-weight: 600; }
+  .hyp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin: 0.5rem 0 1rem; }
+  .hyp div { border: 1px solid var(--border); border-top: 3px solid var(--accent2); padding: 0.7rem 0.8rem; font-size: 1rem; line-height: 1.4; }
+  .hyp div b { display: block; color: var(--accent); }
+  .hyp div.untestable { border-top-style: dashed; color: var(--text-dim); }
+  .chart svg { width: 100%; height: auto; max-height: 46vh; display: block; }
+  .chart .grid { stroke: var(--border); stroke-width: 1; }
+  .chart .axis-t { fill: var(--text-dim); font: 400 13px Roboto, sans-serif; }
+  .chart .val { fill: var(--text); font: 500 13px Roboto, sans-serif; text-anchor: middle; }
+  .chart .grp { fill: var(--text); font: 500 14px Roboto, sans-serif; text-anchor: middle; }
+  .chart .s1 { fill: var(--s1); } .chart .s2 { fill: var(--s2); }
+  .chart path:hover { opacity: 0.8; }
+  .so-what { border-left: 3px solid var(--accent); background: var(--highlight); padding: 0.55rem 0.9rem; font-size: 1.08rem; margin-top: 0.5rem; }
+  .not-box { border: 1px dashed var(--warn); padding: 0.75rem 1rem; margin-top: 1rem; }
+  .not-box .vs-label { color: var(--warn); }
+  @media (max-width: 800px) {
+    .slide.ex { padding: 1.5rem 1rem 3.5rem; }
+    .ex .slide-inner { grid-template-columns: 1fr; }
+    .talk { order: -1; aspect-ratio: auto; padding: 1.25rem 1.25rem 2.25rem; }
+    .talk .talk-foot { left: 1.25rem; right: 1.25rem; }
+    .u-mini { max-width: 220px; }
+    .hyp { grid-template-columns: 1fr; }
+    .talk-title h1 { font-size: 1.7rem; }
+  }
 </style>
 </head>
 <body>
@@ -394,8 +452,163 @@
   </div>
 </div>
 
-<!-- SLIDE 14: Takeaway -->
+
+<!-- SLIDE 14: Example talk intro -->
 <div class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 4: An Example Talk</span>
+    <h2>A 4-Minute Talk, Annotated</h2>
+    <p style="margin-bottom:0.5rem;">Next: six slides of a short talk on tornado damage to historic brick in Mayfield, KY. The setting is real; <strong>the numbers are made up</strong> for teaching. The talk fills the right of each slide. The panel on the left shows where it sits on the U, and why it is built that way.</p>
+    <p data-step="1">Notice the left arm. It is not one Obstacle box, it is a <strong>staircase</strong>: each &ldquo;but&rdquo; turns into a narrower &ldquo;we want,&rdquo; the way Haber went from feeding the world down to nitrogen&rsquo;s chemical bond. You dig down until you hit your research question.</p>
+    <div class="u-mini u-big" data-at="none" data-labels="1" data-step="1"></div>
+  </div>
+</div>
+
+<!-- SLIDE: Example talk 1 -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Meta: Title slide</div>
+      <div class="u-mini" data-at="result-preview"></div>
+      <p data-step="1"><b>Invert the pyramid.</b> The title is the result, not the topic. Not &ldquo;Feature Importance for Tornado Damage.&rdquo;</p><p data-step="2">If the committee stops listening after this slide, they still leave with the finding.</p><p data-step="3">No tool names. Nobody cares which classifier yet.</p>
+      <p class="time">About 10 seconds</p>
+    </aside>
+    <div class="talk">
+      <div class="talk-title">
+        <h1>Tall Parapets, Not Just Distance, Marked Which Historic Brick Buildings a Tornado Damaged</h1>
+        <p class="dim" style="margin-top:1rem;">Lessons from one EF4 track through Mayfield, Kentucky</p>
+      </div>
+      <div class="talk-foot"><span>Example talk: Mayfield setting, illustrative numbers</span><span>1 / 6</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: Example talk 2 -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Meta: Goal</div>
+      <div class="u-mini" data-at="goal"></div>
+      <p data-step="1"><b>Goal = your Step 3.</b> It names a reader who is not the advisor: a town preservation officer.</p><p data-step="2">One slide. No literature review. The stakes are concrete: a budget and a choice.</p><p data-step="3">Top-left of the U: big picture first.</p>
+      <p class="time">About 30 seconds</p>
+    </aside>
+    <div class="talk">
+      <h2>A Town Can&rsquo;t Retrofit Every Historic Building. Which Ones First?</h2>
+      <ul>
+        <li>Downtown Mayfield had about a hundred historic brick buildings</li>
+        <li>The 2021 tornado destroyed many of them, including the courthouse square</li>
+        <li>A preservation office can afford to inspect and retrofit a handful a year</li>
+      </ul>
+      <p style="margin-top:1rem;">We want a way to pick that handful <strong>before</strong> the next storm.</p>
+      <div class="talk-foot"><span>Example talk: Mayfield setting, illustrative numbers</span><span>2 / 6</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: Example talk 3 -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Meta: Obstacles, digging in</div>
+      <div class="u-mini" data-at="obstacle"></div>
+      <p data-step="6"><b>&ldquo;We want X, but Y,&rdquo; chained.</b> Each obstacle becomes a narrower goal. This is the staircase on the left arm.</p><p data-step="7"><b>Named precisely:</b> lack of data, then inconsistent findings across events. Not &ldquo;nobody has done this.&rdquo;</p><p data-step="8">The bottom step is the <b>research question</b>.</p>
+      <p class="time">About 60 seconds</p>
+    </aside>
+    <div class="talk">
+      <h2>Why We Can&rsquo;t Just Rank Them</h2>
+      <div class="stair">
+        <div class="want" data-step="1" style="margin-left:0rem;"><em>We want</em> to rank buildings by how badly a tornado will hurt them,</div>
+        <div class="but" data-step="2" style="margin-left:1.5rem;"><em>but</em> tornadoes that hit historic brick are rare, so there&rsquo;s little damage data.</div>
+        <div class="want" data-step="3" style="margin-left:3rem;"><em>So we want</em> to learn from every past event we can,</div>
+        <div class="but" data-step="4" style="margin-left:4.5rem;"><em>but</em> each event gives only dozens of buildings, and pooling events teaches a model <em>which tornado</em>, not <em>which building</em>.</div>
+        <div class="rq" data-step="5" style="margin-left:6rem;">Within a single tornado, which building features go with more damage?</div>
+      </div>
+      <div class="talk-foot"><span>Example talk: Mayfield setting, illustrative numbers</span><span>3 / 6</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: Example talk 4 -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Meta: Approach</div>
+      <div class="u-mini" data-at="approach"></div>
+      <p data-step="5"><b>Approach = competing hypotheses</b> (Week 4), plus the comparison that tells them apart.</p><p data-step="6">C is named even though this data can&rsquo;t test it. That is <b>scope</b> (Week 5), stated up front.</p><p data-step="7">Bottom of the U, and only one slide. The broken path spends the whole talk here.</p>
+      <p class="time">About 60 seconds</p>
+    </aside>
+    <div class="talk">
+      <h2>One Track, Three Explanations, One Test</h2>
+      <p style="margin-bottom:0.25rem;">About 80 historic brick buildings along a single EF4 track, each surveyed after the storm.</p>
+      <div class="hyp">
+        <div data-step="1"><b>A: Geometry</b>Tall parapets and big wall openings catch the wind and fail first.</div>
+        <div data-step="2"><b>B: Location</b>It&rsquo;s just how close the building was to the track.</div>
+        <div data-step="3" class="untestable"><b>C: Hidden condition</b>Mortar and roof anchorage decide it. Not visible from the street.</div>
+      </div>
+      <p data-step="4"><strong>The test:</strong> compare tall and short parapets <em>at the same distance</em>. If B is right, the gap disappears.</p>
+      <div class="talk-foot"><span>Example talk: Mayfield setting, illustrative numbers</span><span>4 / 6</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: Example talk 5 -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Meta: Result</div>
+      <div class="u-mini" data-at="result"></div>
+      <p data-step="2"><b>The title says what the chart means.</b> The audience reads the answer, then checks it against the bars.</p><p data-step="3"><b>Say what the detail means:</b> the line under the chart tells you which hypothesis it supports.</p><p data-step="4">Inside the scope: one track, about 80 buildings. Climbing the right arm of the U.</p>
+      <p class="time">About 60 seconds</p>
+    </aside>
+    <div class="talk">
+      <h2 style="margin-bottom:0.5rem;">Tall-Parapet Buildings Were Damaged More at Every Distance</h2>
+      <div class="chart"><svg viewBox="0 0 640 300" role="img" aria-label="Illustrative grouped bar chart. Share of buildings damaged, tall parapet versus short or none: within 100 m, 85% vs 62%; 100 to 300 m, 64% vs 38%; over 300 m, 41% vs 17%."><line class="grid" x1="60" x2="620" y1="250.0" y2="250.0"/><text class="axis-t" x="52" y="254.0" text-anchor="end">0%</text><line class="grid" x1="60" x2="620" y1="150.0" y2="150.0"/><text class="axis-t" x="52" y="154.0" text-anchor="end">50%</text><line class="grid" x1="60" x2="620" y1="50.0" y2="50.0"/><text class="axis-t" x="52" y="54.0" text-anchor="end">100%</text><path class="s1" d="M103,250 V84.0 Q103,80.0 107,80.0 H145 Q149,80.0 149,84.0 V250 Z"><title>Within 100 m, tall parapet: 85% damaged</title></path><text class="val" x="126.0" y="73.0">85%</text><path class="s2" d="M151,250 V130.0 Q151,126.0 155,126.0 H193 Q197,126.0 197,130.0 V250 Z"><title>Within 100 m, short or no parapet: 62% damaged</title></path><text class="val" x="174.0" y="119.0">62%</text><text class="grp" x="150" y="272">Within 100 m</text><path class="s1" d="M283,250 V126.0 Q283,122.0 287,122.0 H325 Q329,122.0 329,126.0 V250 Z"><title>100–300 m, tall parapet: 64% damaged</title></path><text class="val" x="306.0" y="115.0">64%</text><path class="s2" d="M331,250 V178.0 Q331,174.0 335,174.0 H373 Q377,174.0 377,178.0 V250 Z"><title>100–300 m, short or no parapet: 38% damaged</title></path><text class="val" x="354.0" y="167.0">38%</text><text class="grp" x="330" y="272">100–300 m</text><path class="s1" d="M463,250 V172.0 Q463,168.0 467,168.0 H505 Q509,168.0 509,172.0 V250 Z"><title>Over 300 m, tall parapet: 41% damaged</title></path><text class="val" x="486.0" y="161.0">41%</text><path class="s2" d="M511,250 V220.0 Q511,216.0 515,216.0 H553 Q557,216.0 557,220.0 V250 Z"><title>Over 300 m, short or no parapet: 17% damaged</title></path><text class="val" x="534.0" y="209.0">17%</text><text class="grp" x="510" y="272">Over 300 m</text><text class="axis-t" x="340" y="292" text-anchor="middle">Distance from the tornado track</text><rect class="s1" x="380" y="8" width="12" height="12" rx="2"/><text class="axis-t" x="398" y="18">Tall parapet</text><rect class="s2" x="490" y="8" width="12" height="12" rx="2"/><text class="axis-t" x="508" y="18">Short or none</text></svg></div>
+      <p class="so-what" data-step="1">Closer meant more damage, but distance doesn&rsquo;t erase the parapet gap. That favors A over B. C is still open.</p>
+      <div class="talk-foot"><span>Example talk: Mayfield setting, illustrative numbers</span><span>5 / 6</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: Example talk 6 -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Meta: Benefit</div>
+      <div class="u-mini" data-at="benefit"></div>
+      <p data-step="3"><b>Back up to the big picture.</b> The Benefit answers the Goal slide&rsquo;s question: which ones first.</p><p data-step="4">The boundary is drawn before the committee asks (Week 5). The benefit stays inside the scope.</p><p data-step="5">The untested hypothesis becomes the next step.</p>
+      <p class="time">About 30 seconds</p>
+    </aside>
+    <div class="talk">
+      <h2>A Street-Level First Pass: Inspect Tall Parapets First</h2>
+      <p>A preservation office can flag parapet height from the sidewalk or from aerial photos, then spend its inspection budget on those buildings.</p>
+      <div class="not-box" data-step="1">
+        <div class="vs-label">What this does not tell you</div>
+        <p style="font-size:1.02rem;">How to retrofit. How to rank two buildings with the same parapet. Whether it holds beyond one EF4 track.</p>
+      </div>
+      <p style="margin-top:0.9rem;" data-step="2"><strong>Next:</strong> inspect the connections on the flagged buildings to test C.</p>
+      <div class="talk-foot"><span>Example talk: Mayfield setting, illustrative numbers</span><span>6 / 6</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: Example debrief -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>Check the Example Against the Storymap</h2>
+    <table class="story-table">
+      <tr data-step="1"><td>Goal</td><td>Pick which historic brick buildings to retrofit first <span class="dimcell">(30 s)</span></td></tr>
+      <tr data-step="2"><td>Obstacles</td><td>Rare events &rarr; few buildings &rarr; pooling learns the tornado &rarr; research question <span class="dimcell">(60 s)</span></td></tr>
+      <tr data-step="3"><td>Approach</td><td>Hypotheses A, B, C, and parapets compared at equal distance <span class="dimcell">(60 s)</span></td></tr>
+      <tr data-step="4"><td>Result</td><td>The parapet gap holds at every distance <span class="dimcell">(60 s)</span></td></tr>
+      <tr data-step="5"><td>Benefit</td><td>A street-level screen, with its limits stated <span class="dimcell">(30 s)</span></td></tr>
+    </table>
+    <p style="margin-top:0.9rem;" data-step="6"><strong>The 8-second version:</strong> &ldquo;In one tornado, tall parapets marked the historic brick buildings that got damaged, even at the same distance from the track.&rdquo;</p>
+    <p class="dim" style="margin-top:0.5rem;" data-step="7">The broken-path version of this talk is six slides of data cleaning and model tuning.</p>
+  </div>
+</div>
+
+<!-- SLIDE: Takeaway -->
+<div class="slide" id="s22">
   <div class="slide-inner">
     <h2>For Next Session</h2>
     <ul>
@@ -411,9 +624,37 @@
 </div>
 
 <!-- Navigation -->
-<div class="slide-num" id="slideNum">1 / 14</div>
+<div class="slide-num" id="slideNum">1 / 22</div>
 <div class="progress" id="progress"></div>
 <div class="nav-hint">&#8592; &#8594; to navigate</div>
+
+
+<script>
+// Mini U-shape storymap: the left arm is a staircase of obstacles.
+(function() {
+  const N = {
+    goal: [16, 12, 'G'], o1: [16, 36, 'O'], o2: [32, 52, 'O'], o3: [48, 68, 'O'],
+    approach: [76, 76, 'A'], result: [106, 58, 'R'], benefit: [106, 12, 'B']
+  };
+  const order = ['goal', 'o1', 'o2', 'o3', 'approach', 'result', 'benefit'];
+  const labels = { goal: 'Goal', o1: 'Obstacle', o2: 'but…', o3: 'research question', approach: 'Approach', result: 'Result', benefit: 'Benefit' };
+  const lp = { goal: [26, 14, 'start'], o1: [26, 38, 'start'], o2: [42, 54, 'start'], o3: [40, 84, 'middle'], approach: [86, 79, 'start'], result: [96, 60, 'end'], benefit: [96, 14, 'end'] };
+  document.querySelectorAll('.u-mini').forEach(function(el) {
+    const at = el.dataset.at;
+    const showLabels = el.dataset.labels === '1';
+    let svg = '<svg viewBox="0 0 122 ' + (showLabels ? 94 : 86) + '" aria-hidden="true"><polyline class="u-path" points="' +
+      order.map(function(k) { return N[k][0] + ',' + N[k][1]; }).join(' ') + '"/>';
+    order.forEach(function(k) {
+      let cls = 'u-node';
+      if (k === at || (at === 'obstacle' && k[0] === 'o' && k.length === 2)) cls += ' here';
+      if (at === 'result-preview' && k === 'result') cls += ' preview';
+      svg += '<g class="' + cls + '"><circle cx="' + N[k][0] + '" cy="' + N[k][1] + '" r="7"/><text x="' + N[k][0] + '" y="' + N[k][1] + '">' + N[k][2] + '</text></g>';
+      if (showLabels) svg += '<text class="u-lab" text-anchor="' + lp[k][2] + '" x="' + lp[k][0] + '" y="' + lp[k][1] + '">' + labels[k] + '</text>';
+    });
+    el.innerHTML = svg + '</svg>';
+  });
+})();
+</script>
 
 <script>
 (function() {
