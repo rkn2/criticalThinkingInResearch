@@ -145,7 +145,6 @@
   .story-table td:first-child { font-weight: 700; color: var(--accent); white-space: nowrap; width: 8.5rem; }
   .story-table tr.blank-row td:last-child { color: var(--warn); font-style: italic; }
   .story-table .dimcell { color: var(--text-dim); font-size: 0.95rem; }
-  .story-table tr.carried td, .story-table tr.carried td:first-child { color: var(--text-dim); }
   .tag-bracket { color: var(--accent2); font-weight: 700; font-size: 0.9rem; white-space: nowrap; }
   .smap { display: grid; grid-template-columns: auto 1fr 1fr 1fr; grid-template-rows: auto auto auto; gap: 0.6rem; margin: 1rem 0; align-items: stretch; }
   .smap .axis { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); display: flex; align-items: center; }
@@ -461,7 +460,7 @@
     <span class="phase-label p1">Part 4: An Example Talk</span>
     <h2>A 4-Minute Talk, Annotated</h2>
     <p style="margin-bottom:0.5rem;">Next: six slides of a short talk on tornado damage to historic brick in Mayfield, KY. The setting is real; <strong>the numbers are made up</strong> for teaching. The talk fills the right of each slide. The panel on the left shows where it sits on the U, and why it is built that way.</p>
-    <p data-step="1">Notice the left arm. It is not one Obstacle box, it is a <strong>staircase</strong>: each &ldquo;but&rdquo; digs one level deeper into the goal, the way Haber went from feeding the world down to nitrogen&rsquo;s chemical bond. As on slide 7, the first &ldquo;but&rdquo; is your research question and the next one sets up your hypotheses.</p>
+    <p data-step="1">Notice the left arm. It is not one Obstacle box, it is a <strong>staircase</strong>: each &ldquo;but&rdquo; turns into a narrower &ldquo;we want,&rdquo; the way Haber went from feeding the world down to nitrogen&rsquo;s chemical bond. You dig down until you hit your research question.</p>
     <div class="u-mini u-big" data-at="none" data-labels="1" data-step="1"></div>
   </div>
 </div>
@@ -513,17 +512,18 @@
     <aside class="meta">
       <div class="meta-tag">Meta: Obstacles, digging in</div>
       <div class="u-mini" data-at="obstacle"></div>
-      <p data-step="4"><b>The goal carries over</b> from the last slide, so the first &ldquo;but&rdquo; is clearly a problem with <em>that</em> goal.</p><p data-step="5"><b>Same chain as slide 7.</b> The first &ldquo;but&rdquo; is the research question. The next one digs deeper and sets up the hypotheses.</p><p data-step="6"><b>Named precisely:</b> lack of data, then two causes tangled together. Not &ldquo;nobody has done this.&rdquo;</p>
+      <p data-step="6"><b>&ldquo;We want X, but Y,&rdquo; chained.</b> Each obstacle becomes a narrower goal. This is the staircase on the left arm.</p><p data-step="7"><b>Named precisely:</b> lack of data, then inconsistent findings across events. Not &ldquo;nobody has done this.&rdquo;</p><p data-step="8">The bottom step is the <b>research question</b>.</p>
       <p class="time">About 60 seconds</p>
     </aside>
     <div class="talk">
-      <h2>Why We Can&rsquo;t Just Pick</h2>
-      <table class="story-table">
-        <tr class="carried"><td>Goal</td><td>Pick which historic brick buildings to retrofit first.</td></tr>
-        <tr data-step="1"><td>Obstacle</td><td>But we don&rsquo;t know which features of a historic brick building make tornado damage more likely. Tornadoes rarely hit these buildings, so there&rsquo;s little data. <span class="tag-bracket">[research question]</span></td></tr>
-        <tr data-step="2"><td>Obstacle</td><td>But even within one storm, buildings closer to the track get hit harder. A building&rsquo;s features and its location are tangled together. <span class="tag-bracket">[hypotheses]</span></td></tr>
-      </table>
-      <p class="so-what" data-step="3">Research question: within one tornado, which building features go with more damage, once you account for distance?</p>
+      <h2>Why We Can&rsquo;t Just Rank Them</h2>
+      <div class="stair">
+        <div class="want" data-step="1" style="margin-left:0rem;"><em>We want</em> to rank buildings by how badly a tornado will hurt them,</div>
+        <div class="but" data-step="2" style="margin-left:1.5rem;"><em>but</em> tornadoes that hit historic brick are rare, so there&rsquo;s little damage data.</div>
+        <div class="want" data-step="3" style="margin-left:3rem;"><em>So we want</em> to learn from every past event we can,</div>
+        <div class="but" data-step="4" style="margin-left:4.5rem;"><em>but</em> each event gives only dozens of buildings, and pooling events teaches a model <em>which tornado</em>, not <em>which building</em>.</div>
+        <div class="rq" data-step="5" style="margin-left:6rem;">Within a single tornado, which building features go with more damage?</div>
+      </div>
       <div class="talk-foot"><span>Example talk: Mayfield setting, illustrative numbers</span><span>3 / 6</span></div>
     </div>
   </div>
@@ -598,7 +598,7 @@
     <h2>Check the Example Against the Storymap</h2>
     <table class="story-table">
       <tr data-step="1"><td>Goal</td><td>Pick which historic brick buildings to retrofit first <span class="dimcell">(30 s)</span></td></tr>
-      <tr data-step="2"><td>Obstacles</td><td>But which features matter? [research question] &rarr; But features and distance are tangled [hypotheses] <span class="dimcell">(60 s)</span></td></tr>
+      <tr data-step="2"><td>Obstacles</td><td>Rare events &rarr; few buildings &rarr; pooling learns the tornado &rarr; research question <span class="dimcell">(60 s)</span></td></tr>
       <tr data-step="3"><td>Approach</td><td>Hypotheses A, B, C, and parapets compared at equal distance <span class="dimcell">(60 s)</span></td></tr>
       <tr data-step="4"><td>Result</td><td>The parapet gap holds at every distance <span class="dimcell">(60 s)</span></td></tr>
       <tr data-step="5"><td>Benefit</td><td>A street-level screen, with its limits stated <span class="dimcell">(30 s)</span></td></tr>
@@ -634,12 +634,12 @@
 // Mini U-shape storymap: the left arm is a staircase of obstacles.
 (function() {
   const N = {
-    goal: [16, 12, 'G'], o1: [16, 38, 'O'], o2: [38, 60, 'O'],
-    approach: [70, 76, 'A'], result: [104, 58, 'R'], benefit: [104, 12, 'B']
+    goal: [16, 12, 'G'], o1: [16, 36, 'O'], o2: [32, 52, 'O'], o3: [48, 68, 'O'],
+    approach: [76, 76, 'A'], result: [106, 58, 'R'], benefit: [106, 12, 'B']
   };
-  const order = ['goal', 'o1', 'o2', 'approach', 'result', 'benefit'];
-  const labels = { goal: 'Goal', o1: 'But… [research question]', o2: 'But… [hypotheses]', approach: 'Approach', result: 'Result', benefit: 'Benefit' };
-  const lp = { goal: [26, 14, 'start'], o1: [26, 40, 'start'], o2: [34, 76, 'middle'], approach: [70, 91, 'middle'], result: [94, 60, 'end'], benefit: [94, 14, 'end'] };
+  const order = ['goal', 'o1', 'o2', 'o3', 'approach', 'result', 'benefit'];
+  const labels = { goal: 'Goal', o1: 'Obstacle', o2: 'but…', o3: 'research question', approach: 'Approach', result: 'Result', benefit: 'Benefit' };
+  const lp = { goal: [26, 14, 'start'], o1: [26, 38, 'start'], o2: [42, 54, 'start'], o3: [40, 84, 'middle'], approach: [86, 79, 'start'], result: [96, 60, 'end'], benefit: [96, 14, 'end'] };
   document.querySelectorAll('.u-mini').forEach(function(el) {
     const at = el.dataset.at;
     const showLabels = el.dataset.labels === '1';
