@@ -175,7 +175,7 @@ Approach = competing hypotheses + how you tell them apart, Result and
 Benefit stay inside the scope (check against the scope paragraph and
 boundary map). Click-to-reveal builds as in Week 5.
 
-**Example talk (added Oct 7):** after the half-life workshop, a 4-minute
+**Example talk (added Oct 7):** after the half-life workshop, a 5-minute
 annotated example talk (six slides plus a debrief). Each slide is 80% talk,
 20% meta panel: a mini U-shape storymap showing where the slide sits, plus
 notes tying it to this week's concepts. The left arm of the U is drawn as a
