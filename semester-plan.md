@@ -116,7 +116,7 @@ pair.** Becca gives written feedback.
 
 ---
 
-## Phase 2: The Investigation (Weeks 5–8)
+## Phase 2: The Investigation (Weeks 5–7)
 
 ### Week 5 — Scope: what are you not claiming? (Oct 1)
 
@@ -163,7 +163,7 @@ paragraph (question + hypothesis) due Week 6.
 Slides: `docs/week06-slides.html`. Adapted from Ardon Shorr, "Telling
 Research Stories" (Princeton, Spring 2020; source in OneDrive
 `archivedDocs/Princeton/Courses/2020Spring/Slides & Handouts/3 Stories`).
-Start of presentation work, aimed at the Oct 22 midpoint talk.
+Start of presentation work, aimed at the Oct 15 5-minute pitches.
 
 Invert the pyramid: lead with the result, not the background. Say what each
 detail means. The story template (Goal, Obstacle, Approach, Result, Benefit),
@@ -187,8 +187,8 @@ slides say so.
 **Workshops:** (1) Build your storymap, all five elements. (2) Half-life
 your message: 60, 30, 15, 8 seconds with a partner (Aurbach et al. 2018).
 
-**Deliverable due: Scope paragraph (question + hypothesis).** Bring the
-storymap next session.
+**Deliverable due: Scope paragraph (question + hypothesis).** Turn the
+storymap into a 5-minute pitch for next session (Oct 15).
 
 **Bumped (decided Oct 1), placement TBD:** Designing computational
 experiments. You do not "run the model." You design experiments. An
@@ -203,120 +203,40 @@ your conclusion.
 
 ---
 
-### Week 7 — What counts as evidence? (Oct 15)
+### Week 7 — 5-minute pitches (Oct 15)
 
-The difference between "my model ran" and "my results support the hypothesis."
-A converged simulation is not a finding. A pretty contour plot is not
-evidence. Evidence is a result that distinguishes between your hypothesis and
-an alternative.
+Decided Oct 8. Everyone gives a 5-minute pitch built from their Week 6
+storymap (the U-shape), then gets feedback. About 5 min + 6 min feedback
+each; if it runs long, the last one or two go first on Oct 22. No result
+yet: state the expected result and mark it as expected.
 
-**Workshop:** Take one result you already have. Write: (1) what the result is,
-(2) what it supports, (3) what alternative explanation it does NOT rule out,
-(4) what additional experiment would rule that alternative out.
+**Feedback, in storymap terms:** Is the goal clear, and who cares? Do the
+"but"s dig down to a research question? Competing hypotheses, and a way to
+tell them apart? A result, or the broken "here's what I did" path? Benefit
+inside the scope? The 8-second version?
 
-**Deliverable due: Experimental design.** Becca gives written feedback
-before Week 8.
-
-"Validation is not confidence" was dropped as a standalone topic (Sep 24).
-
----
-
-### Week 8 — Midpoint presentation (Oct 22)
-
-Each student gives a 10-minute presentation to the group:
-Research question → method → preliminary results → what is next.
-
-This is the first full dry run of the December narrative. Use the structure
-from Week 11's concept (previewed here): 1-2 slides of motivation, then
-hit the question, then results, then next steps.
-
-**Critique focus:** Is the question clear? Does the method follow from the
-question (not from the tool)? Did you get to results? Can you explain
-everything on every slide in your own words?
-
-**Each student gets ~10 min presentation + ~7 min of feedback.**
+The old Week 7 topic ("What counts as evidence?") and the experimental
+design deliverable are dropped as standalone items; evidence comes up in
+the feedback on hypotheses.
 
 ---
 
-## Phase 3: The Story (Weeks 9–12)
+## Phase 3: Talks and Questions (Weeks 8–14)
 
-### Week 9 — What did you find? (Oct 29)
+### Weeks 8–13 — Practice talks and questions (Oct 22 – Dec 3)
 
-A result is not "the model ran." A result is "the model shows that X because
-Y, and this matters because Z." If you cannot state your finding in one
-sentence without naming a software package, you have not yet found anything.
+Left open on purpose (decided Oct 8): the rest of the semester is giving
+talks and asking / answering questions, with the format set week to week
+based on what the Oct 15 pitches show. No session Thanksgiving week
+(Thu Nov 26).
 
-**Workshop:** Write your results section as a series of one-sentence findings.
-No method, no motivation — just: what did you learn? Then rank them: which
-one is the headline?
-
----
-
-### Week 10 — Making your results visible (Nov 5)
-
-A good figure makes the finding obvious. A bad figure makes the reader do
-the work. Every figure must have a point — if you cannot write a one-sentence
-caption that states what the reader should see, the figure is not ready.
-
-**Workshop:** Take your most important result. Make a figure (sketch or
-draft) that makes the finding immediately clear to someone who has not read
-your paper. Write the one-sentence caption.
-
-**Reading (for next week):** Selection from the scientific graphics book
-(Becca assigns).
-
----
-
-### Week 11 — Narrative arc and presentation structure (Nov 12)
-
-The committee does not need your life story. They need: (1) what problem you
-are solving, (2) how you are solving it, (3) what you found so far, (4) what
-is next and how you know it will work.
-
-If you spend half your talk on motivation and never get to results, the
-committee concludes you do not have results. The fix is not "talk faster" —
-it is "cut the motivation to 1-2 slides and lead with what you've done."
-
-**Workshop:** Build your December presentation outline. Slide-by-slide plan
-with one sentence per slide. Total presentation should be 20-25 minutes.
-Time-check: if more than 3 slides are before your first result, cut.
-
-**Deliverable due: Presentation outline.**
-Becca gives written feedback.
-
----
-
-### Week 12 — Draft presentation + practice questions (Nov 19)
-
-Full draft presentations (15-20 min each if time allows, otherwise rotate
-so each student presents a portion and the others present the following week).
-
-Becca and students play committee. Ask the hard questions:
-- "What calculation does that tool actually perform?"
-- "Why this method and not an alternative?"
-- "What would make you wrong?"
-- "Who uses this and under what circumstances?"
-
-**Focus:** Can you answer "why" questions, not just "what" questions?
-
----
-
-*Thanksgiving (Thu Nov 26) — no session. Week 13 moves to Dec 3.*
-
----
-
-### Week 13 — Final practice + committee-style questioning (Dec 3)
-
-Refined presentations. Becca plays each committee member's role — asks the
-kinds of questions Paul, Nate, Orsolya, and Maggie would ask based on
-their disciplinary perspectives.
-
-- Paul-style: "What does your loading actually represent physically?"
-- Nate-style: "What is your computational strategy and is it feasible?"
-- Orsolya-style: "Who uses this and what decisions does it support?"
-- Maggie-style: "What data do you wish you had, and what do you do without it?"
-
-**Deliverable due: Final presentation draft.**
+Ideas from the original plan to pull from as needed: one-sentence findings
+(rank the headline), figures with a one-sentence caption, a slide-by-slide
+outline of the December talk, full draft talks with the group playing
+committee, and committee-style questions in the voice of each member
+(Paul: what does the loading represent physically; Nate: is the
+computational strategy feasible; Orsolya: who uses this and what decisions
+does it support; Maggie: what data do you wish you had).
 
 ---
 
@@ -370,9 +290,8 @@ Other resources Becca may want to pull from:
 |------|-------------|---------------|
 | Oct 1 (Week 5) | Research question (revised) + hypothesis pair | Becca, written |
 | Oct 8 (Week 6) | Scope paragraph (question + hypothesis) | Becca, written |
-| Oct 15 (Week 7) | Experimental design | Becca, written |
-| Nov 12 (Week 11) | Presentation outline (slide-by-slide) | Becca + group |
-| Dec 3 (Week 13) | Final presentation draft | Becca (committee-style) |
+| Oct 15 (Week 7) | 5-minute pitch | Group + Becca, live |
+| Oct 22 – Dec 3 | Practice talks, set week to week | Group + Becca, live |
 | Dec 8 (Week 14) | Committee presentation | Full committee |
 
 ---
