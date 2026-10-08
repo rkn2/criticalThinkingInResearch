@@ -145,6 +145,7 @@
   .story-table td:first-child { font-weight: 700; color: var(--accent); white-space: nowrap; width: 8.5rem; }
   .story-table tr.blank-row td:last-child { color: var(--warn); font-style: italic; }
   .story-table .dimcell { color: var(--text-dim); font-size: 0.95rem; }
+  .tag-bracket { color: var(--accent2); font-weight: 700; font-size: 0.9rem; white-space: nowrap; }
   .smap { display: grid; grid-template-columns: auto 1fr 1fr 1fr; grid-template-rows: auto auto auto; gap: 0.6rem; margin: 1rem 0; align-items: stretch; }
   .smap .axis { font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); display: flex; align-items: center; }
   .smap .cell { padding: 0.8rem; border: 1px solid var(--border); background: var(--surface); font-size: 1rem; text-align: center; line-height: 1.35; }
@@ -327,13 +328,13 @@
     <p class="dim" style="margin-bottom:0.75rem;">Built from the research question and hypotheses we scoped last week</p>
     <table class="story-table">
       <tr data-step="1"><td>Goal</td><td>Historic brick buildings in tornado country need retrofits that don&rsquo;t destroy what makes them historic.</td></tr>
-      <tr data-step="2"><td>Obstacle</td><td>We don&rsquo;t know the structural limits of retrofitting historic URM against tornadoes, or how those limits interact with preservation.</td></tr>
-      <tr data-step="3"><td>Obstacle</td><td>Design equations assume the strip&rsquo;s own strength governs. On low-strength lime-mortar brick, that may not hold.</td></tr>
+      <tr data-step="2"><td>Obstacle</td><td>But we don&rsquo;t know the structural limits of retrofitting historic URM against tornadoes, or how those limits interact with preservation. <span class="tag-bracket">[research question]</span></td></tr>
+      <tr data-step="3"><td>Obstacle</td><td>But in these buildings the floor joists just sit in pockets in the brick, with no anchors. A retrofit has to tie them to a weak lime-mortar wall, and no one knows which part of that tie gives first. <span class="tag-bracket">[hypotheses]</span></td></tr>
       <tr data-step="4"><td>Approach</td><td>Test whether bond (A), strip strength (B), or the masonry itself (C) governs, with the design efficiency factor and an FE model.</td></tr>
       <tr data-step="5" class="blank-row"><td>Result</td><td>This is the line your committee is waiting for.</td></tr>
       <tr data-step="6"><td>Benefit</td><td>If bond governs, a lighter intervention is structurally optimal, which favors preservation.</td></tr>
     </table>
-    <p style="margin-top:0.75rem;" data-step="7">Notice where your earlier work lands: <strong>Goal</strong> is your Step 3 (why anyone cares). The first <strong>Obstacle</strong> is your research question. <strong>Approach</strong> is your competing hypotheses and how you tell them apart. <strong>Result</strong> and <strong>Benefit</strong> have to stay inside your scope.</p>
+    <p style="margin-top:0.75rem;" data-step="7">Notice where your earlier work lands: <strong>Goal</strong> is your Step 3 (why anyone cares). The first <strong>Obstacle</strong> is your research question. The last <strong>Obstacle</strong> sets up your hypotheses, and <strong>Approach</strong> is how you tell them apart. <strong>Result</strong> and <strong>Benefit</strong> have to stay inside your scope.</p>
   </div>
 </div>
 
