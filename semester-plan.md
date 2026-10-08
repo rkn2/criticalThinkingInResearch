@@ -185,6 +185,11 @@ slides say so.
 **Workshops:** (1) Build your storymap, all five elements. (2) Half-life
 your message: 60, 30, 15, 8 seconds with a partner (Aurbach et al. 2018).
 
+**As taught (Oct 8):** Becca pulled the half-life workshop out of this
+session; it moves to Week 7, after the pitches. Unsure whether that was the
+right call, so check how it lands on Oct 15 and decide for next year whether
+it belongs here or after a first full pitch.
+
 **Deliverable due: Scope paragraph (question + hypothesis).** Turn the
 storymap into a 5-minute pitch for next session (Oct 15).
 
@@ -209,6 +214,13 @@ Decided Oct 8. Everyone gives a 5-minute pitch built from their Week 6
 storymap (the U-shape), then gets feedback. About 5 min + 6 min feedback
 each; if it runs long, the last one or two go first on Oct 22. No result
 yet: state the expected result and mark it as expected.
+
+Students make the pitch as a PowerPoint (.pptx).
+
+**Then half-life it** (moved from Week 6): after the pitches, each student
+retells their message in 60, 30, 15, then 8 seconds with a partner (Aurbach
+et al. 2018). Having just given the 5-minute version should make the cuts
+easier to see.
 
 **Feedback, in storymap terms:** Is the goal clear, and who cares? Do the
 "but"s dig down to a research question? Competing hypotheses, and a way to
