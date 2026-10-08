@@ -29,7 +29,7 @@ probe/validate/ablate the answer, and synthesize what you found.
 
 ---
 
-## Phase 1: The Question (Weeks 1–4)
+## Phase 1: From Question to Story (Weeks 1–6)
 
 ### Week 1 — What does a good PhD look like? (Sep 1)
 
@@ -116,8 +116,6 @@ pair.** Becca gives written feedback.
 
 ---
 
-## Phase 2: The Investigation (Weeks 5–7)
-
 ### Week 5 — Scope: what are you not claiming? (Oct 1)
 
 Slides: `docs/week05-slides.html`.
@@ -203,6 +201,8 @@ your conclusion.
 
 ---
 
+## Phase 2: Talks and Questions (Weeks 7–14)
+
 ### Week 7 — 5-minute pitches (Oct 15)
 
 Decided Oct 8. Everyone gives a 5-minute pitch built from their Week 6
@@ -220,8 +220,6 @@ design deliverable are dropped as standalone items; evidence comes up in
 the feedback on hypotheses.
 
 ---
-
-## Phase 3: Talks and Questions (Weeks 8–14)
 
 ### Weeks 8–13 — Practice talks and questions (Oct 22 – Dec 3)
 
