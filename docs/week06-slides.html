@@ -182,10 +182,13 @@
   .u-mini .u-lab { fill: var(--text-dim); font: 500 6.5px Roboto, sans-serif; }
   .u-big { max-width: 560px; margin: 0.5rem auto 0; }
   .stair { margin: 0.25rem 0 0; }
-  .stair div { font-size: 1.08rem; line-height: 1.35; padding: 0.3rem 0.7rem; margin-bottom: 0.3rem; border-left: 3px solid var(--accent2); }
+  .stair .want, .stair .but, .stair .rq { font-size: 1.08rem; line-height: 1.35; padding: 0.3rem 0.7rem; margin-bottom: 0.3rem; border-left: 3px solid var(--accent2); }
   .stair .but { border-left-color: var(--warn); }
   .stair .but em { color: var(--warn); font-style: normal; font-weight: 700; }
   .stair .want em { color: var(--accent2); font-style: normal; font-weight: 700; }
+  .stair-row { display: flex; align-items: flex-start; }
+  .stair-row > div { flex: 1; }
+  .stair-lab { width: 7.5rem; flex-shrink: 0; padding-top: 0.35rem; font-size: 0.95rem; font-weight: 700; color: var(--accent); }
   .stair .rq { border: 1px solid var(--accent); border-left-width: 3px; background: var(--highlight); font-weight: 600; }
   .hyp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin: 0.5rem 0 1rem; }
   .hyp div { border: 1px solid var(--border); border-top: 3px solid var(--accent2); padding: 0.7rem 0.8rem; font-size: 1rem; line-height: 1.4; }
@@ -512,17 +515,17 @@
     <aside class="meta">
       <div class="meta-tag">Meta: Obstacles, digging in</div>
       <div class="u-mini" data-at="obstacle"></div>
-      <p data-step="6"><b>&ldquo;We want X, but Y,&rdquo; chained.</b> Each obstacle becomes a narrower goal. This is the staircase on the left arm.</p><p data-step="7"><b>Named precisely:</b> lack of data, then inconsistent findings across events. Not &ldquo;nobody has done this.&rdquo;</p><p data-step="8">The bottom step is the <b>research question</b>.</p>
+      <p data-step="6"><b>&ldquo;We want X, but Y,&rdquo; chained.</b> Each obstacle becomes a narrower goal. This is the staircase on the left arm.</p><p data-step="7"><b>Named precisely:</b> lack of resources (cost), then lack of theory (design rules for modern buildings don&rsquo;t transfer). Not &ldquo;nobody has done this.&rdquo;</p><p data-step="8">The bottom step is the <b>research question</b>.</p>
       <p class="time">About 60 seconds</p>
     </aside>
     <div class="talk">
-      <h2>Why We Can&rsquo;t Just Rank Them</h2>
+      <h2>Why We Can&rsquo;t Just Pick</h2>
       <div class="stair">
-        <div class="want" data-step="1" style="margin-left:0rem;"><em>We want</em> to rank buildings by how badly a tornado will hurt them,</div>
-        <div class="but" data-step="2" style="margin-left:1.5rem;"><em>but</em> tornadoes that hit historic brick are rare, so there&rsquo;s little damage data.</div>
-        <div class="want" data-step="3" style="margin-left:3rem;"><em>So we want</em> to learn from every past event we can,</div>
-        <div class="but" data-step="4" style="margin-left:4.5rem;"><em>but</em> each event gives only dozens of buildings, and pooling events teaches a model <em>which tornado</em>, not <em>which building</em>.</div>
-        <div class="rq" data-step="5" style="margin-left:6rem;">Within a single tornado, which building features go with more damage?</div>
+        <div class="stair-row" data-step="1"><span class="stair-lab">Goal</span><div class="want" style="margin-left:0rem;"><em>We want</em> to pick which historic buildings to retrofit first,</div></div>
+        <div class="stair-row" data-step="2"><span class="stair-lab">Obstacle</span><div class="but" style="margin-left:1.5rem;"><em>but</em> a full engineering assessment of every building costs more than a small town can spend.</div></div>
+        <div class="stair-row" data-step="3"><span class="stair-lab">Goal</span><div class="want" style="margin-left:3rem;"><em>So we want</em> a first pass from what you can see from the street,</div></div>
+        <div class="stair-row" data-step="4"><span class="stair-lab">Obstacle</span><div class="but" style="margin-left:4.5rem;"><em>but</em> wind design was written for modern buildings. Nothing tells you which features of a historic brick building, like tall parapets, open storefronts, or walls not tied to floors, matter in a tornado.</div></div>
+        <div class="stair-row" data-step="5"><span class="stair-lab">Research question</span><div class="rq" style="margin-left:6rem;">Which features you can see from the street go with more tornado damage in historic brick buildings?</div></div>
       </div>
       <div class="talk-foot"><span>Example talk: Mayfield setting, illustrative numbers</span><span>3 / 6</span></div>
     </div>
@@ -598,7 +601,7 @@
     <h2>Check the Example Against the Storymap</h2>
     <table class="story-table">
       <tr data-step="1"><td>Goal</td><td>Pick which historic brick buildings to retrofit first <span class="dimcell">(30 s)</span></td></tr>
-      <tr data-step="2"><td>Obstacles</td><td>Rare events &rarr; few buildings &rarr; pooling learns the tornado &rarr; research question <span class="dimcell">(60 s)</span></td></tr>
+      <tr data-step="2"><td>Obstacles</td><td>Can&rsquo;t assess every building &rarr; no guide to which visible features matter &rarr; research question <span class="dimcell">(60 s)</span></td></tr>
       <tr data-step="3"><td>Approach</td><td>Hypotheses A, B, C, and parapets compared at equal distance <span class="dimcell">(60 s)</span></td></tr>
       <tr data-step="4"><td>Result</td><td>The parapet gap holds at every distance <span class="dimcell">(60 s)</span></td></tr>
       <tr data-step="5"><td>Benefit</td><td>A street-level screen, with its limits stated <span class="dimcell">(30 s)</span></td></tr>
