@@ -187,7 +187,7 @@ your message: 60, 30, 15, 8 seconds with a partner (Aurbach et al. 2018).
 
 **As taught (Oct 8):** Becca pulled the half-life workshop out of this
 session; it moves to Week 7, after the pitches. Unsure whether that was the
-right call, so check how it lands on Oct 15 and decide for next year whether
+right call, so check how it lands on Oct 22 and decide for next year whether
 it belongs here or after a first full pitch.
 
 **Deliverable due: Scope paragraph (question + hypothesis).** Turn the
@@ -208,11 +208,15 @@ your conclusion.
 
 ## Phase 2: Talks and Questions (Weeks 7–14)
 
-### Week 7 — 5-minute pitches (Oct 15)
+### Week 7 — 5-minute pitches (Oct 15 on their own, pitches Oct 22)
+
+**Changed Oct 15:** students work through the Week 7 worksheets on their
+own this week and bring the pitch as a .pptx on Oct 22. The pitches and
+the half-life workshop below happen Oct 22.
 
 Decided Oct 8. Everyone gives a 5-minute pitch built from their Week 6
 storymap (the U-shape), then gets feedback. About 5 min + 6 min feedback
-each; if it runs long, the last one or two go first on Oct 22. No result
+each; if it runs long, the last one or two go first on Oct 29. No result
 yet: state the expected result and mark it as expected.
 
 Students make the pitch as a PowerPoint (.pptx).
@@ -233,11 +237,11 @@ the feedback on hypotheses.
 
 ---
 
-### Weeks 8–13 — Practice talks and questions (Oct 22 – Dec 3)
+### Weeks 8–13 — Practice talks and questions (Oct 29 – Dec 3)
 
 Left open on purpose (decided Oct 8): the rest of the semester is giving
 talks and asking / answering questions, with the format set week to week
-based on what the Oct 15 pitches show. No session Thanksgiving week
+based on what the Oct 22 pitches show. No session Thanksgiving week
 (Thu Nov 26).
 
 Ideas from the original plan to pull from as needed: one-sentence findings
