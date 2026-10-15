@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 6 — Worksheets</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Slab:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --bg: #F7F7F5;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-dim: #555555;
+    --accent: #001E44;
+    --accent2: #1E407C;
+    --accent3: #96BEE6;
+    --border: #C9C9C9;
+    --highlight: #EDF3FA;
+    --warn: #9B2335;
+    --rule: #D6D6D6;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E0E0D;
+      --surface: #1A1A18;
+      --text: #E8E6E1;
+      --text-dim: #9A9890;
+      --accent: #96BEE6;
+      --accent2: #6FA3D4;
+      --accent3: #3A6EA0;
+      --border: #3A3A36;
+      --highlight: #141E2A;
+      --warn: #E05A6A;
+      --rule: #33332F;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E0E0D;
+    --surface: #1A1A18;
+    --text: #E8E6E1;
+    --text-dim: #9A9890;
+    --accent: #96BEE6;
+    --accent2: #6FA3D4;
+    --accent3: #3A6EA0;
+    --border: #3A3A36;
+    --highlight: #141E2A;
+    --warn: #E05A6A;
+    --rule: #33332F;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: var(--bg); color: var(--text); font-family: 'Roboto', system-ui, sans-serif; font-size: 15px; line-height: 1.5; }
+
+  .sheet { max-width: 8.5in; margin: 24px auto; background: var(--surface); border: 1px solid var(--border); padding: 0.6in 0.65in; }
+
+  .sheet-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 20px; border-bottom: 2px solid var(--accent); padding-bottom: 10px; margin-bottom: 14px; }
+  .stage { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; }
+  h1 { font-family: 'Roboto Slab', Georgia, serif; font-size: 26px; line-height: 1.2; color: var(--accent); margin: 2px 0 4px; }
+  h2 { font-family: 'Roboto Slab', Georgia, serif; font-size: 16px; color: var(--accent); margin: 14px 0 6px; }
+  .lede { color: var(--text-dim); font-size: 14px; }
+  p { margin: 4px 0; }
+  em { font-style: italic; }
+
+  .pull { border-left: 3px solid var(--accent); background: var(--highlight); padding: 8px 12px; margin: 10px 0; font-size: 15px; }
+  .pull b { color: var(--accent); }
+
+  .example { border: 1px dashed var(--border); padding: 8px 12px; margin: 10px 0; font-size: 13.5px; color: var(--text); }
+  .example .tag { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-dim); display: block; margin-bottom: 3px; }
+
+  .write { border: 1px solid var(--border); border-radius: 3px; margin: 6px 0 10px; position: relative;
+           background-image: repeating-linear-gradient(to bottom, transparent 0, transparent 27px, var(--rule) 27px, var(--rule) 28px);
+           background-position: 0 6px; }
+  .write.l2 { height: 64px; } .write.l3 { height: 92px; } .write.l4 { height: 120px; } .write.l5 { height: 148px; }
+  .label { font-weight: 500; font-size: 14px; margin-top: 8px; }
+  .hint { color: var(--text-dim); font-size: 13px; font-weight: 400; }
+
+  .check { border-top: 1px solid var(--border); margin-top: 14px; padding-top: 8px; }
+  .check h2 { margin-top: 0; }
+  .check ul { list-style: none; }
+  .check li { padding: 2px 0 2px 24px; position: relative; font-size: 14px; }
+  .check li::before { content: ''; position: absolute; left: 0; top: 5px; width: 12px; height: 12px; border: 1.5px solid var(--accent); border-radius: 2px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; margin: 6px 0 10px; }
+  th { text-align: left; font-weight: 500; color: var(--text-dim); font-size: 12px; padding: 4px 6px; border-bottom: 1.5px solid var(--accent); }
+  td { border: 1px solid var(--border); padding: 6px; vertical-align: top; }
+  td.blank { height: 48px; }
+  td.tall { height: 70px; }
+  .plan td.tall { height: 92px; }
+  td.k { width: 22%; font-weight: 500; }
+  .kinds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 12.5px; margin: 6px 0; }
+  .kinds b { color: var(--accent); }
+
+  .stair { margin: 6px 0; }
+  .stair-row { display: grid; grid-template-columns: 92px 1fr 70px; gap: 6px; align-items: stretch; margin-bottom: 5px; }
+  .stair-row .who { font-weight: 500; font-size: 13px; padding-top: 6px; }
+  .stair-row .box { border: 1px solid var(--border); border-radius: 3px; height: 40px; }
+  .stair-row .kind { border: 1px solid var(--border); border-radius: 3px; font-size: 10.5px; color: var(--text-dim); padding: 2px 4px; }
+  .stair-row.s1 { margin-left: 0; } .stair-row.s2 { margin-left: 18px; } .stair-row.s3 { margin-left: 36px; } .stair-row.s4 { margin-left: 54px; } .stair-row.s5 { margin-left: 72px; } .stair-row.s6 { margin-left: 90px; } .stair-row.s7 { margin-left: 108px; }
+  .stair-row.rq .box { border: 2px solid var(--accent); height: 52px; }
+  .stair-row.rq .who { color: var(--accent); }
+
+  .u-mini svg { width: 150px; height: auto; display: block; }
+  .u-path { fill: none; stroke: var(--accent3); stroke-width: 3; stroke-linejoin: round; }
+  .u-dot { fill: var(--surface); stroke: var(--accent3); stroke-width: 2; }
+  .u-dot.on { fill: var(--accent); stroke: var(--accent); }
+  .u-lab { font-size: 9px; fill: var(--text-dim); font-family: 'Roboto', sans-serif; }
+  .u-lab.on { fill: var(--accent); font-weight: 700; }
+
+  .bigU { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 40px; margin: 8px 0; }
+  .bigU .cell { border: 1px solid var(--border); border-radius: 3px; padding: 4px 8px; height: 104px; font-size: 12px; font-weight: 500; color: var(--accent); }
+  .bigU .cell.bottom { grid-column: 1 / span 2; margin: 0 22%; }
+
+  .steps { counter-reset: s; list-style: none; margin: 8px 0; }
+  .steps li { counter-increment: s; padding: 4px 0 4px 34px; position: relative; }
+  .steps li::before { content: counter(s); position: absolute; left: 0; top: 4px; width: 22px; height: 22px; border-radius: 50%; background: var(--accent); color: var(--surface); font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+
+  .foot { margin-top: 12px; font-size: 11px; color: var(--text-dim); }
+
+  @media (max-width: 640px) {
+    .sheet { margin: 0; border: 0; padding: 20px 16px; }
+    .sheet-head { flex-direction: column; }
+    .kinds { grid-template-columns: 1fr 1fr; }
+    .stair-row { grid-template-columns: 70px 1fr 56px; }
+    .stair-row.s2, .stair-row.s3, .stair-row.s4, .stair-row.s5, .stair-row.s6, .stair-row.s7 { margin-left: 0; }
+    .bigU { gap: 8px 12px; }
+    .bigU .cell.bottom { margin: 0; }
+  }
+
+  @page { size: letter; margin: 0.45in; }
+  @media print {
+    :root, :root:not([data-theme="light"]) {
+      --bg: #FFFFFF; --surface: #FFFFFF; --text: #1A1A1A; --text-dim: #555555;
+      --accent: #001E44; --accent3: #96BEE6; --border: #B5B5B5; --highlight: #EDF3FA; --rule: #D6D6D6;
+    }
+    body { background: #fff; font-size: 13.5px; }
+    .sheet { margin: 0; border: 0; padding: 0; max-width: none; break-after: page; }
+    .sheet:last-child { break-after: auto; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+
+  .arc svg { width: 210px; height: auto; display: block; }
+  .arc-line { stroke: var(--accent3); stroke-width: 2; }
+  .arc-dot { fill: var(--surface); stroke: var(--accent3); stroke-width: 1.5; }
+  .arc-dot.done { fill: var(--highlight); }
+  .arc-dot.on { fill: var(--accent); stroke: var(--accent); }
+  .arc-num { font-size: 9px; fill: var(--text-dim); font-family: 'Roboto', sans-serif; font-weight: 500; }
+  .arc-num.on { fill: var(--surface); }
+  .arc-lab { font-size: 9.5px; fill: var(--accent); font-family: 'Roboto', sans-serif; font-weight: 700; }
+
+  .cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 10px 0; }
+  .card { border: 1px solid var(--border); border-radius: 3px; padding: 8px 11px; font-size: 13.5px; }
+  .card h3 { font-family: 'Roboto Slab', Georgia, serif; font-size: 14.5px; color: var(--accent); margin-bottom: 3px; }
+  .card.wide { grid-column: 1 / span 2; }
+  .vs { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 6px 0; }
+  .vs > div { border: 1px solid var(--border); border-radius: 3px; padding: 7px 10px; font-size: 13px; }
+  .vs .bad { border-left: 3px solid var(--warn); }
+  .vs .good { border-left: 3px solid var(--accent); }
+  .vs b.t { display: block; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--text-dim); font-weight: 500; }
+  blockquote.q { border-left: 3px solid var(--accent3); padding: 4px 12px; margin: 10px 0; font-style: italic; font-size: 14px; }
+  blockquote.q .src { display: block; font-style: normal; font-size: 12px; color: var(--text-dim); margin-top: 3px; }
+  .three { counter-reset: t; list-style: none; margin: 4px 0; }
+  .three li { counter-increment: t; padding: 2px 0 2px 22px; position: relative; font-size: 13.5px; }
+  .three li::before { content: counter(t) "."; position: absolute; left: 0; font-weight: 700; color: var(--accent); }
+  .draw { border: 1px solid var(--border); border-radius: 3px; margin: 6px 0 10px; }
+  .draw svg { width: 100%; height: auto; display: block; }
+  .draw-ell { fill: none; stroke: var(--accent); stroke-width: 1.5; }
+  .draw-lab { font-size: 11px; fill: var(--text-dim); font-family: 'Roboto', sans-serif; }
+  .carry { border: 2px solid var(--accent); border-radius: 3px; padding: 10px 12px 4px; margin-top: 12px; }
+  .carry h2 { margin-top: 0; }
+  .circle-opts { margin: 4px 0 8px 12px; letter-spacing: 0.02em; }
+  .circle-opts span { margin-right: 28px; }
+  td.mid { height: 36px; }
+  img.inline { max-width: 100%; border: 1px solid var(--border); }
+  @media (max-width: 640px) {
+    .cards, .vs { grid-template-columns: 1fr; }
+    .card.wide { grid-column: auto; }
+  }
+</style>
+</head>
+<body>
+<!-- title: Week 6 — Worksheets -->
+
+<!-- 1: Read first -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <div class="stage">Week 6 &middot; Read first</div>
+      <h1>Telling a Research Story</h1>
+      <p class="lede">Putting everything you have built into an order an audience can follow</p>
+    </div>
+    <div class="arc" data-week="6"></div>
+  </div>
+
+  <h2>Invert the pyramid</h2>
+  <p>Papers teach us to establish credibility first: background, then methods, then, finally, the result. A listener stops paying attention long before they get there. <b>Start with the result and why it matters, then fill in the details.</b> <span class="dim">(After Somerville &amp; Hassol 2011, via Shorr)</span></p>
+
+  <h2>Say what the detail means</h2>
+  <table>
+    <tr><th style="width:50%">The detail</th><th>What it means</th></tr>
+    <tr><td>&ldquo;Excitation was restricted to a femtoliter volume.&rdquo;</td><td>&ldquo;We eliminated a major source of noise.&rdquo;</td></tr>
+    <tr><td>&ldquo;I&rsquo;m building an annotated corpus.&rdquo;</td><td>&ldquo;I&rsquo;m teaching a computer what to look for.&rdquo;</td></tr>
+    <tr><td>&ldquo;I ran 200 nonlinear analyses.&rdquo;</td><td class="dim">? If you can&rsquo;t fill this in, the analyses are what you <em>did</em>, not what you <em>found</em>.</td></tr>
+  </table>
+
+  <h2>Research fits a story template</h2>
+  <div class="cards" style="margin-top:4px">
+    <div class="card">
+      <b>Goal:</b> the big problem you&rsquo;re trying to solve<br>
+      <b>Obstacle:</b> why it&rsquo;s hard, and why it hasn&rsquo;t been done<br>
+      <b>Approach:</b> what you do that gets past the obstacle<br>
+      <b>Result:</b> what you found (so far)<br>
+      <b>Benefit:</b> how that result moves the original goal forward
+      <p class="hint" style="margin-top:4px">The elements are a checklist. A missing one is a hole in your talk.</p>
+    </div>
+    <div class="card">
+      <h3>&ldquo;We want ___, but ___&rdquo;</h3>
+      Chain the obstacles; each one you solve becomes the next, narrower goal. Radiolab on Fritz Haber: the world couldn&rsquo;t feed a growing population, <b>but</b> plants need nitrogen, <b>but</b> the nitrogen in the air isn&rsquo;t in a form plants can use, <b>but</b> it clings tightly to itself. Haber used temperature and pressure to turn it into ammonia, and that helps feed billions of people.
+    </div>
+  </div>
+
+  <h2>The U-shape, and the broken path</h2>
+  <p>A talk starts at the Goal, goes down through the Obstacles, across your Approach, up through your Results, and finishes at the Benefit. The most common failure stays on the bottom row: all Approach, with no Goal it serves and no Benefit it delivers. That is the &ldquo;here&rsquo;s what I did&rdquo; talk instead of the &ldquo;here&rsquo;s what I learned&rdquo; talk.</p>
+
+  <p class="foot">Adapted from Ardon Shorr, &ldquo;Telling Research Stories,&rdquo; Princeton (2020). The Week 7 packet walks the U one stop at a time.</p>
+</section>
+
+<!-- 2: Learned vs did -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <div class="stage">Week 6 &middot; Worksheet 1</div>
+      <h1>Lead With What You Learned</h1>
+      <p class="lede">Turning what you did into what it means</p>
+    </div>
+    <div class="arc" data-week="6"></div>
+  </div>
+
+  <div class="pull"><b>Warm-up:</b> Write your current key finding in one sentence. Read it to yourself. Is this something you <em>learned</em>, or something you <em>did</em>?</div>
+  <div class="write l3"></div>
+  <p class="circle-opts"><span>learned</span><span>did</span></p>
+
+  <p class="label">Say what your details mean. <span class="hint">List technical details you&rsquo;d put in a talk: a method, a dataset, a number of runs, a model choice. Then say what each one means for someone who doesn&rsquo;t do your work.</span></p>
+  <table>
+    <tr><th style="width:50%">The detail</th><th>What it means</th></tr>
+    <tr><td class="blank"></td><td></td></tr>
+    <tr><td class="blank"></td><td></td></tr>
+    <tr><td class="blank"></td><td></td></tr>
+    <tr><td class="blank"></td><td></td></tr>
+  </table>
+
+  <p class="label">Invert your pyramid. <span class="hint">Write the first two sentences of a talk on your work: the result, then why it matters. Background comes later.</span></p>
+  <div class="write l4"></div>
+
+  <div class="check">
+    <h2>Check before you move on</h2>
+    <ul>
+      <li>Any row you couldn&rsquo;t fill in on the right is something you did, not something you found. Mark it.</li>
+      <li>Your opening sentences would make sense to someone who stopped listening after them.</li>
+      <li>If your warm-up sentence was &ldquo;did,&rdquo; rewrite it as &ldquo;learned&rdquo; using the right-hand column.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 3: Storymap draft -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <div class="stage">Week 6 &middot; Worksheet 2</div>
+      <h1>Draft Your Storymap</h1>
+      <p class="lede">Fill in all five, one or two sentences each, starting from the pieces already in your binder</p>
+    </div>
+    <div class="arc" data-week="6"></div>
+  </div>
+
+  <table>
+    <tr><th style="width:18%">Element</th><th style="width:22%">Start from</th><th>Your draft</th></tr>
+    <tr><td class="k">Goal</td><td class="hint">Week 2, Step 3: why anyone cares</td><td class="tall"></td></tr>
+    <tr><td class="k">Obstacle</td><td class="hint">Week 3&ndash;4: your research question is the first obstacle</td><td class="tall"></td></tr>
+    <tr><td class="k">Approach</td><td class="hint">Week 4: your hypotheses, and how you&rsquo;ll tell them apart</td><td class="tall"></td></tr>
+    <tr><td class="k">Result</td><td class="hint">New. No result yet? Write what you expect and mark it EXPECTED.</td><td class="tall"></td></tr>
+    <tr><td class="k">Benefit</td><td class="hint">Week 5: it has to stay inside your scope</td><td class="tall"></td></tr>
+  </table>
+
+  <p class="label">Chain your obstacles. <span class="hint">Start from your Goal and keep asking &ldquo;but&rdquo; until you reach your research question.</span></p>
+  <table>
+    <tr><td class="k">We want</td><td class="mid"></td></tr>
+    <tr><td class="k">but</td><td class="mid"></td></tr>
+    <tr><td class="k">So we want</td><td class="mid"></td></tr>
+    <tr><td class="k">but</td><td class="mid"></td></tr>
+  </table>
+
+  <div class="check">
+    <h2>Check before you move on</h2>
+    <ul>
+      <li>Read the Benefit right after the Goal. Does it answer it?</li>
+      <li>Are your Result and Benefit inside the scope paragraph and boundary map from Week 5?</li>
+      <li>Which box is longest? If it&rsquo;s Approach, you&rsquo;re on the broken path.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 4: Reflect -->
+<section class="sheet">
+  <div class="sheet-head">
+    <div>
+      <div class="stage">Week 6 &middot; Reflect and carry forward</div>
+      <h1>Where Does Your Story Sag?</h1>
+      <p class="lede">What you take into building your pitch</p>
+    </div>
+    <div class="arc" data-week="6"></div>
+  </div>
+
+  <p class="label">Which element was hardest to write, and why?</p>
+  <div class="write l3"></div>
+
+  <p class="label">Where does your talk drift to the bottom row? What would you cut to get back up?</p>
+  <div class="write l3"></div>
+
+  <p class="label">Look back across your binder. What changed most between Week 2 and now?</p>
+  <div class="write l3"></div>
+
+  <div class="carry">
+    <h2>Into your binder</h2>
+    <p class="label">The one sentence you want your committee to remember. <span class="hint">A finding, or an expected finding marked as expected.</span></p>
+    <div class="write l3"></div>
+    <p class="label">The element you&rsquo;ll work on first. <span class="hint">Circle one. The Week 7 packet takes each one in depth.</span></p>
+    <p class="circle-opts"><span>Goal</span><span>Obstacles</span><span>Approach</span><span>Result</span><span>Benefit</span></p>
+  </div>
+</section>
+
+<script>
+// Course arc: where this week sits in Phase 1 and the Week 7 pitch.
+document.querySelectorAll('.arc').forEach(function (el) {
+  var wk = +el.dataset.week;
+  var labels = ['A good PhD', 'Why care?', 'The question', 'The hypothesis', 'Scope', 'The story', 'The pitch'];
+  var x0 = 12, dx = 31, svg = '<svg viewBox="0 0 210 50" aria-hidden="true">';
+  svg += '<line class="arc-line" x1="' + x0 + '" y1="14" x2="' + (x0 + 6 * dx) + '" y2="14"/>';
+  for (var i = 0; i < 7; i++) {
+    var cls = (i + 1 === wk) ? ' on' : (i + 1 < wk ? ' done' : '');
+    svg += '<circle class="arc-dot' + cls + '" cx="' + (x0 + i * dx) + '" cy="14" r="9"/>';
+    svg += '<text class="arc-num' + (i + 1 === wk ? ' on' : '') + '" x="' + (x0 + i * dx) + '" y="17.2" text-anchor="middle">' + (i + 1) + '</text>';
+  }
+  svg += '<text class="arc-lab" x="105" y="40" text-anchor="middle">Week ' + wk + ': ' + labels[wk - 1] + '</text>';
+  el.innerHTML = svg + '</svg>';
+});
+</script>
+</body>
+</html>
