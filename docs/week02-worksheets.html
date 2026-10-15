@@ -85,6 +85,9 @@
   td { border: 1px solid var(--border); padding: 6px; vertical-align: top; }
   td.blank { height: 48px; }
   td.tall { height: 70px; }
+  td.mid { height: 36px; }
+  .carry { border: 2px solid var(--accent); border-radius: 3px; padding: 10px 12px 4px; margin-top: 12px; }
+  .carry h2 { margin-top: 0; }
   .plan td.tall { height: 92px; }
   td.k { width: 22%; font-weight: 500; }
   .kinds { display: grid; grid-template-columns: repeat(3, 1fr); gap: 4px 14px; font-size: 12.5px; margin: 6px 0; }
@@ -165,11 +168,8 @@
   .draw svg { width: 100%; height: auto; display: block; }
   .draw-ell { fill: none; stroke: var(--accent); stroke-width: 1.5; }
   .draw-lab { font-size: 11px; fill: var(--text-dim); font-family: 'Roboto', sans-serif; }
-  .carry { border: 2px solid var(--accent); border-radius: 3px; padding: 10px 12px 4px; margin-top: 12px; }
-  .carry h2 { margin-top: 0; }
   .circle-opts { margin: 4px 0 8px 12px; letter-spacing: 0.02em; }
   .circle-opts span { margin-right: 28px; }
-  td.mid { height: 36px; }
   img.inline { max-width: 100%; border: 1px solid var(--border); }
   @media (max-width: 640px) {
     .cards, .vs { grid-template-columns: 1fr; }
@@ -350,7 +350,7 @@ document.querySelectorAll('.arc').forEach(function (el) {
     svg += '<circle class="arc-dot' + cls + '" cx="' + (x0 + i * dx) + '" cy="14" r="9"/>';
     svg += '<text class="arc-num' + (i + 1 === wk ? ' on' : '') + '" x="' + (x0 + i * dx) + '" y="17.2" text-anchor="middle">' + (i + 1) + '</text>';
   }
-  svg += '<text class="arc-lab" x="105" y="40" text-anchor="middle">Week ' + wk + ': ' + labels[wk - 1] + '</text>';
+  if (wk) svg += '<text class="arc-lab" x="105" y="40" text-anchor="middle">Week ' + wk + ': ' + labels[wk - 1] + '</text>';
   el.innerHTML = svg + '</svg>';
 });
 </script>
