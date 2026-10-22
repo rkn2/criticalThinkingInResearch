@@ -223,8 +223,9 @@ to the point; anyone can follow up), 5 min feedback on a card. Results
 made flexible: show real results if you have them, label the rest
 EXPECTED. The half-life drill was not run; it is unscheduled. Run sheet
 and card: `docs/week07-session.html` (source `worksheets-src/s07.html`),
-print packet `docs/week07-session-packet.pdf`. Feedback card photos go to
-Becca on Teams.
+print packet `docs/week07-session-packet.pdf`. Each student sends Becca one
+combined PDF: original storymap worksheets, slides, and the feedback cards
+they got.
 
 Decided Oct 8. Everyone gives a 5-minute pitch built from their Week 6
 storymap (the U-shape), then gets feedback. About 5 min + 6 min feedback
