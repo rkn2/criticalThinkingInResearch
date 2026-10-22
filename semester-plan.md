@@ -214,6 +214,18 @@ your conclusion.
 own this week and bring the pitch as a .pptx on Oct 22. The pitches and
 the half-life workshop below happen Oct 22.
 
+**As run (Oct 22, Becca away):** students ran it themselves in two
+groups, Young + Yishuang + Marcio and Carol + Borna, with Carol and Borna
+joining the other group for Marcio's round. Each presenter got a 20-minute
+round: 5 min for listeners to read the storymap worksheets and write two
+questions, 5 min pitch, 5 min questions (answers 30 s or less, short and
+to the point; anyone can follow up), 5 min feedback on a card. Results
+made flexible: show real results if you have them, label the rest
+EXPECTED. The half-life drill was not run; it is unscheduled. Run sheet
+and card: `docs/week07-session.html` (source `worksheets-src/s07.html`),
+print packet `docs/week07-session-packet.pdf`. Feedback card photos go to
+Becca on Teams.
+
 Decided Oct 8. Everyone gives a 5-minute pitch built from their Week 6
 storymap (the U-shape), then gets feedback. About 5 min + 6 min feedback
 each; if it runs long, the last one or two go first on Oct 29. No result
@@ -304,8 +316,8 @@ Other resources Becca may want to pull from:
 |------|-------------|---------------|
 | Oct 1 (Week 5) | Research question (revised) + hypothesis pair | Becca, written |
 | Oct 8 (Week 6) | Scope paragraph (question + hypothesis) | Becca, written |
-| Oct 15 (Week 7) | 5-minute pitch | Group + Becca, live |
-| Oct 22 – Dec 3 | Practice talks, set week to week | Group + Becca, live |
+| Oct 22 (Week 7) | 5-minute pitch | Peers, live (Becca away) |
+| Oct 29 – Dec 3 | Practice talks, set week to week | Group + Becca, live |
 | Dec 8 (Week 14) | Committee presentation | Full committee |
 
 ---
