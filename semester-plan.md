@@ -250,6 +250,27 @@ the feedback on hypotheses.
 
 ---
 
+### Week 8 — Answering questions (Oct 29, Becca and Yishuang away)
+
+Decided Oct 26: the Oct 22 cards showed clear pitches and long answers
+(Marcio "short: no", Carol's follow-up "too long"), so the whole session is
+answering questions. Four students (Marcio, Carol, Young, Borna) in one
+group. Run sheet, Read first ("Answer, why, stop" plus a move per question
+type, using the Weeks 5-6 strip-retrofit example), Question bank by role
+(mechanics, model, data and users, plus follow-ups), Listen and fix pages,
+score card: `docs/week08-session.html` (source `worksheets-src/s08.html`),
+print packet `docs/week08-session-packet.pdf`.
+
+- 0-2 set up; 2-30 hot seat, 4 rounds of 7 min (one-sentence headline, then
+  questions; 30 s cap, timekeeper says "Time" and the answer is redone in
+  one sentence). Each student records their own round on their phone.
+- 30-60 listen and fix: time every answer, tick the 3 worst, then by hand
+  write the whole answer word for word, highlight the fewest words that
+  answer it, rewrite from those words, re-record until under 15 s. Two
+  fixes minimum, three if time.
+- Students send one PDF (Listen and fix pages, score cards received) and
+  their best re-recording.
+
 ### Weeks 8–13 — Practice talks and questions (Oct 29 – Dec 3)
 
 Left open on purpose (decided Oct 8): the rest of the semester is giving

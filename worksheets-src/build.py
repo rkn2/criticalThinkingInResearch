@@ -95,6 +95,7 @@ def page(title, body):
 targets = {'cover.html': 'binder-cover.html'}
 targets.update({f.name: f'week{f.stem[1:]}-worksheets.html' for f in sorted(here.glob('w0*.html'))})
 targets['s07.html'] = 'week07-session.html'  # Oct 22 run sheet + feedback card
+targets['s08.html'] = 'week08-session.html'  # Oct 29 answering questions, student-run
 for src, dst in targets.items():
     body = (here / src).read_text()
     title = re.search(r'<!-- title: (.*?) -->', body).group(1)
