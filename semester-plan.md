@@ -264,10 +264,11 @@ print packet `docs/week08-session-packet.pdf`.
 - 0-2 set up; 2-30 hot seat, 4 rounds of 7 min (one-sentence headline, then
   questions; 30 s cap, timekeeper says "Time" and the answer is redone in
   one sentence). Each student records their own round on their phone.
-- 30-60 listen and fix: time every answer, tick the 3 worst, then by hand
+- 30-60 listen and fix: time every answer, tick the 2 worst, then by hand
   write the whole answer word for word, highlight the fewest words that
   answer it, rewrite from those words, re-record until under 15 s. Two
-  fixes minimum, three if time.
+  fixes (cut from three on Oct 27: listening takes ~10 min
+  and each fix ~10; a third Fix page stays at the back for anyone done early).
 - Students send one PDF (Listen and fix pages, score cards received) and
   their best re-recording.
 
