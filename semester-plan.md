@@ -281,7 +281,7 @@ use (Princeton, Spring 2020; OneDrive
 `archivedDocs/Princeton/Courses/2020Spring/Slides & Handouts/2 Visuals/PWP_CTMV.pdf`
 "Clear thinking made visible", and `PitchingYourResearch.pdf` slides 11-36).
 
-Aim for a change in the audience (From/To table, think and do, written for
+Aim for a change in the audience (From/To table, where each committee member starts and where they should end up, written for
 the actual committee). Two steps to a clear slide, distill the message and
 align visual emphasis. Sentence titles that state the finding and complete
 "Today I learned that..." (Alley's assertion-evidence). Three tools,
