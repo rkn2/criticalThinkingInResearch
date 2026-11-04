@@ -1,7 +1,7 @@
 # H3D Research Methods Class — Fall 2026
 
 Weekly 1-hour sessions, Thursdays. Students: Carol, Marcio, Yishuang, Young, Borna.
-Committee presentations: Dec 8 (comp retake for Carol and Marcio,
+Committee presentations: late December, date not set (comp retake for Carol and Marcio,
 committee meeting for Yishuang).
 
 ## Why this exists
@@ -315,7 +315,7 @@ does it support; Maggie: what data do you wish you had).
 
 ---
 
-### Week 14 — Committee presentations (Dec 8)
+### Week 14 — Committee presentations (late December, date not set)
 
 Carol and Marcio: comprehensive exam retake.
 Yishuang: committee meeting.
@@ -367,7 +367,7 @@ Other resources Becca may want to pull from:
 | Oct 8 (Week 6) | Scope paragraph (question + hypothesis) | Becca, written |
 | Oct 22 (Week 7) | 5-minute pitch | Peers, live (Becca away) |
 | Oct 29 – Dec 3 | Practice talks, set week to week | Group + Becca, live |
-| Dec 8 (Week 14) | Committee presentation | Full committee |
+| Late December (date not set) | Committee presentation | Full committee |
 
 ---
 
