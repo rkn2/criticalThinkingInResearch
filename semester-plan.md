@@ -272,6 +272,32 @@ print packet `docs/week08-session-packet.pdf`.
 - Students send one PDF (Listen and fix pages, score cards received) and
   their best re-recording.
 
+### Week 9 — Making presentations (Nov 5)
+
+Slides `docs/week09-slides.html`, worksheets `docs/week09-worksheets.html`
+(source `worksheets-src/w09.html`), print packet `docs/week09-packet.pdf`.
+Becca in the room. Adapted from the two Ardon Shorr decks Week 6 did not
+use (Princeton, Spring 2020; OneDrive
+`archivedDocs/Princeton/Courses/2020Spring/Slides & Handouts/2 Visuals/PWP_CTMV.pdf`
+"Clear thinking made visible", and `PitchingYourResearch.pdf` slides 11-36).
+
+Aim for a change in the audience (From/To table, think and do, written for
+the actual committee). Two steps to a clear slide, distill the message and
+align visual emphasis. Sentence titles that state the finding and complete
+"Today I learned that..." (Alley's assertion-evidence). Three tools,
+layer the slide (background, data, emphasis), match chart type and color
+to the argument (qualitative, accent, sequential, divergent, no rainbow),
+make the key check easy (squint test). Example figures are SVG with
+illustrative Mayfield retrofit numbers, labeled as such.
+
+**Workshops:** (1) From/To for two committee members plus the talk's
+one-sentence message. (2) Retitle the Oct 22 pitch deck slide by slide and
+mark whether each slide's evidence shows its title. (3) Redesign one figure
+by hand with the three tools; a partner does the squint test.
+
+**Deliverable:** updated .pptx with sentence titles and the redesigned
+figure, sent to Becca as a PDF with Worksheets 1-3.
+
 ### Weeks 8–13 — Practice talks and questions (Oct 29 – Dec 3)
 
 Left open on purpose (decided Oct 8): the rest of the semester is giving

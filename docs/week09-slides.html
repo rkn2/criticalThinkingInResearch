@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 9 — Making Presentations</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Slab:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --bg: #F7F7F5;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-dim: #555555;
+    --accent: #001E44;
+    --accent2: #1E407C;
+    --accent3: #96BEE6;
+    --border: #D9D9D9;
+    --highlight: #EDF3FA;
+    --warn: #9B2335;
+    --good: #2D5F2D;
+    --s1: #2a78d6;
+    --s2: #eb6834;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E0E0D;
+      --surface: #1A1A18;
+      --text: #E8E6E1;
+      --text-dim: #9A9890;
+      --accent: #96BEE6;
+      --accent2: #6FA3D4;
+      --accent3: #3A6EA0;
+      --border: #2E2E2A;
+      --highlight: #141E2A;
+      --warn: #E05A6A;
+      --good: #5DAA5D;
+      --s1: #3987e5;
+      --s2: #d95926;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E0E0D;
+    --surface: #1A1A18;
+    --text: #E8E6E1;
+    --text-dim: #9A9890;
+    --accent: #96BEE6;
+    --accent2: #6FA3D4;
+    --accent3: #3A6EA0;
+    --border: #2E2E2A;
+    --highlight: #141E2A;
+    --warn: #E05A6A;
+    --good: #5DAA5D;
+    --s1: #3987e5;
+    --s2: #d95926;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Roboto', system-ui, sans-serif; }
+
+  .slide { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 6rem; opacity: 0; transition: opacity 0.3s ease; }
+  .slide.active { display: flex; opacity: 1; }
+  .slide-inner { max-width: 960px; width: 100%; }
+
+  h1 { font-family: 'Roboto Slab', Georgia, serif; font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+  h2 { font-family: 'Roboto Slab', Georgia, serif; font-size: 2rem; font-weight: 700; line-height: 1.25; margin-bottom: 1.25rem; color: var(--accent); }
+  h3 { font-family: 'Roboto Slab', Georgia, serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent); }
+  p, li { font-size: 1.25rem; line-height: 1.65; color: var(--text); }
+  .dim { color: var(--text-dim); }
+  .warn { color: var(--warn); }
+
+  ul { list-style: none; padding-left: 0; }
+  ul li { padding: 0.3rem 0 0.3rem 1.5rem; position: relative; }
+  ul li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  .subtitle { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 2rem; }
+
+  blockquote { border-left: 3px solid var(--accent); padding: 0.75rem 1.25rem; margin: 0.75rem 0; font-style: italic; color: var(--text); font-size: 1.15rem; line-height: 1.6; background: var(--highlight); }
+  blockquote .source { display: block; font-style: normal; font-size: 0.85rem; color: var(--text-dim); margin-top: 0.4rem; }
+
+  .formula { border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 1rem 0; background: var(--highlight); font-size: 1.2rem; line-height: 1.8; }
+  .formula .step-num { font-weight: 700; color: var(--accent); }
+  .formula .blank { border-bottom: 2px solid var(--accent); display: inline-block; min-width: 10rem; margin: 0 0.15rem; }
+
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
+  .vs-box { padding: 1.5rem; border: 1px solid var(--border); background: var(--surface); }
+  .vs-box.bad { border-top: 3px solid var(--warn); }
+  .vs-box.good { border-top: 3px solid var(--good); }
+  .vs-box.neutral { border-top: 3px solid var(--accent2); }
+  .vs-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .vs-box.bad .vs-label { color: var(--warn); }
+  .vs-box.good .vs-label { color: var(--good); }
+  .vs-box.neutral .vs-label { color: var(--accent2); }
+  .vs-box p { font-size: 1.1rem; }
+
+  .arrow-flow { display: flex; align-items: center; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap; }
+  .arrow-step { padding: 0.75rem 1.25rem; border: 1px solid var(--border); background: var(--surface); font-size: 1rem; line-height: 1.4; text-align: center; flex: 1; }
+  .arrow-step.done { opacity: 0.5; }
+  .arrow-step.now { border-color: var(--accent); background: var(--highlight); font-weight: 600; }
+  .arrow-step.later { opacity: 0.7; border-style: dashed; }
+  .arrow-between { font-size: 1.5rem; color: var(--text-dim); flex-shrink: 0; }
+
+  .phase-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; padding: 0.35rem 0.75rem; display: inline-block; }
+  .phase-label.p1 { color: var(--accent2); background: var(--highlight); }
+  .phase-label.p2 { color: var(--good); background: rgba(45,95,45,0.08); }
+
+  .title-slide h1 { font-size: 3.5rem; margin-bottom: 0.25rem; }
+  .title-slide .week-label { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+  .title-slide .meta { font-size: 1rem; color: var(--text-dim); margin-top: 2rem; line-height: 1.8; }
+
+  .nav-hint { position: fixed; bottom: 1.5rem; right: 2rem; font-size: 0.75rem; color: var(--text-dim); opacity: 0.5; }
+  .progress { position: fixed; bottom: 0; left: 0; height: 3px; background: var(--accent2); transition: width 0.3s ease; }
+  .slide-num { position: fixed; bottom: 1.5rem; left: 2rem; font-size: 0.75rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 800px) {
+    .slide { padding: 1.5rem 1rem 3.5rem; justify-content: flex-start; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .slide-inner { margin-block: auto; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .title-slide h1 { font-size: 2.2rem; }
+    .vs-grid { grid-template-columns: 1fr; }
+    .formula { font-size: 1.05rem; }
+    p, li { font-size: 1.05rem; }
+    .arrow-flow { flex-direction: column; }
+    .arrow-between { transform: rotate(90deg); }
+  }
+  .cited { display: flex; gap: 1.5rem; align-items: center; margin: 0.75rem 0; }
+  .cited .quotes { flex: 1; min-width: 0; }
+  .cited blockquote { margin: 0.5rem 0; }
+  .cover { height: 160px; width: auto; flex-shrink: 0; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+  .article-head { display: block; max-width: 340px; width: 100%; margin-bottom: 1rem; border: 1px solid var(--border); background: #fff; padding: 0.4rem 0.6rem; }
+  @media (max-width: 800px) { .cover { height: 110px; } .cited { gap: 1rem; } }
+  /* Week 9: builds, titles, charts */
+  [data-step] { transition: opacity 0.45s ease, transform 0.45s ease; }
+  .slide [data-step]:not(.on) { opacity: 0; }
+  .slide p[data-step]:not(.on), .slide tr[data-step]:not(.on) { transform: translateY(8px); }
+  @media (prefers-reduced-motion: reduce) { [data-step] { transition: none; } .slide [data-step] { transform: none !important; } }
+  .slide-inner { max-width: 1080px; }
+  h2 { font-size: 1.85rem; }
+  .credit { font-size: 0.85rem; color: var(--text-dim); margin-top: 1.5rem; }
+  .note { font-size: 0.8rem; color: var(--text-dim); margin-top: 0.3rem; }
+  .small { font-size: 0.85rem; line-height: 1.4; margin-top: 0.4rem; }
+  .story-table { width: 100%; border-collapse: collapse; margin: 0.5rem 0; }
+  .story-table td, .story-table th { padding: 0.55rem 0.9rem; border-bottom: 1px solid var(--border); font-size: 1.08rem; line-height: 1.45; vertical-align: top; text-align: left; }
+  .story-table th { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); }
+  .story-table td:first-child { font-weight: 600; color: var(--accent); width: 42%; }
+  .story-table.swap td:first-child { width: 28%; color: var(--text-dim); font-weight: 400; }
+  .story-table.swap td:last-child { font-weight: 600; }
+  .ft { width: 100%; border-collapse: collapse; }
+  .ft th { text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); padding: 0.3rem 0.8rem; }
+  .ft td { padding: 0.45rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 1.05rem; line-height: 1.4; vertical-align: top; }
+  .ft td.k { font-weight: 700; color: var(--accent); width: 5rem; }
+  .ft tr.grp-row td { font-size: 0.85rem; font-weight: 700; color: var(--accent2); background: var(--highlight); border-bottom: none; padding-top: 0.5rem; }
+  .two-col { display: grid; grid-template-columns: 3fr 2fr; gap: 1.5rem; align-items: center; }
+  .titles { display: flex; flex-direction: column; gap: 0.8rem; }
+  .ttl { border: 1px solid var(--border); border-left: 3px solid var(--good); background: var(--surface); padding: 0.6rem 0.9rem; font-family: 'Roboto Slab', Georgia, serif; font-weight: 600; font-size: 1.1rem; line-height: 1.35; }
+  .ttl.topic { border-left-color: var(--warn); }
+  .ttl .vs-label { display: block; font-family: 'Roboto', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 0.2rem; }
+  .rules { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.7rem; margin-bottom: 1rem; }
+  .rules div { border-top: 3px solid var(--accent2); background: var(--surface); border-left: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 0.55rem 0.7rem; font-size: 0.98rem; line-height: 1.35; }
+  .mock-title { font-family: 'Roboto Slab', Georgia, serif; font-weight: 700; font-size: 1.15rem; color: var(--accent); margin-bottom: 0.4rem; line-height: 1.3; }
+  ul.mock li { font-size: 1rem; padding: 0.15rem 0 0.15rem 1.2rem; }
+  ul.mock li::before { top: 0.6rem; }
+  .rule3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1rem; margin-top: 0.5rem; }
+  .rule3 > div { border: 1px solid var(--border); border-top: 3px solid var(--accent); background: var(--surface); padding: 1rem 1.1rem; font-size: 1.1rem; line-height: 1.5; }
+  .rule3 b.t { display: block; font-family: 'Roboto Slab', Georgia, serif; font-size: 1.2rem; color: var(--accent); margin-bottom: 0.4rem; }
+  .vs-grid.charts { gap: 1.25rem; margin: 0.5rem 0 0.8rem; }
+  .vs-box.chart { padding: 0.8rem 1rem; }
+  .vs-box.chart .vs-label { text-transform: none; letter-spacing: 0; font-size: 0.95rem; }
+  .chart svg { width: 100%; height: auto; max-height: 44vh; display: block; }
+  .pair { display: grid; grid-template-columns: 1fr 1fr; gap: 0.4rem; }
+  .chart .grid { stroke: var(--border); stroke-width: 1; }
+  .chart .grid.heavy { stroke: var(--text-dim); stroke-opacity: 0.6; }
+  .chart .axis-t { fill: var(--text-dim); font: 400 13px Roboto, sans-serif; }
+  .chart .axis-t.small { font-size: 11px; }
+  .chart .val { fill: var(--text); font: 500 13px Roboto, sans-serif; text-anchor: middle; }
+  .chart .val.lab { text-anchor: start; }
+  .chart .grp { fill: var(--text); font: 500 13px Roboto, sans-serif; text-anchor: middle; }
+  .chart .bar.acc, .chart .acc { fill: var(--s1); }
+  .chart .bar.mute, .chart .mute { fill: var(--text-dim); fill-opacity: 0.35; }
+  .chart .band { fill: var(--s1); fill-opacity: 0.08; }
+  .chart .band-t { fill: var(--text-dim); font: 500 12px Roboto, sans-serif; }
+  .chart .legend-box { fill: var(--surface); stroke: var(--text-dim); }
+  .chart .miss-line { stroke: var(--s1); stroke-width: 2; }
+  .chart .dot-obs.acc { fill: var(--surface); stroke: var(--s1); stroke-width: 2.5; }
+  .chart .dot-mod.mute { stroke: var(--surface); stroke-width: 2; }
+  .chart path:hover, .chart circle:hover, .chart rect:hover { opacity: 0.8; }
+  .key { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: middle; margin-right: 2px; }
+  .key.acc { background: var(--s1); } .key.mute { background: var(--text-dim); opacity: 0.35; }
+  .swatches { display: grid; grid-template-columns: 1fr 1fr; gap: 0.9rem 1.5rem; margin: 0.5rem 0 1rem; }
+  .swatches > div { display: grid; grid-template-columns: 9rem 1fr; grid-template-rows: auto auto; column-gap: 0.9rem; align-items: start; }
+  .swatches .sw { grid-row: 1 / span 2; display: flex; gap: 2px; height: 2.4rem; }
+  .swatches .sw i { flex: 1; border-radius: 3px; }
+  .swatches .sw i.g { background: var(--text-dim); opacity: 0.35; }
+  .swatches b { color: var(--accent); font-size: 1.1rem; }
+  .swatches span { font-size: 1rem; line-height: 1.4; }
+  ul.tools li { font-size: 1.1rem; }
+  a { color: var(--accent2); }
+  @media (max-width: 800px) {
+    .two-col, .rule3, .swatches, .pair { grid-template-columns: 1fr; }
+    .rules { grid-template-columns: 1fr 1fr; }
+    .story-table td { font-size: 0.95rem; }
+  }
+  .chart.mini svg { max-height: 26vh; }
+</style>
+</head>
+<body>
+
+<!-- SLIDE 1: Title -->
+<div class="slide active" id="s1">
+  <div class="slide-inner title-slide">
+    <div class="week-label">Week 9</div>
+    <h1>Making Presentations</h1>
+    <p class="subtitle">Turning your pitch deck into slides that say what you found</p>
+    <div class="meta">
+      H3D Research Methods Class<br>
+      Fall 2026<br>
+      Carol &middot; Marcio &middot; Yishuang &middot; Young &middot; Borna
+    </div>
+    <p class="credit">Adapted from Ardon Shorr, &ldquo;Clear thinking made visible&rdquo; and &ldquo;Pitching your research,&rdquo; Princeton University (2020)</p>
+  </div>
+</div>
+
+<!-- SLIDE 2: Warm-up -->
+<div class="slide" id="s2">
+  <div class="slide-inner">
+    <h2>Warm-up: Your Key Finding</h2>
+    <p style="margin-bottom:1.25rem;">Write your current key finding in one sentence. Read it to yourself.</p>
+    <p style="margin-top:1.25rem;">Then ask yourself one thing.</p>
+    <p style="font-size:1.4rem; margin-top:0.5rem;"><strong>Could this sentence sit at the top of a slide, with the evidence for it underneath?</strong></p>
+  </div>
+</div>
+
+<!-- SLIDE 3: Aim for a change -->
+<div class="slide" id="s3">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 1: Start From Your Audience</span>
+    <h2>A talk is meant to change what your audience thinks and does</h2>
+    <p style="margin-bottom:0.9rem;">Every time you present, you are trying to move people from where they are to somewhere else. If you can&rsquo;t say where, you can&rsquo;t tell which slides help. Three goals people often start from leave that open.</p>
+    <table class="story-table goals">
+      <tr data-step="1"><td>&ldquo;I want them to be impressed with my work.&rdquo;</td><td>Impressed people can still leave without knowing what to do with your result.</td></tr>
+      <tr data-step="2"><td>&ldquo;I want them to understand how this works.&rdquo;</td><td>You can&rsquo;t check whether they understood every step. Which step matters for what they decide?</td></tr>
+      <tr data-step="3"><td>&ldquo;I don&rsquo;t want to bias them, so I have no goal.&rdquo;</td><td>A committee always leaves with some opinion. Without a goal, you leave which one to chance.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE 4: From / To -->
+<div class="slide" id="s4">
+  <div class="slide-inner">
+    <h2>A From/To table names the change you want, in what people think and in what they do</h2>
+    <p style="margin-bottom:0.6rem;">Shorr&rsquo;s table for his own PhD talk, then one for the Mayfield retrofit study from Weeks 5 and 6.</p>
+    <table class="ft">
+      <tr><th></th><th>From</th><th>To</th></tr>
+      <tr class="grp-row"><td colspan="3">Shorr&rsquo;s thesis, on gravity and cells</td></tr>
+      <tr><td class="k">Think</td><td>Gravity is negligible in cell biology.</td><td>Gravity affects gene and protein expression.</td></tr>
+      <tr><td class="k">Do</td><td>Avoid microfluidic devices.</td><td>Start collaborations with mechanical engineering.</td></tr>
+      <tr class="grp-row" data-step="1"><td colspan="3">Mayfield retrofits, for a committee</td></tr>
+      <tr data-step="1"><td class="k">Think</td><td>A simulation of a building that already collapsed can&rsquo;t be trusted.</td><td>A model that reproduces Mayfield&rsquo;s damage can rank retrofits.</td></tr>
+      <tr data-step="1"><td class="k">Do</td><td>Ask for more storms and more buildings.</td><td>Agree that three retrofits on one validated building is enough for the dissertation.</td></tr>
+    </table>
+    <p style="margin-top:0.8rem;" data-step="2">On Dec 8 your audience is your committee. Write the table for the people who will be in the room.</p>
+  </div>
+</div>
+
+<!-- SLIDE 5: Workshop 1 -->
+<div class="slide" id="s5">
+  <div class="slide-inner">
+    <span class="phase-label p2">Workshop 1</span>
+    <h2>What should your committee think and do after Dec 8?</h2>
+    <ul>
+      <li>Pick two members of your committee.</li>
+      <li>For each one, fill in From and To, once for what they think and once for what they do.</li>
+      <li>Then write the one sentence you want the whole room to remember. That sentence is the message of your talk.</li>
+    </ul>
+    <p class="dim" style="margin-top:1rem;">Worksheet 1</p>
+  </div>
+</div>
+
+<!-- SLIDE 6: Two steps -->
+<div class="slide" id="s6">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 2: Distill Your Message</span>
+    <h2>Clear slides come from two steps, deciding the message and then steering the eye to it</h2>
+    <div class="arrow-flow">
+      <div class="arrow-step now"><b>1. Distill your message</b><br>What should the audience take from this slide?</div>
+      <div class="arrow-between">&rarr;</div>
+      <div class="arrow-step" data-step="1"><b>2. Align visual emphasis</b><br>Make the eye land on the evidence for it.</div>
+    </div>
+    <p data-step="2">Most slide trouble starts at the first step. If you haven&rsquo;t decided what a chart means, no design choice will show it.</p>
+  </div>
+</div>
+
+<!-- SLIDE 7: Topic title vs two readings -->
+<div class="slide" id="s7">
+  <div class="slide-inner">
+    <h2>A topic title leaves the audience to guess what the chart means</h2>
+    <div class="two-col">
+      <div class="chart"><svg viewBox="0 0 520 300" role="img" aria-label="Wind speed at wall failure by retrofit, illustrative">
+<line class="grid" x1="64" x2="500" y1="252.0" y2="252.0"/>
+<text class="axis-t" x="56" y="256.0" text-anchor="end">0</text>
+<line class="grid" x1="64" x2="500" y1="189.8" y2="189.8"/>
+<text class="axis-t" x="56" y="193.8" text-anchor="end">50</text>
+<line class="grid" x1="64" x2="500" y1="127.6" y2="127.6"/>
+<text class="axis-t" x="56" y="131.6" text-anchor="end">100</text>
+<line class="grid" x1="64" x2="500" y1="65.3" y2="65.3"/>
+<text class="axis-t" x="56" y="69.3" text-anchor="end">150</text>
+<text class="axis-t" transform="translate(16 140.0) rotate(-90)" text-anchor="middle">Wind speed at wall failure (mph)</text>
+<path class="bar acc"  d="M82.5,252 V136.5 Q82.5,132.5 86.5,132.5 H150.5 Q154.5,132.5 154.5,136.5 V252 Z"><title>Unretrofitted: 96 mph</title></path>
+<text class="grp" x="118.5" y="272">Unretrofitted</text>
+<text class="val" x="118.5" y="125.5">96</text>
+<path class="bar acc"  d="M191.5,252 V96.7 Q191.5,92.7 195.5,92.7 H259.5 Q263.5,92.7 263.5,96.7 V252 Z"><title>Hidden strips: 128 mph</title></path>
+<text class="grp" x="227.5" y="272">Hidden strips</text>
+<text class="val" x="227.5" y="85.7">128</text>
+<path class="bar acc"  d="M300.5,252 V68.1 Q300.5,64.1 304.5,64.1 H368.5 Q372.5,64.1 372.5,68.1 V252 Z"><title>Center core: 151 mph</title></path>
+<text class="grp" x="336.5" y="272">Center core</text>
+<text class="val" x="336.5" y="57.1">151</text>
+<path class="bar acc"  d="M409.5,252 V59.4 Q409.5,55.4 413.5,55.4 H477.5 Q481.5,55.4 481.5,59.4 V252 Z"><title>Steel frame: 158 mph</title></path>
+<text class="grp" x="445.5" y="272">Steel frame</text>
+<text class="val" x="445.5" y="48.4">158</text>
+</svg><p class="note">Illustrative numbers</p></div>
+      <div class="titles">
+        <div class="ttl topic"><span class="vs-label">Topic title</span>Retrofit results</div>
+        <div class="ttl" data-step="1"><span class="vs-label">One reading</span>Every retrofit raised the wind speed the wall could take</div>
+        <div class="ttl" data-step="2"><span class="vs-label">Another reading</span>Only the invasive retrofits held into the EF3 range</div>
+      </div>
+    </div>
+    <p data-step="3" style="margin-top:0.6rem;">Both sentences are true. Only you know which one your talk needs, so the title has to say it.</p>
+  </div>
+</div>
+
+<!-- SLIDE 8: Sentence titles -->
+<div class="slide" id="s8">
+  <div class="slide-inner">
+    <h2>A sentence title states the finding the slide shows</h2>
+    <div class="rules">
+      <div>Says who did what, in subject, verb, object order</div>
+      <div>Makes a claim the evidence on the slide supports</div>
+      <div>Completes &ldquo;Today I learned that&hellip;&rdquo;</div>
+      <div>Often runs to two lines, and that&rsquo;s fine</div>
+    </div>
+    <table class="story-table swap">
+      <tr><th>Topic title</th><th>Sentence title</th></tr>
+      <tr data-step="1"><td>Model validation</td><td>The model matched the observed damage grade at 8 of 10 Mayfield walls</td></tr>
+      <tr data-step="2"><td>Mesh convergence</td><td>Refining the mesh below 50 mm changed peak stress by less than 2%</td></tr>
+      <tr data-step="3"><td>Literature review</td><td>No study has tested tornado retrofits on historic masonry against observed damage</td></tr>
+      <tr data-step="4"><td>Future work</td><td>Next we test whether hidden strips work on two-story walls</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE 9: Burying the lead -->
+<div class="slide" id="s9">
+  <div class="slide-inner">
+    <h2>Burying the lead puts the finding in the last bullet</h2>
+    <div class="vs-grid">
+      <div class="vs-box bad">
+        <div class="vs-label">Before</div>
+        <p class="mock-title">Hidden steel strip analysis</p>
+        <ul class="mock">
+          <li>Modeled a 12 m wall in LS-DYNA</li>
+          <li>Applied the Mayfield wind profile</li>
+          <li>Strips at 1.2 m spacing</li>
+          <li>Ran 40 wind speeds</li>
+          <li>Wall failed at 128 mph, in the EF2 range</li>
+        </ul>
+      </div>
+      <div class="vs-box good" data-step="1">
+        <div class="vs-label">After</div>
+        <p class="mock-title">Hidden steel strips kept the wall standing only to 128 mph, inside the EF2 range</p>
+        <div class="chart mini"><svg viewBox="0 0 520 300" role="img" aria-label="Wind speed at wall failure by retrofit, illustrative">
+<rect class="band" x="64" y="84.0" width="436" height="29.9"/>
+<text class="band-t" x="70" y="98.0" text-anchor="start">EF2 range</text>
+<line class="grid" x1="64" x2="500" y1="252.0" y2="252.0"/>
+<text class="axis-t" x="56" y="256.0" text-anchor="end">0</text>
+<line class="grid" x1="64" x2="500" y1="189.8" y2="189.8"/>
+<text class="axis-t" x="56" y="193.8" text-anchor="end">50</text>
+<line class="grid" x1="64" x2="500" y1="127.6" y2="127.6"/>
+<text class="axis-t" x="56" y="131.6" text-anchor="end">100</text>
+<line class="grid" x1="64" x2="500" y1="65.3" y2="65.3"/>
+<text class="axis-t" x="56" y="69.3" text-anchor="end">150</text>
+<text class="axis-t" transform="translate(16 140.0) rotate(-90)" text-anchor="middle">Wind speed at wall failure (mph)</text>
+<path class="bar mute"  d="M82.5,252 V136.5 Q82.5,132.5 86.5,132.5 H150.5 Q154.5,132.5 154.5,136.5 V252 Z"><title>Unretrofitted: 96 mph</title></path>
+<text class="grp" x="118.5" y="272">Unretrofitted</text>
+<text class="val" x="118.5" y="125.5">96</text>
+<path class="bar acc"  d="M191.5,252 V96.7 Q191.5,92.7 195.5,92.7 H259.5 Q263.5,92.7 263.5,96.7 V252 Z"><title>Hidden strips: 128 mph</title></path>
+<text class="grp" x="227.5" y="272">Hidden strips</text>
+<text class="val" x="227.5" y="85.7">128</text>
+<path class="bar mute"  d="M300.5,252 V68.1 Q300.5,64.1 304.5,64.1 H368.5 Q372.5,64.1 372.5,68.1 V252 Z"><title>Center core: 151 mph</title></path>
+<text class="grp" x="336.5" y="272">Center core</text>
+<text class="val" x="336.5" y="57.1">151</text>
+<path class="bar mute"  d="M409.5,252 V59.4 Q409.5,55.4 413.5,55.4 H477.5 Q481.5,55.4 481.5,59.4 V252 Z"><title>Steel frame: 158 mph</title></path>
+<text class="grp" x="445.5" y="272">Steel frame</text>
+<text class="val" x="445.5" y="48.4">158</text>
+</svg></div>
+        <p class="dim" style="font-size:0.95rem;">The setup goes in what you say, or on a backup slide for questions.</p>
+      </div>
+    </div>
+    <p style="margin-top:1rem;" data-step="2">Read only the titles of your deck, in order. If the titles alone tell your story, the deck works.</p>
+  </div>
+</div>
+
+<!-- SLIDE 10: Three tools -->
+<div class="slide" id="s10">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 3: Steer the Eye</span>
+    <h2>Three tools line up what the eye sees with what the title says</h2>
+    <div class="rule3">
+      <div data-step="1"><b class="t">1. Layer the slide</b>Background, data, and emphasis, from quietest to loudest.</div>
+      <div data-step="2"><b class="t">2. Match the form to the argument</b>The chart type fits the comparison, and color fits how the data relate.</div>
+      <div data-step="3"><b class="t">3. Make the key check easy</b>Whatever the audience has to do to verify your title should take the least effort.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 11: Tool 1 -->
+<div class="slide" id="s11">
+  <div class="slide-inner">
+    <h2>Graying out the context lets the finding come forward</h2>
+    <div class="vs-grid charts">
+      <div class="vs-box bad chart"><div class="vs-label">Before &middot; Retrofit results</div><svg viewBox="0 0 520 300" role="img" aria-label="Wind speed at wall failure by retrofit, illustrative">
+<line class="grid heavy" x1="64" x2="500" y1="252.0" y2="252.0"/>
+<text class="axis-t" x="56" y="256.0" text-anchor="end">0</text>
+<line class="grid heavy" x1="64" x2="500" y1="227.1" y2="227.1"/>
+<text class="axis-t" x="56" y="231.1" text-anchor="end">20</text>
+<line class="grid heavy" x1="64" x2="500" y1="202.2" y2="202.2"/>
+<text class="axis-t" x="56" y="206.2" text-anchor="end">40</text>
+<line class="grid heavy" x1="64" x2="500" y1="177.3" y2="177.3"/>
+<text class="axis-t" x="56" y="181.3" text-anchor="end">60</text>
+<line class="grid heavy" x1="64" x2="500" y1="152.4" y2="152.4"/>
+<text class="axis-t" x="56" y="156.4" text-anchor="end">80</text>
+<line class="grid heavy" x1="64" x2="500" y1="127.6" y2="127.6"/>
+<text class="axis-t" x="56" y="131.6" text-anchor="end">100</text>
+<line class="grid heavy" x1="64" x2="500" y1="102.7" y2="102.7"/>
+<text class="axis-t" x="56" y="106.7" text-anchor="end">120</text>
+<line class="grid heavy" x1="64" x2="500" y1="77.8" y2="77.8"/>
+<text class="axis-t" x="56" y="81.8" text-anchor="end">140</text>
+<line class="grid heavy" x1="64" x2="500" y1="52.9" y2="52.9"/>
+<text class="axis-t" x="56" y="56.9" text-anchor="end">160</text>
+<line class="grid heavy" x1="64" x2="500" y1="28.0" y2="28.0"/>
+<text class="axis-t" x="56" y="32.0" text-anchor="end">180</text>
+<text class="axis-t" transform="translate(16 140.0) rotate(-90)" text-anchor="middle">Wind speed at wall failure (mph)</text>
+<path class="bar " fill="#e41a1c" d="M82.5,252 V136.5 Q82.5,132.5 86.5,132.5 H150.5 Q154.5,132.5 154.5,136.5 V252 Z"><title>Unretrofitted: 96 mph</title></path>
+<text class="grp" x="118.5" y="272">Unretrofitted</text>
+<path class="bar " fill="#ff7f00" d="M191.5,252 V96.7 Q191.5,92.7 195.5,92.7 H259.5 Q263.5,92.7 263.5,96.7 V252 Z"><title>Hidden strips: 128 mph</title></path>
+<text class="grp" x="227.5" y="272">Hidden strips</text>
+<path class="bar " fill="#4daf4a" d="M300.5,252 V68.1 Q300.5,64.1 304.5,64.1 H368.5 Q372.5,64.1 372.5,68.1 V252 Z"><title>Center core: 151 mph</title></path>
+<text class="grp" x="336.5" y="272">Center core</text>
+<path class="bar " fill="#984ea3" d="M409.5,252 V59.4 Q409.5,55.4 413.5,55.4 H477.5 Q481.5,55.4 481.5,59.4 V252 Z"><title>Steel frame: 158 mph</title></path>
+<text class="grp" x="445.5" y="272">Steel frame</text>
+<rect class="legend-box" x="74" y="32" width="128" height="78"/>
+<rect x="82" y="40" width="10" height="10" fill="#e41a1c"/><text class="axis-t" x="98" y="49">Unretrofitted</text>
+<rect x="82" y="57" width="10" height="10" fill="#ff7f00"/><text class="axis-t" x="98" y="66">Hidden strips</text>
+<rect x="82" y="74" width="10" height="10" fill="#4daf4a"/><text class="axis-t" x="98" y="83">Center core</text>
+<rect x="82" y="91" width="10" height="10" fill="#984ea3"/><text class="axis-t" x="98" y="100">Steel frame</text>
+</svg></div>
+      <div class="vs-box good chart" data-step="1"><div class="vs-label">After &middot; Only the invasive retrofits held into the EF3 range</div><svg viewBox="0 0 520 300" role="img" aria-label="Wind speed at wall failure by retrofit, illustrative">
+<rect class="band" x="64" y="46.7" width="436" height="36.1"/>
+<text class="band-t" x="70" y="60.7" text-anchor="start">EF3 range</text>
+<line class="grid" x1="64" x2="500" y1="252.0" y2="252.0"/>
+<text class="axis-t" x="56" y="256.0" text-anchor="end">0</text>
+<line class="grid" x1="64" x2="500" y1="189.8" y2="189.8"/>
+<text class="axis-t" x="56" y="193.8" text-anchor="end">50</text>
+<line class="grid" x1="64" x2="500" y1="127.6" y2="127.6"/>
+<text class="axis-t" x="56" y="131.6" text-anchor="end">100</text>
+<line class="grid" x1="64" x2="500" y1="65.3" y2="65.3"/>
+<text class="axis-t" x="56" y="69.3" text-anchor="end">150</text>
+<text class="axis-t" transform="translate(16 140.0) rotate(-90)" text-anchor="middle">Wind speed at wall failure (mph)</text>
+<path class="bar mute"  d="M82.5,252 V136.5 Q82.5,132.5 86.5,132.5 H150.5 Q154.5,132.5 154.5,136.5 V252 Z"><title>Unretrofitted: 96 mph</title></path>
+<text class="grp" x="118.5" y="272">Unretrofitted</text>
+<text class="val" x="118.5" y="125.5">96</text>
+<path class="bar mute"  d="M191.5,252 V96.7 Q191.5,92.7 195.5,92.7 H259.5 Q263.5,92.7 263.5,96.7 V252 Z"><title>Hidden strips: 128 mph</title></path>
+<text class="grp" x="227.5" y="272">Hidden strips</text>
+<text class="val" x="227.5" y="85.7">128</text>
+<path class="bar acc"  d="M300.5,252 V68.1 Q300.5,64.1 304.5,64.1 H368.5 Q372.5,64.1 372.5,68.1 V252 Z"><title>Center core: 151 mph</title></path>
+<text class="grp" x="336.5" y="272">Center core</text>
+<text class="val" x="336.5" y="57.1">151</text>
+<path class="bar acc"  d="M409.5,252 V59.4 Q409.5,55.4 413.5,55.4 H477.5 Q481.5,55.4 481.5,59.4 V252 Z"><title>Steel frame: 158 mph</title></path>
+<text class="grp" x="445.5" y="272">Steel frame</text>
+<text class="val" x="445.5" y="48.4">158</text>
+</svg></div>
+    </div>
+    <p data-step="2">Background (axes, grid, labels) in light gray. Data in a quiet color. Emphasis in one strong color on the marks the title is about. The numbers sit on the bars, so the legend can go.</p>
+    <p class="note">Illustrative numbers</p>
+  </div>
+</div>
+
+<!-- SLIDE 12: Tool 2 -->
+<div class="slide" id="s12">
+  <div class="slide-inner">
+    <h2>Color should follow how the data relate to each other</h2>
+    <div class="swatches">
+      <div data-step="1"><div class="sw"><i style="background:#2a78d6"></i><i style="background:#eb6834"></i><i style="background:#2d9d78"></i><i style="background:#8e5cc4"></i></div><b>Qualitative</b><span>Separate categories with no order. Hues spaced evenly so none looks more important.</span></div>
+      <div data-step="2"><div class="sw"><i class="g"></i><i class="g"></i><i style="background:#2a78d6"></i><i class="g"></i></div><b>Accent</b><span>One category is the point. Everything else is gray.</span></div>
+      <div data-step="3"><div class="sw"><i style="background:#cfe0f5"></i><i style="background:#8fb5e6"></i><i style="background:#4f89d6"></i><i style="background:#1b4f99"></i></div><b>Sequential</b><span>More or less of one thing. One hue, light to dark.</span></div>
+      <div data-step="4"><div class="sw"><i style="background:#2a6fbf"></i><i style="background:#a9c6ea"></i><i style="background:#d9d9d9"></i><i style="background:#f2b79a"></i><i style="background:#d2562a"></i></div><b>Divergent</b><span>Above or below a meaningful middle. Two hues with gray at the center.</span></div>
+    </div>
+    <p data-step="5">A rainbow scale invents boundaries the data don&rsquo;t have, and readers with color blindness lose it. Pick the chart type the same way, from the comparison the title makes (a ranking, a change over time, parts of a whole, or one measurement against another).</p>
+  </div>
+</div>
+
+<!-- SLIDE 13: Tool 3 -->
+<div class="slide" id="s13">
+  <div class="slide-inner">
+    <h2>Put the two things your title compares side by side, on one axis</h2>
+    <div class="vs-grid charts">
+      <div class="vs-box bad chart"><div class="vs-label">Before &middot; Model validation</div><div class="pair"><svg viewBox="0 0 250 210" role="img" aria-label="Observed damage grade by wall">
+<text class="grp" x="130" y="16">Observed</text>
+<line class="grid heavy" x1="30" x2="240" y1="180" y2="180"/><text class="axis-t" x="24" y="184" text-anchor="end">0</text>
+<line class="grid heavy" x1="30" x2="240" y1="152" y2="152"/><text class="axis-t" x="24" y="156" text-anchor="end">1</text>
+<line class="grid heavy" x1="30" x2="240" y1="124" y2="124"/><text class="axis-t" x="24" y="128" text-anchor="end">2</text>
+<line class="grid heavy" x1="30" x2="240" y1="96" y2="96"/><text class="axis-t" x="24" y="100" text-anchor="end">3</text>
+<line class="grid heavy" x1="30" x2="240" y1="68" y2="68"/><text class="axis-t" x="24" y="72" text-anchor="end">4</text>
+<line class="grid heavy" x1="30" x2="240" y1="40" y2="40"/><text class="axis-t" x="24" y="44" text-anchor="end">5</text>
+<rect x="36.0" y="96" width="15" height="84" fill="#7b3294"><title>W1: grade 3</title></rect>
+<text class="axis-t small" x="43.5" y="196" text-anchor="middle">1</text>
+<rect x="56.5" y="68" width="15" height="112" fill="#7b3294"><title>W2: grade 4</title></rect>
+<text class="axis-t small" x="64.0" y="196" text-anchor="middle">2</text>
+<rect x="77.0" y="124" width="15" height="56" fill="#7b3294"><title>W3: grade 2</title></rect>
+<text class="axis-t small" x="84.5" y="196" text-anchor="middle">3</text>
+<rect x="97.5" y="40" width="15" height="140" fill="#7b3294"><title>W4: grade 5</title></rect>
+<text class="axis-t small" x="105.0" y="196" text-anchor="middle">4</text>
+<rect x="118.0" y="152" width="15" height="28" fill="#7b3294"><title>W5: grade 1</title></rect>
+<text class="axis-t small" x="125.5" y="196" text-anchor="middle">5</text>
+<rect x="138.5" y="96" width="15" height="84" fill="#7b3294"><title>W6: grade 3</title></rect>
+<text class="axis-t small" x="146.0" y="196" text-anchor="middle">6</text>
+<rect x="159.0" y="68" width="15" height="112" fill="#7b3294"><title>W7: grade 4</title></rect>
+<text class="axis-t small" x="166.5" y="196" text-anchor="middle">7</text>
+<rect x="179.5" y="124" width="15" height="56" fill="#7b3294"><title>W8: grade 2</title></rect>
+<text class="axis-t small" x="187.0" y="196" text-anchor="middle">8</text>
+<rect x="200.0" y="96" width="15" height="84" fill="#7b3294"><title>W9: grade 3</title></rect>
+<text class="axis-t small" x="207.5" y="196" text-anchor="middle">9</text>
+<rect x="220.5" y="40" width="15" height="140" fill="#7b3294"><title>W10: grade 5</title></rect>
+<text class="axis-t small" x="228.0" y="196" text-anchor="middle">10</text>
+</svg><svg viewBox="0 0 250 210" role="img" aria-label="Model damage grade by wall">
+<text class="grp" x="130" y="16">Model</text>
+<line class="grid heavy" x1="30" x2="240" y1="180" y2="180"/><text class="axis-t" x="24" y="184" text-anchor="end">0</text>
+<line class="grid heavy" x1="30" x2="240" y1="152" y2="152"/><text class="axis-t" x="24" y="156" text-anchor="end">1</text>
+<line class="grid heavy" x1="30" x2="240" y1="124" y2="124"/><text class="axis-t" x="24" y="128" text-anchor="end">2</text>
+<line class="grid heavy" x1="30" x2="240" y1="96" y2="96"/><text class="axis-t" x="24" y="100" text-anchor="end">3</text>
+<line class="grid heavy" x1="30" x2="240" y1="68" y2="68"/><text class="axis-t" x="24" y="72" text-anchor="end">4</text>
+<line class="grid heavy" x1="30" x2="240" y1="40" y2="40"/><text class="axis-t" x="24" y="44" text-anchor="end">5</text>
+<rect x="36.0" y="96" width="15" height="84" fill="#e66101"><title>W1: grade 3</title></rect>
+<text class="axis-t small" x="43.5" y="196" text-anchor="middle">1</text>
+<rect x="56.5" y="68" width="15" height="112" fill="#e66101"><title>W2: grade 4</title></rect>
+<text class="axis-t small" x="64.0" y="196" text-anchor="middle">2</text>
+<rect x="77.0" y="124" width="15" height="56" fill="#e66101"><title>W3: grade 2</title></rect>
+<text class="axis-t small" x="84.5" y="196" text-anchor="middle">3</text>
+<rect x="97.5" y="96" width="15" height="84" fill="#e66101"><title>W4: grade 3</title></rect>
+<text class="axis-t small" x="105.0" y="196" text-anchor="middle">4</text>
+<rect x="118.0" y="152" width="15" height="28" fill="#e66101"><title>W5: grade 1</title></rect>
+<text class="axis-t small" x="125.5" y="196" text-anchor="middle">5</text>
+<rect x="138.5" y="96" width="15" height="84" fill="#e66101"><title>W6: grade 3</title></rect>
+<text class="axis-t small" x="146.0" y="196" text-anchor="middle">6</text>
+<rect x="159.0" y="124" width="15" height="56" fill="#e66101"><title>W7: grade 2</title></rect>
+<text class="axis-t small" x="166.5" y="196" text-anchor="middle">7</text>
+<rect x="179.5" y="124" width="15" height="56" fill="#e66101"><title>W8: grade 2</title></rect>
+<text class="axis-t small" x="187.0" y="196" text-anchor="middle">8</text>
+<rect x="200.0" y="96" width="15" height="84" fill="#e66101"><title>W9: grade 3</title></rect>
+<text class="axis-t small" x="207.5" y="196" text-anchor="middle">9</text>
+<rect x="220.5" y="40" width="15" height="140" fill="#e66101"><title>W10: grade 5</title></rect>
+<text class="axis-t small" x="228.0" y="196" text-anchor="middle">10</text>
+</svg></div><p class="dim small">Wall number on the x-axis. To check a wall, find it in both panels and compare bar heights.</p></div>
+      <div class="vs-box good chart" data-step="1"><div class="vs-label">After &middot; The model matched the observed damage at 8 of 10 walls</div><svg viewBox="0 0 560 300" role="img" aria-label="Observed versus model damage grade for ten walls, illustrative">
+<line class="grid" x1="90" x2="90" y1="12" y2="262"/><text class="axis-t" x="90" y="280" text-anchor="middle">0</text>
+<line class="grid" x1="154" x2="154" y1="12" y2="262"/><text class="axis-t" x="154" y="280" text-anchor="middle">1</text>
+<line class="grid" x1="218" x2="218" y1="12" y2="262"/><text class="axis-t" x="218" y="280" text-anchor="middle">2</text>
+<line class="grid" x1="282" x2="282" y1="12" y2="262"/><text class="axis-t" x="282" y="280" text-anchor="middle">3</text>
+<line class="grid" x1="346" x2="346" y1="12" y2="262"/><text class="axis-t" x="346" y="280" text-anchor="middle">4</text>
+<line class="grid" x1="410" x2="410" y1="12" y2="262"/><text class="axis-t" x="410" y="280" text-anchor="middle">5</text>
+<text class="axis-t" x="250.0" y="297" text-anchor="middle">Damage grade</text>
+<text class="axis-t" x="70" y="28.0" text-anchor="end">W1</text>
+<circle class="dot-mod mute" cx="282" cy="24.0" r="6"><title>W1: model and observed both grade 3</title></circle>
+<text class="axis-t" x="70" y="52.5" text-anchor="end">W2</text>
+<circle class="dot-mod mute" cx="346" cy="48.5" r="6"><title>W2: model and observed both grade 4</title></circle>
+<text class="axis-t" x="70" y="77.0" text-anchor="end">W3</text>
+<circle class="dot-mod mute" cx="218" cy="73.0" r="6"><title>W3: model and observed both grade 2</title></circle>
+<text class="axis-t" x="70" y="101.5" text-anchor="end">W4</text>
+<line class="miss-line" x1="282" x2="410" y1="97.5" y2="97.5"/>
+<circle class="dot-mod acc" cx="282" cy="97.5" r="6"><title>W4 model: grade 3</title></circle>
+<circle class="dot-obs acc" cx="410" cy="97.5" r="6"><title>W4 observed: grade 5</title></circle>
+<text class="val lab" x="422" y="101.5" text-anchor="start">model 3, observed 5</text>
+<text class="axis-t" x="70" y="126.0" text-anchor="end">W5</text>
+<circle class="dot-mod mute" cx="154" cy="122.0" r="6"><title>W5: model and observed both grade 1</title></circle>
+<text class="axis-t" x="70" y="150.5" text-anchor="end">W6</text>
+<circle class="dot-mod mute" cx="282" cy="146.5" r="6"><title>W6: model and observed both grade 3</title></circle>
+<text class="axis-t" x="70" y="175.0" text-anchor="end">W7</text>
+<line class="miss-line" x1="218" x2="346" y1="171.0" y2="171.0"/>
+<circle class="dot-mod acc" cx="218" cy="171.0" r="6"><title>W7 model: grade 2</title></circle>
+<circle class="dot-obs acc" cx="346" cy="171.0" r="6"><title>W7 observed: grade 4</title></circle>
+<text class="val lab" x="358" y="175.0" text-anchor="start">model 2, observed 4</text>
+<text class="axis-t" x="70" y="199.5" text-anchor="end">W8</text>
+<circle class="dot-mod mute" cx="218" cy="195.5" r="6"><title>W8: model and observed both grade 2</title></circle>
+<text class="axis-t" x="70" y="224.0" text-anchor="end">W9</text>
+<circle class="dot-mod mute" cx="282" cy="220.0" r="6"><title>W9: model and observed both grade 3</title></circle>
+<text class="axis-t" x="70" y="248.5" text-anchor="end">W10</text>
+<circle class="dot-mod mute" cx="410" cy="244.5" r="6"><title>W10: model and observed both grade 5</title></circle>
+</svg><p class="dim small"><span class="key mute"></span> model and observed agree &nbsp; <span class="key acc"></span> they disagree</p></div>
+    </div>
+    <p data-step="2">Find the key task, what the audience has to do to check your title. Emphasize those marks, gray out the rest, keep the eye&rsquo;s path short, and label directly so nobody has to memorize a legend.</p>
+    <p data-step="3"><b>Squint test.</b> Squint at the slide. What you can still see should be the finding.</p>
+  </div>
+</div>
+
+<!-- SLIDE 14: Workshop 2 -->
+<div class="slide" id="s14">
+  <div class="slide-inner">
+    <span class="phase-label p2">Workshop 2</span>
+    <h2>Retitle your Oct 22 pitch deck</h2>
+    <ul>
+      <li>Open your pitch deck or its printout.</li>
+      <li>For each slide, write the current title, then a sentence title.</li>
+      <li>Mark whether the evidence on the slide shows that sentence. If it doesn&rsquo;t, the title or the slide has to change.</li>
+      <li>Read your new titles in order. Do they walk the U from Week 6, goal down to the research question and back up to the benefit?</li>
+    </ul>
+    <p class="dim" style="margin-top:1rem;">Worksheet 2</p>
+  </div>
+</div>
+
+<!-- SLIDE 15: Workshop 3 -->
+<div class="slide" id="s15">
+  <div class="slide-inner">
+    <span class="phase-label p2">Workshop 3</span>
+    <h2>Redesign one figure by hand</h2>
+    <ul>
+      <li>Pick the figure your committee is most likely to stop on.</li>
+      <li>Write its sentence title and the key task.</li>
+      <li>Sketch it again with the three tools. Decide what goes gray, what gets the one strong color, and what sits next to what.</li>
+      <li>Swap with a partner. They squint and tell you what they see first.</li>
+    </ul>
+    <p class="dim" style="margin-top:1rem;">Worksheet 3</p>
+  </div>
+</div>
+
+<!-- SLIDE 16: Next week -->
+<div class="slide" id="s16">
+  <div class="slide-inner">
+    <h2>Before next week, put the new titles and the redesigned figure into your deck</h2>
+    <ul>
+      <li>Update the .pptx with your sentence titles and the redesigned figure.</li>
+      <li>Send Becca the deck as a PDF, with Worksheets 1 to 3.</li>
+    </ul>
+    <h3 style="margin-top:1.5rem;">Tools Shorr recommends</h3>
+    <ul class="tools">
+      <li><a href="https://hclwizard.org/hclwizard/">hclwizard.org</a> builds a palette for the job your color does</li>
+      <li><a href="https://projects.susielu.com/viz-palette">viz-palette</a> previews a palette on sample charts and checks it for color blindness</li>
+      <li><a href="https://datavizproject.com/">datavizproject.com</a> shows chart types sorted by the comparison they make</li>
+      <li>Michael Alley, <em>The Craft of Scientific Presentations</em> (2013), on sentence titles with evidence underneath</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide-num" id="slideNum">1 / 16</div>
+<div class="progress" id="progress"></div>
+<div class="nav-hint">&#8592; &#8594; to navigate</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  let step = 0;
+
+  function maxStep(slide) {
+    let m = 0;
+    slide.querySelectorAll('[data-step]').forEach(function(el) { m = Math.max(m, +el.dataset.step); });
+    return m;
+  }
+
+  function setStep(n) {
+    step = n;
+    slides[current].querySelectorAll('[data-step]').forEach(function(el) {
+      el.classList.toggle('on', +el.dataset.step <= step);
+    });
+  }
+
+  function show(idx, atEnd) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, idx));
+    slides[current].classList.add('active');
+    setStep(atEnd ? maxStep(slides[current]) : 0);
+    document.getElementById('slideNum').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  function next() {
+    if (step < maxStep(slides[current])) setStep(step + 1);
+    else if (current < total - 1) show(current + 1, false);
+  }
+
+  function prev() {
+    if (step > 0) setStep(step - 1);
+    else if (current > 0) show(current - 1, true);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0, false); }
+    else if (e.key === 'End') { e.preventDefault(); show(total - 1, true); }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', function(e) {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) { if (diff > 0) next(); else prev(); }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (e.button !== 0 || e.target.closest('a, button, input, select, textarea, summary, video')) return;
+    if (window.getSelection().toString()) return;
+    next();
+  });
+
+  show(0, false);
+})();
+</script>
+
+</body>
+</html>
