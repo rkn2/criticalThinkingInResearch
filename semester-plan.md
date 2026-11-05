@@ -295,8 +295,8 @@ one-sentence message. (2) Retitle the Oct 22 pitch deck slide by slide and
 mark whether each slide's evidence shows its title. (3) Redesign one figure
 by hand with the three tools; a partner does the squint test.
 
-**Deliverable:** updated .pptx with sentence titles and the redesigned
-figure, sent to Becca as a PDF with Worksheets 1-3.
+**Deliverable:** Worksheets 1-3 sent to Becca as a PDF on Teams (changed
+Nov 5, students don't have to update the deck).
 
 ### Weeks 8–13 — Practice talks and questions (Oct 29 – Dec 3)
 
