@@ -345,6 +345,13 @@ A new slide asks each student to pick the talk they are building
 in order of timing, December first. Said aloud, not on the public slides:
 Carol and Marcio comps proposal (December), Young and Yishuang a paper,
 Borna a defense.
+Later still, the A/B/C/D letters came off the example talk. The
+hypotheses now read "maybe it's the buildings / or maybe it's where they
+stood" and "maybe you need to see inside the walls / or maybe the sidewalk
+is enough", and the lines under the charts say in plain words which one
+held up. A new slide before the RQ1 approach shows the lettered Week 4–5
+version, asks "Does that sound like a person talking?", then shows the
+out-loud version and how to translate. Letters stay in the notes.
 
 **Workshop:** write the kind of talk at the top, take out Week 9
 Worksheet 2 (sentence titles for the 5–6 slide Oct 22 pitch) and the
