@@ -298,6 +298,34 @@ by hand with the three tools; a partner does the squint test.
 **Deliverable:** Worksheets 1-3 sent to Becca as a PDF on Teams (changed
 Nov 5, students don't have to update the deck).
 
+### Week 10 — From storymap to talk (Nov 12)
+
+Slides `docs/week10-slides.html`. No worksheet. A committee talk goes down
+the Week 6 staircase one "but" per slide, then climbs back up, answering
+each "but" with a research question, bottom one first (answering the bottom
+step is what lets you work on the one above). Two questions for each "but":
+is it the bottom step or does it build on the one below, and can your work
+answer it or does someone else make the call (then it goes in the benefit).
+One research question is a complete talk.
+
+Example talk (11 slides, talk frame plus side notes) extends Saanchi's open
+Mayfield feature study, labeled as such so Marcio (Memory Building,
+Mayfield) and Yishuang don't read it as theirs. RQ1 is the Week 6 question;
+RQ2 (volunteers rating features from the sidewalk vs. an engineer) is
+invented and marked EXPECTED. In the talk itself the staircase never
+appears; a research questions slide comes back after each result with the
+answer filled in. The staircase lives only in the side notes.
+
+Decided Nov 12: the "scope line" idea (steps your work can answer vs. the
+town's call) is on hold, so the deck doesn't use the term. Don't mention the
+comps retake on slides. Also fixed the Week 6 slide that said the first
+obstacle is the research question.
+
+**Workshop:** copy your Oct 22 staircase, ask the two questions of each
+"but," write your research questions slide, write every slide title of the
+December talk as a sentence. **Hot seat:** others read only the titles.
+**Deliverable:** title strip and research questions slide as a PDF on Teams.
+
 ### Weeks 8–13 — Practice talks and questions (Oct 29 – Dec 3)
 
 Left open on purpose (decided Oct 8): the rest of the semester is giving

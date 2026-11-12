@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Week 10 — From Storymap to Talk</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;1,400&family=Roboto+Slab:wght@400;600;700&display=swap">
+<style>
+  :root {
+    --bg: #F7F7F5;
+    --surface: #FFFFFF;
+    --text: #1A1A1A;
+    --text-dim: #555555;
+    --accent: #001E44;
+    --accent2: #1E407C;
+    --accent3: #96BEE6;
+    --border: #D9D9D9;
+    --highlight: #EDF3FA;
+    --warn: #9B2335;
+    --good: #2D5F2D;
+    --s1: #2a78d6;
+    --s2: #eb6834;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0E0E0D;
+      --surface: #1A1A18;
+      --text: #E8E6E1;
+      --text-dim: #9A9890;
+      --accent: #96BEE6;
+      --accent2: #6FA3D4;
+      --accent3: #3A6EA0;
+      --border: #2E2E2A;
+      --highlight: #141E2A;
+      --warn: #E05A6A;
+      --good: #5DAA5D;
+      --s1: #3987e5;
+      --s2: #d95926;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0E0E0D;
+    --surface: #1A1A18;
+    --text: #E8E6E1;
+    --text-dim: #9A9890;
+    --accent: #96BEE6;
+    --accent2: #6FA3D4;
+    --accent3: #3A6EA0;
+    --border: #2E2E2A;
+    --highlight: #141E2A;
+    --warn: #E05A6A;
+    --good: #5DAA5D;
+    --s1: #3987e5;
+    --s2: #d95926;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { width: 100%; height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: 'Roboto', system-ui, sans-serif; }
+
+  .slide { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 4rem 6rem; opacity: 0; transition: opacity 0.3s ease; }
+  .slide.active { display: flex; opacity: 1; }
+  .slide-inner { max-width: 960px; width: 100%; }
+
+  h1 { font-family: 'Roboto Slab', Georgia, serif; font-size: 2.8rem; font-weight: 700; line-height: 1.2; margin-bottom: 0.5rem; }
+  h2 { font-family: 'Roboto Slab', Georgia, serif; font-size: 2rem; font-weight: 700; line-height: 1.25; margin-bottom: 1.25rem; color: var(--accent); }
+  h3 { font-family: 'Roboto Slab', Georgia, serif; font-size: 1.3rem; font-weight: 600; margin-bottom: 0.75rem; color: var(--accent); }
+  p, li { font-size: 1.25rem; line-height: 1.65; color: var(--text); }
+  .dim { color: var(--text-dim); }
+  .warn { color: var(--warn); }
+
+  ul { list-style: none; padding-left: 0; }
+  ul li { padding: 0.3rem 0 0.3rem 1.5rem; position: relative; }
+  ul li::before { content: ''; position: absolute; left: 0; top: 0.75rem; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+  .subtitle { font-size: 1.1rem; color: var(--text-dim); margin-bottom: 2rem; }
+
+  blockquote { border-left: 3px solid var(--accent); padding: 0.75rem 1.25rem; margin: 0.75rem 0; font-style: italic; color: var(--text); font-size: 1.15rem; line-height: 1.6; background: var(--highlight); }
+  blockquote .source { display: block; font-style: normal; font-size: 0.85rem; color: var(--text-dim); margin-top: 0.4rem; }
+
+  .formula { border-left: 3px solid var(--accent); padding: 1.25rem 1.5rem; margin: 1rem 0; background: var(--highlight); font-size: 1.2rem; line-height: 1.8; }
+  .formula .step-num { font-weight: 700; color: var(--accent); }
+  .formula .blank { border-bottom: 2px solid var(--accent); display: inline-block; min-width: 10rem; margin: 0 0.15rem; }
+
+  .vs-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin: 1rem 0; }
+  .vs-box { padding: 1.5rem; border: 1px solid var(--border); background: var(--surface); }
+  .vs-box.bad { border-top: 3px solid var(--warn); }
+  .vs-box.good { border-top: 3px solid var(--good); }
+  .vs-box.neutral { border-top: 3px solid var(--accent2); }
+  .vs-label { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.5rem; }
+  .vs-box.bad .vs-label { color: var(--warn); }
+  .vs-box.good .vs-label { color: var(--good); }
+  .vs-box.neutral .vs-label { color: var(--accent2); }
+  .vs-box p { font-size: 1.1rem; }
+
+  .arrow-flow { display: flex; align-items: center; gap: 0.5rem; margin: 1.5rem 0; flex-wrap: wrap; }
+  .arrow-step { padding: 0.75rem 1.25rem; border: 1px solid var(--border); background: var(--surface); font-size: 1rem; line-height: 1.4; text-align: center; flex: 1; }
+  .arrow-step.done { opacity: 0.5; }
+  .arrow-step.now { border-color: var(--accent); background: var(--highlight); font-weight: 600; }
+  .arrow-step.later { opacity: 0.7; border-style: dashed; }
+  .arrow-between { font-size: 1.5rem; color: var(--text-dim); flex-shrink: 0; }
+
+  .phase-label { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1.5rem; padding: 0.35rem 0.75rem; display: inline-block; }
+  .phase-label.p1 { color: var(--accent2); background: var(--highlight); }
+  .phase-label.p2 { color: var(--good); background: rgba(45,95,45,0.08); }
+
+  .title-slide h1 { font-size: 3.5rem; margin-bottom: 0.25rem; }
+  .title-slide .week-label { font-size: 1rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); margin-bottom: 0.75rem; }
+  .title-slide .meta { font-size: 1rem; color: var(--text-dim); margin-top: 2rem; line-height: 1.8; }
+
+  .nav-hint { position: fixed; bottom: 1.5rem; right: 2rem; font-size: 0.75rem; color: var(--text-dim); opacity: 0.5; }
+  .progress { position: fixed; bottom: 0; left: 0; height: 3px; background: var(--accent2); transition: width 0.3s ease; }
+  .ws-tag { position: absolute; top: 1.5rem; right: 2rem; padding: 0.35rem 0.9rem; border: 2px solid var(--accent); border-radius: 999px; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.04em; color: var(--accent); }
+  .slide-num { position: fixed; bottom: 1.5rem; left: 2rem; font-size: 0.75rem; color: var(--text-dim); font-variant-numeric: tabular-nums; }
+
+  @media (max-width: 800px) {
+    .slide { padding: 1.5rem 1rem 3.5rem; justify-content: flex-start; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+    .slide-inner { margin-block: auto; }
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.5rem; }
+    .title-slide h1 { font-size: 2.2rem; }
+    .vs-grid { grid-template-columns: 1fr; }
+    .formula { font-size: 1.05rem; }
+    p, li { font-size: 1.05rem; }
+    .arrow-flow { flex-direction: column; }
+    .arrow-between { transform: rotate(90deg); }
+  }
+  .cited { display: flex; gap: 1.5rem; align-items: center; margin: 0.75rem 0; }
+  .cited .quotes { flex: 1; min-width: 0; }
+  .cited blockquote { margin: 0.5rem 0; }
+  .cover { height: 160px; width: auto; flex-shrink: 0; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,0.15); }
+  .article-head { display: block; max-width: 340px; width: 100%; margin-bottom: 1rem; border: 1px solid var(--border); background: #fff; padding: 0.4rem 0.6rem; }
+  @media (max-width: 800px) { .cover { height: 110px; } .cited { gap: 1rem; } }
+  .tmeta { font-size: 1rem; color: var(--text-dim); margin-top: 2rem; line-height: 1.8; }
+  .two-col { display: grid; grid-template-columns: 3fr 2fr; gap: 1.5rem; align-items: center; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+  /* Week 10: staircase down and back up */
+  [data-step] { transition: opacity 0.45s ease, transform 0.45s ease; }
+  .slide [data-step]:not(.on) { opacity: 0; }
+  .slide p[data-step]:not(.on), .slide tr[data-step]:not(.on) { transform: translateY(8px); }
+  @media (prefers-reduced-motion: reduce) { [data-step] { transition: none; } .slide [data-step] { transform: none !important; } }
+  .slide-inner { max-width: 1080px; }
+  h2 { font-size: 1.85rem; }
+  .credit { font-size: 0.85rem; color: var(--text-dim); margin-top: 1.5rem; }
+
+  .stair { margin: 0.25rem 0 0; }
+  .stair .want, .stair .but, .stair .rq { font-size: 1.08rem; line-height: 1.35; padding: 0.3rem 0.7rem; margin-bottom: 0.3rem; border-left: 3px solid var(--accent2); }
+  .stair .but { border-left-color: var(--warn); }
+  .stair .but em { color: var(--warn); font-style: normal; font-weight: 700; }
+  .stair .want em { color: var(--accent2); font-style: normal; font-weight: 700; }
+  .stair-row { display: flex; align-items: flex-start; }
+  .stair-row > div { flex: 1; }
+  .stair-lab { width: 7.5rem; flex-shrink: 0; padding-top: 0.35rem; font-size: 0.95rem; font-weight: 700; color: var(--accent); }
+  .stair .rq { border: 1px solid var(--accent); border-left-width: 3px; background: var(--highlight); font-weight: 600; }
+
+  /* down-and-up table */
+  .du { width: 100%; border-collapse: collapse; margin: 0.4rem 0; }
+  .du th { font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); text-align: left; padding: 0.25rem 0.7rem; }
+  .du td { padding: 0.5rem 0.7rem; vertical-align: top; font-size: 1.02rem; line-height: 1.38; border-bottom: 1px solid var(--border); }
+  .du td.down { width: 50%; border-left: 3px solid var(--warn); }
+  .du td.down em { color: var(--warn); font-style: normal; font-weight: 700; }
+  .du td.down.goal { border-left-color: var(--accent2); }
+  .du td.down.goal em { color: var(--accent2); }
+  .du td.up { border-left: 3px solid var(--accent); background: var(--highlight); }
+  .du td.up .tag { display: block; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent2); margin-bottom: 0.15rem; }
+  .du td.up.now { outline: 2px solid var(--accent); outline-offset: -2px; font-weight: 600; }
+  .du td.up.done .tag { color: var(--good); }
+  .du td.up.done .tag::before { content: '\2713\00a0'; }
+  .du td.up.later { opacity: 0.55; }
+  .du td.up.out { background: transparent; border-left: 3px dashed var(--text-dim); color: var(--text-dim); }
+  .du td.up.out .tag { color: var(--text-dim); }
+  .du tr.scope td { padding: 0; border-bottom: 2px dashed var(--warn); height: 0; }
+  .scope-lab { font-size: 0.8rem; font-weight: 700; color: var(--warn); text-align: right; margin: 0.1rem 0 0; }
+  .arrows { display: flex; justify-content: space-between; font-size: 0.9rem; font-weight: 600; color: var(--text-dim); margin-top: 0.3rem; }
+  .talk .du td { font-size: 0.95rem; padding: 0.38rem 0.6rem; }
+
+  .test2 { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 0.6rem 0 1rem; }
+  .test2 > div { border: 1px solid var(--border); border-top: 3px solid var(--accent); background: var(--surface); padding: 0.9rem 1.1rem; font-size: 1.15rem; line-height: 1.45; }
+  .test2 b.t { display: block; font-family: 'Roboto Slab', Georgia, serif; color: var(--accent); margin-bottom: 0.3rem; }
+
+  /* example talk frame */
+  .slide.ex { padding: 2rem 2.5rem 3.25rem; }
+  .ex .slide-inner { max-width: 1400px; display: grid; grid-template-columns: minmax(0,1fr) minmax(0,4fr); gap: 1.5rem; align-items: stretch; }
+  .meta { background: var(--highlight); border-left: 3px solid var(--accent); padding: 1rem 1rem 1.1rem; display: flex; flex-direction: column; gap: 0.7rem; }
+  .meta-tag { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent2); }
+  .meta p { font-size: 0.92rem; line-height: 1.45; }
+  .meta p b { color: var(--accent); }
+  .talk { position: relative; background: var(--surface); border: 1px solid var(--border); box-shadow: 0 6px 24px rgba(0,0,0,0.12); aspect-ratio: 16 / 9; padding: 2rem 2.75rem 2.4rem; display: flex; flex-direction: column; justify-content: center; }
+  .talk h2 { font-size: 1.6rem; margin-bottom: 0.9rem; }
+  .talk p, .talk li { font-size: 1.1rem; }
+  .talk .talk-foot { position: absolute; bottom: 0.7rem; left: 2.75rem; right: 2.75rem; display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-dim); }
+
+  /* mini staircase marker in the meta panel */
+  .ms { display: flex; flex-direction: column; gap: 3px; }
+  .ms div { font-size: 0.72rem; line-height: 1.2; padding: 0.2rem 0.4rem; border: 1px solid var(--border); background: var(--surface); color: var(--text-dim); }
+  .ms div:nth-child(2) { margin-left: 0.6rem; } .ms div:nth-child(3) { margin-left: 1.2rem; }
+  .ms div.here { background: var(--accent); color: var(--surface); border-color: var(--accent); font-weight: 700; }
+  .ms .dir { border: none; background: none; padding: 0; margin: 0 !important; font-weight: 700; color: var(--accent2); }
+
+  .hyp { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.9rem; margin: 0.5rem 0 1rem; }
+  .hyp div { border: 1px solid var(--border); border-top: 3px solid var(--accent2); padding: 0.7rem 0.8rem; font-size: 1rem; line-height: 1.4; }
+  .hyp div b { display: block; color: var(--accent); }
+  .hyp div.untestable { border-top-style: dashed; color: var(--text-dim); }
+  .bignum { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; margin: 0.4rem 0 0.8rem; }
+  .bignum div { border-top: 3px solid var(--accent2); padding: 0.5rem 0.2rem; }
+  .bignum b { display: block; font-family: 'Roboto Slab', Georgia, serif; font-size: 2rem; color: var(--accent); }
+  .bignum span { font-size: 0.98rem; color: var(--text-dim); }
+  .chart svg { width: 100%; height: auto; max-height: 40vh; display: block; }
+  .chart .grid { stroke: var(--border); stroke-width: 1; }
+  .chart .axis-t { fill: var(--text-dim); font: 400 13px Roboto, sans-serif; }
+  .chart .val { fill: var(--text); font: 500 13px Roboto, sans-serif; text-anchor: middle; }
+  .chart .grp { fill: var(--text); font: 500 14px Roboto, sans-serif; text-anchor: middle; }
+  .chart .s1 { fill: var(--s1); } .chart .s2 { fill: var(--s2); }
+  .chart .exp { fill: var(--s1); fill-opacity: 0.18; stroke: var(--s1); stroke-width: 2; stroke-dasharray: 5 4; }
+  .so-what { border-left: 3px solid var(--accent); background: var(--highlight); padding: 0.55rem 0.9rem; font-size: 1.05rem; margin-top: 0.5rem; }
+  .not-box { border: 1px dashed var(--warn); padding: 0.75rem 1rem; margin-top: 1rem; }
+  .not-box .vs-label { color: var(--warn); }
+  .expected { display: inline-block; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em; color: var(--warn); border: 1.5px solid var(--warn); padding: 0.1rem 0.5rem; margin-left: 0.4rem; vertical-align: middle; }
+
+  .strip { counter-reset: s; display: flex; flex-direction: column; gap: 0.3rem; }
+  .strip div { counter-increment: s; font-family: 'Roboto Slab', Georgia, serif; font-size: 1rem; line-height: 1.3; padding: 0.3rem 0.7rem; border-left: 3px solid var(--border); background: var(--surface); }
+  .strip div::before { content: counter(s) '. '; color: var(--text-dim); font-family: 'Roboto', sans-serif; }
+  .strip div.down { border-left-color: var(--warn); }
+  .strip div.home { border-left-color: var(--accent); background: var(--highlight); font-weight: 700; }
+  .strip div.up { border-left-color: var(--good); }
+  .disclaim { border: 2px solid var(--accent); padding: 1.2rem 1.5rem; background: var(--highlight); }
+  .disclaim p { font-size: 1.2rem; }
+
+  @media (max-width: 800px) {
+    .slide.ex { padding: 1.5rem 1rem 3.5rem; }
+    .ex .slide-inner { grid-template-columns: 1fr; }
+    .talk { order: -1; aspect-ratio: auto; padding: 1.25rem 1.25rem 2.25rem; }
+    .talk .talk-foot { left: 1.25rem; right: 1.25rem; }
+    .hyp, .test2, .bignum { grid-template-columns: 1fr; }
+    .du td { font-size: 0.9rem; }
+  }
+  .rqs { display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.3rem; }
+  .rqc { border: 1px solid var(--border); border-left: 4px solid var(--accent2); padding: 0.7rem 1rem; background: var(--surface); }
+  .rqc .tag { display: block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent2); margin-bottom: 0.2rem; }
+  .rqc .q { font-size: 1.15rem; line-height: 1.35; }
+  .rqc .a { margin-top: 0.4rem; font-size: 1.05rem; font-weight: 600; color: var(--good); }
+  .rqc .a::before { content: '\2713\00a0'; }
+  .rqc.now { border-color: var(--accent); border-left-color: var(--accent); background: var(--highlight); }
+  .rqc.now .q { font-weight: 600; }
+  .rqc.later { opacity: 0.5; }
+  .rqc.done { border-left-color: var(--good); }
+  .rqc.done .q { color: var(--text-dim); }
+</style>
+</head>
+<body>
+
+<!-- SLIDE: Title -->
+<div class="slide active">
+  <div class="slide-inner title-slide">
+    <div class="week-label">Week 10</div>
+    <h1>From Storymap to Talk</h1>
+    <p class="subtitle">Going down the staircase one slide at a time, then climbing back up</p>
+    <div class="tmeta">
+      H3D Research Methods Class<br>
+      Fall 2026<br>
+      Carol &middot; Marcio &middot; Yishuang &middot; Young &middot; Borna
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: Warm-up -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>Warm-up: Your Key Finding</h2>
+    <p style="margin-bottom:1.25rem;">Write your current key finding in one sentence. Read it to yourself.</p>
+    <p style="margin-top:1.25rem;">Then ask yourself one thing.</p>
+    <p style="font-size:1.4rem; margin-top:0.5rem;"><strong>Which &ldquo;but&rdquo; on your staircase does this sentence answer?</strong></p>
+  </div>
+</div>
+
+<!-- SLIDE: Recap Week 6 -->
+<div class="slide">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 1: The Staircase, Down and Back Up</span>
+    <h2>In Week 6 the staircase went down until it reached a research question</h2>
+    <p style="margin-bottom:0.8rem;">Each &ldquo;but&rdquo; turned into a narrower &ldquo;we want.&rdquo; This is the Mayfield chain from the Week 6 example talk.</p>
+    <div class="stair">
+      <div class="stair-row" data-step="1"><span class="stair-lab">Goal</span><div class="want"><em>We want</em> to pick which historic buildings to retrofit first,</div></div>
+      <div class="stair-row" data-step="2"><span class="stair-lab">Obstacle</span><div class="but" style="margin-left:1.5rem;"><em>but</em> a full engineering assessment of every building costs more than a small town can spend.</div></div>
+      <div class="stair-row" data-step="3"><span class="stair-lab">Goal</span><div class="want" style="margin-left:3rem;"><em>So we want</em> a first pass from what you can see from the street,</div></div>
+      <div class="stair-row" data-step="4"><span class="stair-lab">Obstacle</span><div class="but" style="margin-left:4.5rem;"><em>but</em> wind design was written for modern buildings. Nothing tells you which historic features matter in a tornado.</div></div>
+      <div class="stair-row" data-step="5"><span class="stair-lab">Research question</span><div class="rq" style="margin-left:6rem;">Which features you can see from the street go with more tornado damage in historic brick buildings?</div></div>
+    </div>
+    <p style="margin-top:1rem;" data-step="6">A 5-minute pitch can show the whole staircase on one slide. A 20-minute committee talk needs more room.</p>
+  </div>
+</div>
+
+<!-- SLIDE: Down and back up -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>A talk goes down the staircase one &ldquo;but&rdquo; per slide and answers each one on the way back up</h2>
+    <table class="du">
+      <tr><th>Going down (one slide each)</th><th>Coming back up</th></tr>
+      <tr data-step="1"><td class="down goal"><em>We want</em> the big goal</td><td class="up out"><span class="tag">Benefit</span>Where your answers leave the big goal</td></tr>
+      <tr data-step="2"><td class="down"><em>but</em> the first obstacle, <em>so we want</em> something narrower</td><td class="up"><span class="tag">Research question 2</span>Answered second, using what RQ1 found</td></tr>
+      <tr data-step="3"><td class="down"><em>but</em> the next obstacle, at the bottom</td><td class="up"><span class="tag">Research question 1</span>Answered first</td></tr>
+    </table>
+    <div class="arrows" data-step="3"><span>&#8595; read down the left</span><span>read up the right &#8593;</span></div>
+    <p style="margin-top:0.9rem;" data-step="4">Answering the bottom question is what lets you work on the step above it. That is why the talk climbs in that order.</p>
+    <p data-step="5">The audience hears each &ldquo;but&rdquo; twice, once as a problem and once with your answer.</p>
+  </div>
+</div>
+
+<!-- SLIDE: Two questions -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>Two questions tell you whether a step is a research question or part of the benefit</h2>
+    <p>Ask both of every &ldquo;but&rdquo; on your staircase.</p>
+    <div class="test2">
+      <div data-step="1"><b class="t">1. Is it the bottom step, or does it build on the one below?</b>For a step above the bottom, would answering the step below it let you work on this one?</div>
+      <div data-step="2"><b class="t">2. Can your work answer it?</b>Or does someone else make that call, like a town, an owner or a code committee?</div>
+    </div>
+    <p data-step="3">If the answer to both is yes, it is a research question you answer on the way back up.</p>
+    <p data-step="4">If someone else makes the call, it belongs in the benefit. You point to it at the end and do not claim to answer it.</p>
+  </div>
+</div>
+
+<!-- SLIDE: One RQ is enough / fix -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>Your talk has as many research questions as steps your work can answer</h2>
+    <div class="vs-grid">
+      <div class="vs-box neutral" data-step="1">
+        <div class="vs-label">One step</div>
+        <p>One research question. This is the Week 6 example talk, and it is a complete talk.</p>
+      </div>
+      <div class="vs-box neutral" data-step="2">
+        <div class="vs-label">Two or three steps</div>
+        <p>Two or three research questions, answered from the bottom up. Each one gets an approach slide and a result slide.</p>
+      </div>
+    </div>
+    <p style="margin-top:1rem;" data-step="3">A correction to one Week 6 slide, which said your first obstacle is your research question. It can be one, if both questions say yes. Usually the research question is near the bottom of the staircase.</p>
+  </div>
+</div>
+
+<!-- SLIDE: Example disclaimer -->
+<div class="slide">
+  <div class="slide-inner">
+    <span class="phase-label p2">Part 2: Example Talk</span>
+    <h2>The example talk extends Saanchi&rsquo;s Mayfield study, which she left open</h2>
+    <div class="disclaim">
+      <p>This is not anyone&rsquo;s dissertation in this room. Saanchi looked at which features of Mayfield&rsquo;s historic brick buildings went with tornado damage, across many buildings. We use that thread for the example, and we added a second study to show a talk with two research questions.</p>
+      <p style="margin-top:0.8rem;">The numbers and the second study are made up for teaching.</p>
+    </div>
+    <p style="margin-top:1.1rem;">Watch for the research questions slide. It comes back after each result, with one more answer filled in.</p>
+  </div>
+</div>
+
+<!-- EX 1: Goal -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Going down: the goal</div>
+      <div class="ms"><div class="here">Goal</div><div>but 1</div><div>but 2</div></div>
+      <p data-step="1">The goal names who has the problem, a town with a budget.</p>
+      <p data-step="2">One slide. The literature comes in with the &ldquo;but&rdquo;s.</p>
+    </aside>
+    <div class="talk">
+      <h2>Mayfield has more historic brick buildings than it can afford to retrofit</h2>
+      <ul>
+        <li>Downtown Mayfield had about a hundred historic brick buildings</li>
+        <li>The 2021 tornado destroyed many of them, including the courthouse square</li>
+        <li>A preservation office can afford to inspect and retrofit a handful a year</li>
+      </ul>
+      <p style="margin-top:1rem;">We want a way to pick that handful before the next storm.</p>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>1 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 2: but 1 -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Going down: but 1</div>
+      <div class="ms"><div>Goal</div><div class="here">but 1</div><div>but 2</div></div>
+      <p data-step="1">The title is the &ldquo;but&rdquo; as a full sentence. The body is the evidence that the obstacle is real.</p>
+      <p data-step="2">Obstacle kind is lack of resources (Week 6).</p>
+    </aside>
+    <div class="talk">
+      <h2>A full engineering assessment of every building costs more than the town can spend</h2>
+      <div class="bignum">
+        <div><b>~100</b><span>historic brick buildings downtown</span></div>
+        <div><b>$8,000</b><span>for one engineering assessment</span></div>
+        <div><b>~$800,000</b><span>to assess them all, before any retrofit</span></div>
+      </div>
+      <p>So we want a first pass that a preservation office can do from the sidewalk.</p>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>2 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 3: but 2 -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Going down: but 2</div>
+      <div class="ms"><div>Goal</div><div>but 1</div><div class="here">but 2</div></div>
+      <p data-step="1">Obstacle kind is lack of theory. The rules exist, for a different kind of building.</p>
+      <p data-step="2">This is the bottom of the staircase, so the next slide states the research questions.</p>
+    </aside>
+    <div class="talk">
+      <h2>Wind design was written for modern buildings, so it doesn&rsquo;t say which historic features to look for</h2>
+      <p>Features you can see from the sidewalk that wind codes don&rsquo;t address</p>
+      <ul>
+        <li>Tall unbraced parapets</li>
+        <li>Wide open storefronts at street level</li>
+        <li>Walls not tied to the floors (no anchor plates showing)</li>
+      </ul>
+      <p style="margin-top:0.8rem;">Which of these should a first pass look for?</p>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>3 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 4: RQ slide, first time -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Research questions slide, first time</div>
+      <p data-step="1">Each question answers one &ldquo;but&rdquo; from slides 2 and 3. Question 1 answers the bottom one.</p>
+      <p data-step="2">The committee sees the questions. The staircase is how you found them and how you order them.</p>
+      <p data-step="3">This slide comes back after each result.</p>
+    </aside>
+    <div class="talk">
+      <h2>This talk asks which features matter, then whether volunteers can see them from the sidewalk</h2>
+      <div class="rqs"><div class="rqc now"><span class="tag">Question 1</span><div class="q">Which features you can see from the street go with more tornado damage in historic brick buildings?</div></div><div class="rqc later"><span class="tag">Question 2</span><div class="q">Can volunteers rate those features from the sidewalk the way an engineer would?</div></div></div>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>4 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 5: RQ1 approach -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">RQ1: approach</div>
+      <p data-step="5">Competing hypotheses (Week 4) and the comparison that tells them apart, on one slide.</p>
+      <p data-step="6">C is named even though this data can&rsquo;t test it. It comes back as the next step in the benefit.</p>
+    </aside>
+    <div class="talk">
+      <h2>Three explanations for the damage predict different patterns</h2>
+      <p style="margin-bottom:0.25rem;">About 80 historic brick buildings along one EF4 track, each surveyed after the storm.</p>
+      <div class="hyp">
+        <div data-step="1"><b>A: Geometry</b>Tall parapets and big wall openings catch the wind and fail first.</div>
+        <div data-step="2"><b>B: Location</b>It is just how close the building was to the track.</div>
+        <div data-step="3" class="untestable"><b>C: Hidden condition</b>Mortar and wall-to-floor ties decide it, and they are hard to see from the street.</div>
+      </div>
+      <p data-step="4"><strong>The test.</strong> Compare tall and short parapets at the same distance. If B is right, the gap disappears.</p>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>5 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 6: RQ1 result -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">RQ1: result</div>
+      <p data-step="2">The title states the answer to RQ1. The line under the chart says which hypothesis it supports.</p>
+    </aside>
+    <div class="talk">
+      <h2 style="margin-bottom:0.5rem;">Tall-parapet buildings were damaged more at every distance from the track</h2>
+      <div class="chart"><svg viewBox="0 0 640 300" role="img" aria-label="Illustrative grouped bar chart. Share of buildings damaged, tall parapet versus short or none: within 100 m, 85% vs 62%; 100 to 300 m, 64% vs 38%; over 300 m, 41% vs 17%."><line class="grid" x1="60" x2="620" y1="250.0" y2="250.0"/><text class="axis-t" x="52" y="254.0" text-anchor="end">0%</text><line class="grid" x1="60" x2="620" y1="150.0" y2="150.0"/><text class="axis-t" x="52" y="154.0" text-anchor="end">50%</text><line class="grid" x1="60" x2="620" y1="50.0" y2="50.0"/><text class="axis-t" x="52" y="54.0" text-anchor="end">100%</text><path class="s1" d="M103,250 V84.0 Q103,80.0 107,80.0 H145 Q149,80.0 149,84.0 V250 Z"><title>Within 100 m, tall parapet: 85% damaged</title></path><text class="val" x="126.0" y="73.0">85%</text><path class="s2" d="M151,250 V130.0 Q151,126.0 155,126.0 H193 Q197,126.0 197,130.0 V250 Z"><title>Within 100 m, short or no parapet: 62% damaged</title></path><text class="val" x="174.0" y="119.0">62%</text><text class="grp" x="150" y="272">Within 100 m</text><path class="s1" d="M283,250 V126.0 Q283,122.0 287,122.0 H325 Q329,122.0 329,126.0 V250 Z"><title>100–300 m, tall parapet: 64% damaged</title></path><text class="val" x="306.0" y="115.0">64%</text><path class="s2" d="M331,250 V178.0 Q331,174.0 335,174.0 H373 Q377,174.0 377,178.0 V250 Z"><title>100–300 m, short or no parapet: 38% damaged</title></path><text class="val" x="354.0" y="167.0">38%</text><text class="grp" x="330" y="272">100–300 m</text><path class="s1" d="M463,250 V172.0 Q463,168.0 467,168.0 H505 Q509,168.0 509,172.0 V250 Z"><title>Over 300 m, tall parapet: 41% damaged</title></path><text class="val" x="486.0" y="161.0">41%</text><path class="s2" d="M511,250 V220.0 Q511,216.0 515,216.0 H553 Q557,216.0 557,220.0 V250 Z"><title>Over 300 m, short or no parapet: 17% damaged</title></path><text class="val" x="534.0" y="209.0">17%</text><text class="grp" x="510" y="272">Over 300 m</text><text class="axis-t" x="340" y="292" text-anchor="middle">Distance from the tornado track</text><rect class="s1" x="380" y="8" width="12" height="12" rx="2"/><text class="axis-t" x="398" y="18">Tall parapet</text><rect class="s2" x="490" y="8" width="12" height="12" rx="2"/><text class="axis-t" x="508" y="18">Short or none</text></svg></div>
+      <p class="so-what" data-step="1">Closer meant more damage, and the parapet gap stays at every distance. That favors A over B. C is still open.</p>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>6 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 7: RQ slide, second time -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Research questions slide, second time</div>
+      <p data-step="1">Question 1 now shows its answer in one sentence.</p>
+      <p data-step="2">The title says why question 2 comes next. Knowing which features matter is what makes a sidewalk rating worth testing.</p>
+    </aside>
+    <div class="talk">
+      <h2>Tall parapets matter, so next we ask whether volunteers can see them</h2>
+      <div class="rqs"><div class="rqc done"><span class="tag">Question 1</span><div class="q">Which features you can see from the street go with more tornado damage in historic brick buildings?</div><div class="a">Tall parapets went with more damage at every distance from the track.</div></div><div class="rqc now"><span class="tag">Question 2</span><div class="q">Can volunteers rate those features from the sidewalk the way an engineer would?</div></div></div>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>7 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 8: RQ2 approach -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">RQ2: approach</div>
+      <p data-step="1">One approach slide per research question. No new staircase, no second U.</p>
+      <p data-step="2">The comparison is chosen so a mismatch would show up in a specific feature.</p>
+    </aside>
+    <div class="talk">
+      <h2>Volunteers and an engineer rated the same 80 buildings from the sidewalk</h2>
+      <ul>
+        <li>Each volunteer got a one-page sheet with photos of the three features from slide 3 and marked each one yes or no</li>
+        <li>An engineer rated the same buildings with the same sheet</li>
+        <li>For each feature we count how often the volunteer and the engineer agreed</li>
+      </ul>
+      <p style="margin-top:0.8rem;">If volunteers can&rsquo;t see a feature, agreement on that feature drops toward chance.</p>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>8 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 9: RQ2 result (expected) -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">RQ2: result, marked expected</div>
+      <p data-step="2">No result yet, so the bars are dashed and the title says &ldquo;we expect.&rdquo; Same rule as the Oct 22 pitches.</p>
+      <p data-step="3">Missing the wall ties is why hypothesis C from RQ1 stays open.</p>
+    </aside>
+    <div class="talk">
+      <h2 style="margin-bottom:0.5rem;">We expect volunteers to match the engineer on parapets and storefronts and miss the wall ties <span class="expected">EXPECTED</span></h2>
+      <div class="chart"><svg viewBox="0 0 640 270" role="img" aria-label="Illustrative expected agreement between volunteers and engineer by feature: parapet height 90%, storefront openings 80%, wall-to-floor ties 45%. Chance is about 50%."><line class="grid" x1="60" x2="620" y1="230" y2="230"/><text class="axis-t" x="52" y="234" text-anchor="end">0%</text><line class="grid" x1="60" x2="620" y1="130" y2="130"/><text class="axis-t" x="52" y="134" text-anchor="end">50%</text><line class="grid" x1="60" x2="620" y1="30" y2="30"/><text class="axis-t" x="52" y="34" text-anchor="end">100%</text><line x1="60" x2="620" y1="130" y2="130" stroke="var(--text-dim)" stroke-dasharray="3 4"/><text class="axis-t" x="66" y="124">about chance</text><rect class="exp" x="120" y="50" width="90" height="180" rx="3"/><text class="val" x="165" y="42">90%</text><text class="grp" x="165" y="252">Parapet height</text><rect class="exp" x="295" y="70" width="90" height="160" rx="3"/><text class="val" x="340" y="62">80%</text><text class="grp" x="340" y="252">Storefront openings</text><rect class="exp" x="470" y="140" width="90" height="90" rx="3"/><text class="val" x="515" y="132">45%</text><text class="grp" x="515" y="252">Wall-to-floor ties</text></svg></div>
+      <p class="so-what" data-step="1">If this holds, a sidewalk pass can sort buildings by parapet and storefront, and the wall ties still need an engineer.</p>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>9 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 10: RQ slide, third time -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Research questions slide, third time</div>
+      <p data-step="1">Both questions have an answer, so both &ldquo;but&rdquo;s from the start of the talk do too.</p>
+      <p data-step="2">The next slide says what the answers give the town.</p>
+    </aside>
+    <div class="talk">
+      <h2>Volunteers can likely spot tall parapets, and the wall ties still need an engineer</h2>
+      <div class="rqs"><div class="rqc done"><span class="tag">Question 1</span><div class="q">Which features you can see from the street go with more tornado damage in historic brick buildings?</div><div class="a">Tall parapets went with more damage at every distance from the track.</div></div><div class="rqc done"><span class="tag">Question 2</span><div class="q">Can volunteers rate those features from the sidewalk the way an engineer would?</div><div class="a">Volunteers match the engineer on parapets and storefronts and miss the wall ties. <span class="expected">EXPECTED</span></div></div></div>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>10 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- EX 11: Benefit -->
+<div class="slide ex">
+  <div class="slide-inner">
+    <aside class="meta">
+      <div class="meta-tag">Benefit, back at the goal</div>
+      <p data-step="2">The benefit answers the goal slide&rsquo;s question with what the two questions found, and claims no more than that.</p>
+      <p data-step="3">The open hypothesis (C, the wall ties) becomes the next step.</p>
+    </aside>
+    <div class="talk">
+      <h2>A town could sort its historic buildings from the sidewalk before paying for any assessment</h2>
+      <p>Volunteers flag tall parapets, which they rate about as well as an engineer. The engineering budget goes to those buildings first, starting with their wall ties.</p>
+      <div class="not-box" data-step="1">
+        <div class="vs-label">What this does not tell you</div>
+        <p style="font-size:1rem;">How to retrofit. How to rank two buildings with the same features. Whether it holds beyond one EF4 track.</p>
+      </div>
+      <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>11 / 11</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: The strip -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>Read only the titles and the story still holds together</h2>
+    <div class="two-col">
+      <div class="strip">
+        <div class="down">Mayfield has more historic brick buildings than it can afford to retrofit</div>
+        <div class="down">A full engineering assessment of every building costs more than the town can spend</div>
+        <div class="down">Wind design was written for modern buildings, so it doesn&rsquo;t say which historic features to look for</div>
+        <div class="home">This talk asks which features matter, then whether volunteers can see them from the sidewalk</div>
+        <div class="up">Three explanations for the damage predict different patterns</div>
+        <div class="up">Tall-parapet buildings were damaged more at every distance from the track</div>
+        <div class="home">Tall parapets matter, so next we ask whether volunteers can see them</div>
+        <div class="up">Volunteers and an engineer rated the same 80 buildings from the sidewalk</div>
+        <div class="up">We expect volunteers to match the engineer on parapets and storefronts and miss the wall ties</div>
+        <div class="home">Volunteers can likely spot tall parapets, and the wall ties still need an engineer</div>
+        <div class="up">A town could sort its historic buildings from the sidewalk before paying for any assessment</div>
+      </div>
+      <div>
+        <p data-step="1"><span style="color:var(--warn); font-weight:700;">Red</span> slides go down the staircase, one &ldquo;but&rdquo; each.</p>
+        <p data-step="2"><span style="color:var(--accent); font-weight:700;">Blue</span> slides are the research questions slide each time it comes back.</p>
+        <p data-step="3"><span style="color:var(--good); font-weight:700;">Green</span> slides climb back up, an approach and a result for each RQ.</p>
+        <p data-step="4" style="margin-top:0.8rem;">With one research question, drop slides 8 to 10 and give slide 7 the answer as its title.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE: Workshop -->
+<div class="slide">
+  <div class="slide-inner">
+    <span class="phase-label p1">Part 3: Your Talk</span>
+    <h2>Workshop: turn your staircase into a strip of slide titles</h2>
+    <ol style="padding-left:1.4rem;">
+      <li style="margin-bottom:0.4rem;">Copy the staircase from your Oct 22 storymap.</li>
+      <li style="margin-bottom:0.4rem;">Ask the two questions of each &ldquo;but&rdquo; and mark the ones your work can answer.</li>
+      <li style="margin-bottom:0.4rem;">Write your research questions slide, with the question that answers the bottom &ldquo;but&rdquo; first.</li>
+      <li>Write the title of every slide in your December talk as a full sentence, in order.</li>
+    </ol>
+  </div>
+</div>
+
+<!-- SLIDE: Hot seat -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>Hot seat: the others read only your titles</h2>
+    <ul>
+      <li data-step="1">Where do they lose the thread?</li>
+      <li data-step="2">Does every &ldquo;but&rdquo; from the way down get an answer on the way up, or a place in the benefit?</li>
+      <li data-step="3">Does the benefit claim more than the questions answered?</li>
+      <li data-step="4">Does the research questions slide come back after each result?</li>
+    </ul>
+  </div>
+</div>
+
+<!-- SLIDE: Takeaway -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>For next week</h2>
+    <ul>
+      <li>Send Becca your strip of slide titles and your research questions slide as a PDF on Teams.</li>
+      <li>Next week the strip becomes a slide-by-slide outline of your December talk.</li>
+    </ul>
+  </div>
+</div>
+
+<div class="slide-num" id="slideNum">1 / 1</div>
+<div class="progress" id="progress"></div>
+<div class="nav-hint">&#8592; &#8594; to navigate</div>
+
+<script>
+(function() {
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  let current = 0;
+  let step = 0;
+
+  function maxStep(slide) {
+    let m = 0;
+    slide.querySelectorAll('[data-step]').forEach(function(el) { m = Math.max(m, +el.dataset.step); });
+    return m;
+  }
+
+  function setStep(n) {
+    step = n;
+    slides[current].querySelectorAll('[data-step]').forEach(function(el) {
+      el.classList.toggle('on', +el.dataset.step <= step);
+    });
+  }
+
+  function show(idx, atEnd) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, idx));
+    slides[current].classList.add('active');
+    setStep(atEnd ? maxStep(slides[current]) : 0);
+    document.getElementById('slideNum').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('progress').style.width = ((current + 1) / total * 100) + '%';
+  }
+
+  function next() {
+    if (step < maxStep(slides[current])) setStep(step + 1);
+    else if (current < total - 1) show(current + 1, false);
+  }
+
+  function prev() {
+    if (step > 0) setStep(step - 1);
+    else if (current > 0) show(current - 1, true);
+  }
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') { e.preventDefault(); next(); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); prev(); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0, false); }
+    else if (e.key === 'End') { e.preventDefault(); show(total - 1, true); }
+  });
+
+  let touchStartX = 0;
+  document.addEventListener('touchstart', function(e) { touchStartX = e.changedTouches[0].screenX; });
+  document.addEventListener('touchend', function(e) {
+    const diff = touchStartX - e.changedTouches[0].screenX;
+    if (Math.abs(diff) > 50) { if (diff > 0) next(); else prev(); }
+  });
+
+  document.addEventListener('click', function(e) {
+    if (e.button !== 0 || e.target.closest('a, button, input, select, textarea, summary, video')) return;
+    if (window.getSelection().toString()) return;
+    next();
+  });
+
+  show(0, false);
+})();
+</script>
+
+</body>
+</html>
