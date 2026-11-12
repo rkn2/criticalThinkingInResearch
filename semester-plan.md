@@ -331,11 +331,29 @@ comps retake on slides. Fixed the Week 6 slide that said the first
 obstacle is the research question (the correction is not on the Week 10
 slides; say it aloud if it comes up).
 
-**Workshop:** copy your Oct 22 staircase, mark each "but" your own work
-can answer, run the three moves on the bottom research question, write your
-research questions slide, write every slide title of the
-December talk as a sentence. **Hot seat:** others read only the titles.
-**Deliverable:** title strip and research questions slide as a PDF on Teams.
+Later Nov 12 changes. The three moves are opportunities, not a checklist
+(two of three is usually plenty, sometimes one); each version on slide 6 uses
+two. RQ1 is version 1 without anchorage (parapet height and storefront
+opening ratio vs. local wind speed), with hypotheses A (geometry) and B
+(local wind speed), each box ending in its prediction; the "test" sentence
+moved to the side note. RQ2 asks how much of an engineer's damage ranking a
+sidewalk rating reproduces and how much depends on hidden anchorage, with
+its own hypotheses C (hidden anchorage matters) and D (visible features are
+enough). No EXPECTED badge, the title says "we expect" and bars are dashed.
+A new slide asks each student to pick the talk they are building
+(comprehensive exam proposal, defense, or paper/conference talk); talks go
+in order of timing, December first. Said aloud, not on the public slides:
+Carol and Marcio comps proposal (December), Young and Yishuang a paper,
+Borna a defense.
+
+**Workshop:** write the kind of talk at the top, take out Week 9
+Worksheet 2 (sentence titles for the 5–6 slide Oct 22 pitch) and the
+storymap staircase, mark each "but" your own work can answer, push the
+bottom research question with the moves that fit, write the research
+questions slide, then expand the 5–6 titles into the chosen talk (about 8
+slides with one RQ, 11 with two, as in the example). **Hot seat:** others
+read only the titles. **Deliverable:** expanded title strip and research
+questions slide as a PDF on Teams, kind of talk at the top.
 
 ### Weeks 8–13 — Practice talks and questions (Oct 29 – Dec 3)
 
