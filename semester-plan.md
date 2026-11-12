@@ -362,6 +362,18 @@ slides with one RQ, 11 with two, as in the example). **Hot seat:** others
 read only the titles. **Deliverable:** expanded title strip and research
 questions slide as a PDF on Teams, kind of talk at the top.
 
+Sent to the class on Teams after the session (Nov 12): the updated slides
+link, a short reflection on today's exercises (a paragraph or a few
+bullets, just what they learned), and the plan for Nov 19.
+
+### Week 11 — Storyline slides, Marcio and Carol (Nov 19)
+
+Marcio and Carol bring their storyline slides, mainly the titles, without
+worrying about specifics yet. For each person, the group reads the slides
+for 5 minutes, the presenter reads the titles aloud the way they want them
+heard for 5 minutes, then the group asks questions and gives feedback.
+Then the next person.
+
 ### Weeks 8–13 — Practice talks and questions (Oct 29 – Dec 3)
 
 Left open on purpose (decided Oct 8): the rest of the semester is giving
