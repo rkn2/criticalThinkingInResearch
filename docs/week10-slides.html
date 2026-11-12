@@ -244,6 +244,13 @@
   .rqc.later { opacity: 0.5; }
   .rqc.done { border-left-color: var(--good); }
   .rqc.done .q { color: var(--text-dim); }
+  .ft { width: 100%; border-collapse: collapse; }
+  .ft th { text-align: left; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); padding: 0.3rem 0.8rem; }
+  .ft td { padding: 0.55rem 0.8rem; border-bottom: 1px solid var(--border); font-size: 1.08rem; line-height: 1.45; vertical-align: top; }
+  .ft td.k { font-weight: 700; color: var(--accent); width: 15rem; }
+  .ttl { border: 1px solid var(--border); border-left: 3px solid var(--good); background: var(--surface); padding: 0.6rem 0.9rem; font-family: 'Roboto Slab', Georgia, serif; font-weight: 600; font-size: 1.1rem; line-height: 1.35; }
+  .ttl.topic { border-left-color: var(--warn); }
+  .ttl .vs-label { display: block; font-family: 'Roboto', sans-serif; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--text-dim); margin-bottom: 0.2rem; }
 </style>
 </head>
 <body>
@@ -319,21 +326,54 @@
   </div>
 </div>
 
-<!-- SLIDE: One RQ is enough / fix -->
+<!-- SLIDE: One RQ is enough -->
 <div class="slide">
   <div class="slide-inner">
-    <h2>Your talk has as many research questions as steps your work can answer</h2>
+    <h2>Some talks have one research question and some have two or three</h2>
+    <p style="margin-bottom:0.8rem;">Count the &ldquo;but&rdquo;s where both questions on the last slide say yes. That is how many research questions your talk has.</p>
     <div class="vs-grid">
       <div class="vs-box neutral" data-step="1">
-        <div class="vs-label">One step</div>
-        <p>One research question. This is the Week 6 example talk, and it is a complete talk.</p>
+        <div class="vs-label">One</div>
+        <p>The talk goes down the staircase, answers one question, then ends with the benefit. The Week 6 example talk was like this.</p>
       </div>
       <div class="vs-box neutral" data-step="2">
-        <div class="vs-label">Two or three steps</div>
-        <p>Two or three research questions, answered from the bottom up. Each one gets an approach slide and a result slide.</p>
+        <div class="vs-label">Two or three</div>
+        <p>Answer the bottom question first, then the next one up. Each gets an approach slide and a result slide.</p>
       </div>
     </div>
-    <p style="margin-top:1rem;" data-step="3">A correction to one Week 6 slide, which said your first obstacle is your research question. It can be one, if both questions say yes. Usually the research question is near the bottom of the staircase.</p>
+  </div>
+</div>
+
+<!-- SLIDE: Three moves -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>A research question names the variables, the physics and the competing explanation</h2>
+    <p style="margin-bottom:0.6rem;">The Week 6 question is clear and casual. It says what the observer does, and not what the building does. Three moves make it a scientific question.</p>
+    <table class="ft">
+      <tr><th>Move</th><th>Mayfield</th></tr>
+      <tr data-step="1"><td class="k">1. Name the variables</td><td>Parapet height, storefront opening ratio and wall-to-floor anchorage, against damage state.</td></tr>
+      <tr data-step="2"><td class="k">2. Name the physics</td><td>A tall parapet sticks up into the fastest wind. A big storefront opening lets wind pressurize the inside, which adds to roof uplift and pushes the walls outward. Walls not anchored to the floors have no path to carry that load down.</td></tr>
+      <tr data-step="3"><td class="k">3. Name the competing explanation</td><td>Distance to the track, standing in for local wind speed. Closer buildings saw higher pressures whatever their features.</td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- SLIDE: Two good versions -->
+<div class="slide">
+  <div class="slide-inner">
+    <h2>There is more than one good way to write the same research question</h2>
+    <div class="ttl topic" style="margin-bottom:1rem;"><span class="vs-label">Week 6, casual</span>Which features you can see from the street go with more tornado damage in historic brick buildings?</div>
+    <div class="vs-grid" style="margin-top:0;">
+      <div class="vs-box good" data-step="1">
+        <div class="vs-label">Version 1, variables first</div>
+        <p>To what extent do parapet height, storefront opening ratio and wall-to-floor anchorage explain tornado damage to historic unreinforced masonry buildings beyond what local wind speed explains?</p>
+      </div>
+      <div class="vs-box good" data-step="2">
+        <div class="vs-label">Version 2, mechanism first</div>
+        <p>Which load-path weaknesses visible on the fa&ccedil;ade of historic unreinforced masonry buildings explain tornado damage beyond local wind speed?</p>
+      </div>
+    </div>
+    <p data-step="3">Both are good research questions. Version 1 lists what gets measured. Version 2 is shorter and leaves the variables for the approach slide. The example talk uses version 1.</p>
   </div>
 </div>
 
@@ -427,8 +467,8 @@
       <p data-step="3">This slide comes back after each result.</p>
     </aside>
     <div class="talk">
-      <h2>This talk asks which features matter, then whether volunteers can see them from the sidewalk</h2>
-      <div class="rqs"><div class="rqc now"><span class="tag">Question 1</span><div class="q">Which features you can see from the street go with more tornado damage in historic brick buildings?</div></div><div class="rqc later"><span class="tag">Question 2</span><div class="q">Can volunteers rate those features from the sidewalk the way an engineer would?</div></div></div>
+      <h2>This talk asks which fa&ccedil;ade features explain damage beyond wind speed, then whether non-experts can identify them</h2>
+      <div class="rqs"><div class="rqc now"><span class="tag">Question 1</span><div class="q">To what extent do parapet height, storefront opening ratio and wall-to-floor anchorage explain tornado damage to historic unreinforced masonry buildings beyond what local wind speed explains?</div></div><div class="rqc later"><span class="tag">Question 2</span><div class="q">How reliably can non-experts identify these features from the sidewalk, measured as agreement with an engineer&rsquo;s rating?</div></div></div>
       <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>4 / 11</span></div>
     </div>
   </div>
@@ -446,11 +486,11 @@
       <h2>Three explanations for the damage predict different patterns</h2>
       <p style="margin-bottom:0.25rem;">About 80 historic brick buildings along one EF4 track, each surveyed after the storm.</p>
       <div class="hyp">
-        <div data-step="1"><b>A: Geometry</b>Tall parapets and big wall openings catch the wind and fail first.</div>
-        <div data-step="2"><b>B: Location</b>It is just how close the building was to the track.</div>
-        <div data-step="3" class="untestable"><b>C: Hidden condition</b>Mortar and wall-to-floor ties decide it, and they are hard to see from the street.</div>
+        <div data-step="1"><b>A: Geometry</b>A tall parapet sticks up into the fastest wind. A big storefront opening lets wind pressurize the inside, adding to roof uplift and pushing the walls outward.</div>
+        <div data-step="2"><b>B: Local wind speed</b>Distance to the track stands in for wind speed. Closer buildings saw higher pressures, whatever their features.</div>
+        <div data-step="3" class="untestable"><b>C: Hidden condition</b>Mortar and wall-to-floor ties decide whether the walls can carry the load down to the floors. They are hard to see from the street.</div>
       </div>
-      <p data-step="4"><strong>The test.</strong> Compare tall and short parapets at the same distance. If B is right, the gap disappears.</p>
+      <p data-step="4"><strong>The test.</strong> Compare tall and short parapets at the same distance from the track. If B is right, the gap disappears.</p>
       <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>5 / 11</span></div>
     </div>
   </div>
@@ -482,7 +522,7 @@
     </aside>
     <div class="talk">
       <h2>Tall parapets matter, so next we ask whether volunteers can see them</h2>
-      <div class="rqs"><div class="rqc done"><span class="tag">Question 1</span><div class="q">Which features you can see from the street go with more tornado damage in historic brick buildings?</div><div class="a">Tall parapets went with more damage at every distance from the track.</div></div><div class="rqc now"><span class="tag">Question 2</span><div class="q">Can volunteers rate those features from the sidewalk the way an engineer would?</div></div></div>
+      <div class="rqs"><div class="rqc done"><span class="tag">Question 1</span><div class="q">To what extent do parapet height, storefront opening ratio and wall-to-floor anchorage explain tornado damage to historic unreinforced masonry buildings beyond what local wind speed explains?</div><div class="a">Tall parapets went with more damage at every distance from the track.</div></div><div class="rqc now"><span class="tag">Question 2</span><div class="q">How reliably can non-experts identify these features from the sidewalk, measured as agreement with an engineer&rsquo;s rating?</div></div></div>
       <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>7 / 11</span></div>
     </div>
   </div>
@@ -536,7 +576,7 @@
     </aside>
     <div class="talk">
       <h2>Volunteers can likely spot tall parapets, and the wall ties still need an engineer</h2>
-      <div class="rqs"><div class="rqc done"><span class="tag">Question 1</span><div class="q">Which features you can see from the street go with more tornado damage in historic brick buildings?</div><div class="a">Tall parapets went with more damage at every distance from the track.</div></div><div class="rqc done"><span class="tag">Question 2</span><div class="q">Can volunteers rate those features from the sidewalk the way an engineer would?</div><div class="a">Volunteers match the engineer on parapets and storefronts and miss the wall ties. <span class="expected">EXPECTED</span></div></div></div>
+      <div class="rqs"><div class="rqc done"><span class="tag">Question 1</span><div class="q">To what extent do parapet height, storefront opening ratio and wall-to-floor anchorage explain tornado damage to historic unreinforced masonry buildings beyond what local wind speed explains?</div><div class="a">Tall parapets went with more damage at every distance from the track.</div></div><div class="rqc done"><span class="tag">Question 2</span><div class="q">How reliably can non-experts identify these features from the sidewalk, measured as agreement with an engineer&rsquo;s rating?</div><div class="a">Volunteers match the engineer on parapets and storefronts and miss the wall ties. <span class="expected">EXPECTED</span></div></div></div>
       <div class="talk-foot"><span>Example talk, extends Saanchi&rsquo;s open Mayfield study, illustrative numbers</span><span>10 / 11</span></div>
     </div>
   </div>
@@ -571,7 +611,7 @@
         <div class="down">Mayfield has more historic brick buildings than it can afford to retrofit</div>
         <div class="down">A full engineering assessment of every building costs more than the town can spend</div>
         <div class="down">Wind design was written for modern buildings, so it doesn&rsquo;t say which historic features to look for</div>
-        <div class="home">This talk asks which features matter, then whether volunteers can see them from the sidewalk</div>
+        <div class="home">This talk asks which fa&ccedil;ade features explain damage beyond wind speed, then whether non-experts can identify them</div>
         <div class="up">Three explanations for the damage predict different patterns</div>
         <div class="up">Tall-parapet buildings were damaged more at every distance from the track</div>
         <div class="home">Tall parapets matter, so next we ask whether volunteers can see them</div>
@@ -598,6 +638,7 @@
     <ol style="padding-left:1.4rem;">
       <li style="margin-bottom:0.4rem;">Copy the staircase from your Oct 22 storymap.</li>
       <li style="margin-bottom:0.4rem;">Ask the two questions of each &ldquo;but&rdquo; and mark the ones your work can answer.</li>
+      <li style="margin-bottom:0.4rem;">Run the three moves on your bottom research question. Name the variables, the physics and the competing explanation.</li>
       <li style="margin-bottom:0.4rem;">Write your research questions slide, with the question that answers the bottom &ldquo;but&rdquo; first.</li>
       <li>Write the title of every slide in your December talk as a full sentence, in order.</li>
     </ol>

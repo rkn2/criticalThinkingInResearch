@@ -316,13 +316,23 @@ invented and marked EXPECTED. In the talk itself the staircase never
 appears; a research questions slide comes back after each result with the
 answer filled in. The staircase lives only in the side notes.
 
+Added Nov 12 (slides 7–8): a research question names the variables, the
+physics and the competing explanation (the Week 6 Mayfield question is
+casual, it says what the observer does and not what the building does). Two
+rewrites shown as equally good, version 1 variables first and version 2
+mechanism first, so students see there is more than one right answer; the
+example uses version 1. Slide 6 says plainly that one research question is a
+complete talk.
+
 Decided Nov 12: the "scope line" idea (steps your work can answer vs. the
 town's call) is on hold, so the deck doesn't use the term. Don't mention the
-comps retake on slides. Also fixed the Week 6 slide that said the first
-obstacle is the research question.
+comps retake on slides. Fixed the Week 6 slide that said the first
+obstacle is the research question (the correction is not on the Week 10
+slides; say it aloud if it comes up).
 
 **Workshop:** copy your Oct 22 staircase, ask the two questions of each
-"but," write your research questions slide, write every slide title of the
+"but," run the three moves on the bottom research question, write your
+research questions slide, write every slide title of the
 December talk as a sentence. **Hot seat:** others read only the titles.
 **Deliverable:** title strip and research questions slide as a PDF on Teams.
 
