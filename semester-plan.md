@@ -303,10 +303,11 @@ Nov 5, students don't have to update the deck).
 Slides `docs/week10-slides.html`. No worksheet. A committee talk goes down
 the Week 6 staircase one "but" per slide, then climbs back up, answering
 each "but" with a research question, bottom one first (answering the bottom
-step is what lets you work on the one above). Two questions for each "but":
-is it the bottom step or does it build on the one below, and can your work
-answer it or does someone else make the call (then it goes in the benefit).
-One research question is a complete talk.
+step is what lets you work on the one above). A "but" becomes a research
+question when your own work can answer it; if someone else makes the call
+(a town, an owner, a code committee) it goes in the benefit. One research
+question is a complete talk. (A two-question test slide was cut Nov 12, its
+first question did no work; the warm-up was dropped too.)
 
 Example talk (11 slides, talk frame plus side notes) extends Saanchi's open
 Mayfield feature study, labeled as such so Marcio (Memory Building,
@@ -330,8 +331,8 @@ comps retake on slides. Fixed the Week 6 slide that said the first
 obstacle is the research question (the correction is not on the Week 10
 slides; say it aloud if it comes up).
 
-**Workshop:** copy your Oct 22 staircase, ask the two questions of each
-"but," run the three moves on the bottom research question, write your
+**Workshop:** copy your Oct 22 staircase, mark each "but" your own work
+can answer, run the three moves on the bottom research question, write your
 research questions slide, write every slide title of the
 December talk as a sentence. **Hot seat:** others read only the titles.
 **Deliverable:** title strip and research questions slide as a PDF on Teams.
