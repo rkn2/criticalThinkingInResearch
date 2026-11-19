@@ -376,6 +376,10 @@ Then the next person.
 
 Opens with the convergence GIF (docs/img/converge-versions.gif): results, then story, then where the work sits in the field, so a new direction from feedback reads as progress. Session page is docs/week11-session.html.
 
+Sent to the class on Teams before the session (Nov 19): the run of show
+(read 5, titles aloud 5, questions and feedback 15, Marcio then Carol), what
+to listen for, and no worksheet this week.
+
 ### Weeks 8–13 — Practice talks and questions (Oct 29 – Dec 3)
 
 Left open on purpose (decided Oct 8): the rest of the semester is giving
